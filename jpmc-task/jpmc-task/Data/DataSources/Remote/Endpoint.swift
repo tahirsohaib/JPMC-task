@@ -37,7 +37,7 @@ enum PlanetsEndpoint: Endpoint {
 
 
 enum Constants {
-    static let BaseURL = "https://swapi.dev/api/planets/"
+    static let BaseURL = "https://swapi.dev/api/"
     static let apiKey =  ""
 }
 
@@ -45,9 +45,9 @@ extension Endpoint {
     func makeURL() -> URL? {
         guard let urlComponents = NSURLComponents(string: self.baseUrl) else { return nil }
         urlComponents.path = self.path
-        urlComponents.queryItems = [
-            URLQueryItem(name: "api_key", value: self.apiKey)
-        ]
+//        urlComponents.queryItems = [
+//            URLQueryItem(name: "api_key", value: self.apiKey)
+//        ]
         return urlComponents.url
     }
 }

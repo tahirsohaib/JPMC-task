@@ -13,8 +13,8 @@ struct PlanetRemoteEntity: Hashable, Codable {
     let population: String
     let filmURLs: [URL]
     let residentURLs: [URL]
-    let filmObjects: [Film]?
-    let residentObjects: [Resident]?
+    let filmObjects: [FilmRemoteEntity]?
+    let residentObjects: [ResidentRemoteEntity]?
 
     enum CodingKeys: String, CodingKey {
         case name

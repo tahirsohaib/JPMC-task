@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import Combine
+
+class StawWarsRepository: PlanetsRepositoryProtocol {
+    private var dataSource: PlanetDataSourceProtocol
+    
+    init(dataSource: PlanetDataSourceProtocol) {
+        self.dataSource = dataSource
+    }
+    
+    func getAllPlanets() -> AnyPublisher<[PlanetResponseModel], Error> {
+        return dataSource.getAll()
+            .eraseToAnyPublisher()
+    }
+    
+}

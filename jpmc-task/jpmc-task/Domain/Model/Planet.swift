@@ -16,7 +16,7 @@ struct PlanetResponseModel: Equatable, Hashable {
 //    init() {
 //        name = ""
 //    }
-//    
+//
 //    init(name: String) {
 //        self.name = name
 //    }

@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 protocol NetworkServiceProtocol {
-    func get<T: Decodable, S: Endpoint>(_ endpoint: S) -> AnyPublisher<T, Error>
+    func get<T: Decodable, S: Endpoint>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, Error>
+    //return try await sendRequest(endpoint: .heroes(offset: offset), responseModel: HeroeResponseDTO.self)
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -21,8 +22,13 @@ class NetworkService: NetworkServiceProtocol {
         urlSession = URLSession(configuration: configuration)
     }
     
-    func get<T, S>(_ endpoint: S) -> AnyPublisher<T, Error> where T : Decodable, S : Endpoint {
-        guard let url = endpoint.makeURL() else {
+    func get<T, S>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, Error> where T : Decodable, S : Endpoint {
+//    func get<T, S>(_ endpoint: S) -> AnyPublisher<T, Error> where T : Decodable, S : Endpoint {
+        //https://swapi.dev/api/planets/
+//        guard let url = endpoint.makeURL() else {
+        print(type(of: T.self))
+//        print("Hello, \(T.description)!")
+        guard let url = URL(string: "https://swapi.dev/api/planets/") else {
             return Fail(error: APIError.badURLRequest(url: "\(endpoint.baseUrl)\(endpoint.path)"))
                 .eraseToAnyPublisher()
         }
@@ -30,6 +36,7 @@ class NetworkService: NetworkServiceProtocol {
         let request = URLRequest(url: url)
         return load(request)
             .decode(type: T.self, decoder: JSONDecoder())
+            .print()
             .eraseToAnyPublisher()
     }
     

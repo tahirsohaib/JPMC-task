@@ -11,7 +11,7 @@ import SwiftUI
 struct jpmc_taskApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlanetList()
         }
     }
 }

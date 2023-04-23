@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol TodoDataSourceProtocol {
-    func getAll() async -> AnyPublisher<[PlanetResponseModel], StarWarsError>
-    func getOne(_ id: String) -> AnyPublisher<PlanetResponseModel, StarWarsError>
+protocol PlanetDataSourceProtocol {
+    func getAll() -> AnyPublisher<[PlanetResponseModel], Error>
+//    func getOne(_ id: String) -> AnyPublisher<PlanetResponseModel, StarWarsError>
 }
