@@ -36,7 +36,7 @@ class LocalDataSource: LocalDataSourceProtocol {
         return result[0]
     }
 
-    func syncAllPlanets(_ serverData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error> {
+    func syncAllPlanetsWithRemote(_ serverData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error> {
         return Future { promise in
             let context = self.dbService.getContext()
             // Fetch all existing planets
@@ -79,7 +79,7 @@ class LocalDataSource: LocalDataSourceProtocol {
         }.eraseToAnyPublisher()
     }
 
-    func getAll() -> AnyPublisher<[PlanetModel], Error> {
+    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error> {
         let data = _getAll()
         let newData = data.map { planetCDEntity in
             mapPlanetResponse(planetCDEntity: planetCDEntity)

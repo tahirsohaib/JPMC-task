@@ -10,5 +10,5 @@ import Foundation
 
 protocol PlanetsRepositoryProtocol {
     func getAllPlanets() -> AnyPublisher<[PlanetModel], Error>
-    func syncRemoteAndLocalRepos() -> AnyPublisher<[PlanetModel], Error>
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error>
 }

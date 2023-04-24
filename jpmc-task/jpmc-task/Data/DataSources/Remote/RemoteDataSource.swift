@@ -15,7 +15,7 @@ class RemoteDataSource: RemoteDataSourceProtocol {
         return PlanetModel(name: remoteEntity.name, population: remoteEntity.population, terrain: remoteEntity.terrain)
     }
 
-    func getAll() -> AnyPublisher<[PlanetModel], Error> {
+    func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], Error> {
         remoteService.fetchPlanets()
             .map { planetRemoteEntities in
                 planetRemoteEntities.map { self.mapPlanetRemoteToResponse(remoteEntity: $0) }

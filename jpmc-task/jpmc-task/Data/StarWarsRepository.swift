@@ -17,14 +17,14 @@ class StarWarsRepository: PlanetsRepositoryProtocol {
     }
 
     func getAllPlanets() -> AnyPublisher<[PlanetModel], Error> {
-        return localDataSource.getAll()
+        return localDataSource.getAllPlanetsLocal()
             .eraseToAnyPublisher()
     }
 
-    func syncRemoteAndLocalRepos() -> AnyPublisher<[PlanetModel], Error> {
-        remoteDataSource.getAll()
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error> {
+        remoteDataSource.getAllPlanetsRemote()
             .flatMap { planetModels in
-                self.localDataSource.syncAllPlanets(planetModels)
+                self.localDataSource.syncAllPlanetsWithRemote(planetModels)
             }
             .eraseToAnyPublisher()
     }
