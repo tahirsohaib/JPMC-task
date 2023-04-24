@@ -12,10 +12,12 @@ class PlanetListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     @Published var planets: [PlanetModel] = []
+    @Published var isLoading: Bool = false
 
     @Injected private var getAllPlanetsUseCase: GetAllPlanetsUseCaseProtocol
     
     init() {
+        isLoading = true
         fetchPlanets()
     }
 
@@ -28,6 +30,7 @@ class PlanetListViewModel: ObservableObject {
             }
             .sink(receiveValue: { planets in
                 self.planets = planets
+                self.isLoading = planets.count < 0
             })
             .store(in: &cancellables)
     }
@@ -40,6 +43,7 @@ class PlanetListViewModel: ObservableObject {
                 return Empty<[PlanetModel], Never>()
             }
             .sink(receiveValue: { planets in
+                self.isLoading = false
                 self.planets = planets
             })
             .store(in: &cancellables)

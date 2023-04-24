@@ -12,16 +12,22 @@ struct PlanetList: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.planets, id: \.self) { planet in
-                VStack(alignment: .leading) {
-                    Text(planet.name)
-                        .font(.headline)
-                    Text("Terrain: \(planet.terrain)")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+            Group {
+                if viewModel.isLoading {
+                    ProgressView()
+                } else {
+                    List(viewModel.planets, id: \.self) { planet in
+                        VStack(alignment: .leading) {
+                            Text(planet.name)
+                                .font(.headline)
+                            Text("Terrain: \(planet.terrain)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .listStyle(.plain)
                 }
             }
-            .listStyle(.plain)
             .onAppear {
                 viewModel.syncRemoteAndLocal()
             }
