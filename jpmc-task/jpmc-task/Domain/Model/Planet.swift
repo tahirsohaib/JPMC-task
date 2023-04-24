@@ -13,31 +13,3 @@ struct PlanetModel: Equatable, Hashable {
     var population: String
     var terrain: String
 }
-
-//struct PlanetRequestModel: Equatable, Codable {
-//    var name: String
-//    var population: String
-//    var terrain: String
-//}
-
-/*
- struct Planet: Hashable, Codable {
-     let name: String
-     let terrain: String
-     let population: String
-     let filmURLs: [URL]
-     let residentURLs: [URL]
-     let filmObjects: [Film]?
-     let residentObjects: [Resident]?
-
-     enum CodingKeys: String, CodingKey {
-         case name
-         case terrain
-         case population
-         case filmURLs = "films"
-         case residentURLs = "residents"
-         case filmObjects
-         case residentObjects
-     }
- }
- */

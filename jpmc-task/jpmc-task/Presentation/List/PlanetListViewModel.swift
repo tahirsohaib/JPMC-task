@@ -11,7 +11,7 @@ import Combine
 class PlanetListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let getAllPlanetsUseCase: GetAllPlanetsUC
-    static private let meUni:String  = ""
+    
     @Published var planets: [PlanetModel] = []
     
     init(getAllPlanetsUseCase: GetAllPlanetsUC) {
@@ -22,32 +22,27 @@ class PlanetListViewModel: ObservableObject {
     func fetchPlanets() {
         getAllPlanetsUseCase.execute()
             .receive(on: DispatchQueue.main)
-            .sink{ res in
-                switch res {
-                case .finished:
-                    print("Success")
-                case .failure(let error):
-                    print("Failure: \(error.localizedDescription)")
-                }
-            } receiveValue: { planets in
-                self.planets = planets
+            .catch { error -> Empty<[PlanetModel], Never> in
+                print("Failed to fetch planets: \(error.localizedDescription)")
+                return Empty<[PlanetModel], Never>()
             }
+            .sink(receiveValue: { planets in
+                self.planets = planets
+            })
             .store(in: &cancellables)
     }
+        
     
     func syncRemoteAndLocal() {
         getAllPlanetsUseCase.sync()
             .receive(on: DispatchQueue.main)
-            .sink{ res in
-                switch res {
-                case .finished:
-                    print("Success")
-                case .failure(let error):
-                    print("Failure: \(error.localizedDescription)")
-                }
-            } receiveValue: { planets in
-                self.planets = planets
+            .catch { error -> Empty<[PlanetModel], Never> in
+                print("Failed to synchronize planets: \(error.localizedDescription)")
+                return Empty<[PlanetModel], Never>()
             }
+            .sink(receiveValue: { planets in
+                self.planets = planets
+            })
             .store(in: &cancellables)
     }
     
