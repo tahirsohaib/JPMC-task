@@ -15,7 +15,7 @@ struct PlanetList: View {
             List(viewModel.planets, id: \.self) { planet in
                 VStack(alignment: .leading) {
                     Text(planet.name)
-                        .font(.headline)                    
+                        .font(.headline)
                     Text("Terrain: \(planet.terrain)")
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -25,7 +25,7 @@ struct PlanetList: View {
             .onAppear {
                 viewModel.syncRemoteAndLocal()
             }
-            .navigationTitle("Starwars Planets")
+            .navigationTitle("Star Wars Planets")
         }
     }
 }
