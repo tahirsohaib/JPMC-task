@@ -10,7 +10,6 @@ import Foundation
 protocol Endpoint: Equatable {
     var baseUrl:String { get }
     var path:String { get }
-    var apiKey:String { get }
 }
 
 enum PlanetsEndpoint: Endpoint {
@@ -28,25 +27,16 @@ enum PlanetsEndpoint: Endpoint {
             return "/planets/\(planetId)"
         }        
     }
-    
-    var apiKey: String {
-        return ""
-    }
 }
 
 
 enum Constants {
-    static let BaseURL = "https://swapi.dev/api/"
-    static let apiKey =  ""
+    static let BaseURL = "https://swapi.dev/api"
 }
 
 extension Endpoint {
     func makeURL() -> URL? {
-        guard let urlComponents = NSURLComponents(string: self.baseUrl) else { return nil }
-        urlComponents.path = self.path
-//        urlComponents.queryItems = [
-//            URLQueryItem(name: "api_key", value: self.apiKey)
-//        ]
-        return urlComponents.url
+        return URL(string: "\(self.baseUrl)\(self.path)")
     }
 }
+
