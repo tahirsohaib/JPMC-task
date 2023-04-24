@@ -10,6 +10,7 @@ import Foundation
 
 protocol GetAllPlanetsUseCaseProtocol {
     func execute() -> AnyPublisher<[PlanetModel], Error>
+    func sync() -> AnyPublisher<[PlanetModel], Error>
 }
 
 class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
