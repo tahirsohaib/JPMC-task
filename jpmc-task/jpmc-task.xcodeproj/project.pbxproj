@@ -15,7 +15,7 @@
 		CB6ADCD829F1A1D900BB0ACA /* jpmc_taskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCD729F1A1D900BB0ACA /* jpmc_taskUITests.swift */; };
 		CB6ADCDA29F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCD929F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift */; };
 		CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */; };
-		CB6ADCF529F1A4D300BB0ACA /* StawWarsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCF429F1A4D300BB0ACA /* StawWarsRepository.swift */; };
+		CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */; };
 		CB6ADCFD29F1AFDD00BB0ACA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */; };
 		CB6ADCFF29F1AFF700BB0ACA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCFE29F1AFF700BB0ACA /* Endpoint.swift */; };
 		CB6ADD0129F1B00800BB0ACA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0029F1B00800BB0ACA /* APIError.swift */; };
@@ -65,7 +65,7 @@
 		CB6ADCD729F1A1D900BB0ACA /* jpmc_taskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskUITests.swift; sourceTree = "<group>"; };
 		CB6ADCD929F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProtocol.swift; sourceTree = "<group>"; };
-		CB6ADCF429F1A4D300BB0ACA /* StawWarsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StawWarsRepository.swift; sourceTree = "<group>"; };
+		CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsRepository.swift; sourceTree = "<group>"; };
 		CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CB6ADCFE29F1AFF700BB0ACA /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CB6ADD0029F1B00800BB0ACA /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			children = (
 				CB6ADCE929F1A22F00BB0ACA /* DataSources */,
 				CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */,
-				CB6ADCF429F1A4D300BB0ACA /* StawWarsRepository.swift */,
+				CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -461,7 +461,7 @@
 				CB6ADD0629F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift in Sources */,
 				CB6ADD1729F4983A00BB0ACA /* PlanetsReposiroty.swift in Sources */,
 				CB6ADD1329F1B68100BB0ACA /* Planet.swift in Sources */,
-				CB6ADCF529F1A4D300BB0ACA /* StawWarsRepository.swift in Sources */,
+				CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */,
 				CB6ADD0129F1B00800BB0ACA /* APIError.swift in Sources */,
 				CB6ADCFD29F1AFDD00BB0ACA /* NetworkService.swift in Sources */,
 				CB6ADD0729F1B16400BB0ACA /* PlanetRemoteEntity.swift in Sources */,

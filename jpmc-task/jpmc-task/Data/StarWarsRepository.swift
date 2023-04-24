@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class StawWarsRepository: PlanetsRepositoryProtocol {
+class StarWarsRepository: PlanetsRepositoryProtocol {
     @Injected private var remoteDataSource: RemoteDataSourceProtocol
     @Injected private var localDataSource: LocalDataSourceProtocol
 

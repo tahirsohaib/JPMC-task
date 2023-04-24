@@ -16,7 +16,7 @@ struct jpmc_taskApp: App {
         Resolver.main.register(type: NetworkServiceProtocol.self, service: NetworkService())
         Resolver.main.register(type: RemotePlanetsServiceProtocol.self, service: RemotePlanetsService())
         Resolver.main.register(type: RemoteDataSourceProtocol.self, service: RemoteDataSource())
-        Resolver.main.register(type: PlanetsRepositoryProtocol.self, service: StawWarsRepository())
+        Resolver.main.register(type: PlanetsRepositoryProtocol.self, service: StarWarsRepository())
         Resolver.main.register(type: GetAllPlanetsUseCaseProtocol.self, service: GetAllPlanetsUC())
     }    
     
