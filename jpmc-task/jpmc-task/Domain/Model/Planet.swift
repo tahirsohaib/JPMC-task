@@ -7,31 +7,17 @@
 
 import Foundation
 
-struct PlanetResponseModel: Equatable, Hashable {
+struct PlanetModel: Equatable, Hashable {
     
     var name: String
-    var terrain: String
     var population: String
-    
-//    init() {
-//        name = ""
-//    }
-//
-//    init(name: String) {
-//        self.name = name
-//    }
+    var terrain: String
 }
 
 //struct PlanetRequestModel: Equatable, Codable {
 //    var name: String
-//
-//    init() {
-//        name = ""
-//    }
-//
-//    init(name: String) {
-//        self.name = name
-//    }
+//    var population: String
+//    var terrain: String
 //}
 
 /*

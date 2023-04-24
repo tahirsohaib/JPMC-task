@@ -15,8 +15,7 @@ protocol Endpoint: Equatable {
 
 enum PlanetsEndpoint: Endpoint {
     case allPlanets
-    case onePlanet(planetId: String)
-        
+    case onePlanet(planetId: String)        
     var baseUrl: String {
         return Constants.BaseURL
     }

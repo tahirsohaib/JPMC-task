@@ -12,7 +12,7 @@ class PlanetListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let getAllPlanetsUseCase: GetAllPlanetsUC
     static private let meUni:String  = ""
-    @Published var planets: [PlanetResponseModel] = []
+    @Published var planets: [PlanetModel] = []
     
     init(getAllPlanetsUseCase: GetAllPlanetsUC) {
         self.getAllPlanetsUseCase = getAllPlanetsUseCase

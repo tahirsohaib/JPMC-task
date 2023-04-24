@@ -20,10 +20,7 @@ class RemotePlanetsService: RemotePlanetsServiceProtocol {
 
     func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], Error> {
         networkService.get(PlanetsResponseRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
-            .map { response  in
-                response.results
-            }
-            .print()
+            .map { $0.results }
             .eraseToAnyPublisher()
     }
 }

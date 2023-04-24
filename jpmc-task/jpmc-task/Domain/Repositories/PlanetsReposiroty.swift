@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol PlanetsRepositoryProtocol {
-    func getAllPlanets() -> AnyPublisher<[PlanetResponseModel], Error>
+    func getAllPlanets() -> AnyPublisher<[PlanetModel], Error>
 }

@@ -8,17 +8,17 @@
 import Foundation
 import Combine
 
-class RemoteDataSource: PlanetDataSourceProtocol {
+class RemoteDataSource: RemoteDataSourceProtocol {
     private var remoteService: RemotePlanetsServiceProtocol
     init(remoteService: RemotePlanetsServiceProtocol) {
         self.remoteService = remoteService
     }
     
-    private func mapPlanetRemoteToResponse(remoteEntity: PlanetRemoteEntity) -> PlanetResponseModel {
-        return PlanetResponseModel(name: remoteEntity.name, terrain: remoteEntity.terrain, population: remoteEntity.population)
+    private func mapPlanetRemoteToResponse(remoteEntity: PlanetRemoteEntity) -> PlanetModel {
+        return PlanetModel(name: remoteEntity.name, population: remoteEntity.population, terrain: remoteEntity.terrain)
     }
     
-    func getAll() -> AnyPublisher<[PlanetResponseModel], Error> {
+    func getAll() -> AnyPublisher<[PlanetModel], Error> {
         remoteService.fetchPlanets()
                 .map { planetRemoteEntities in
                     planetRemoteEntities.map { self.mapPlanetRemoteToResponse(remoteEntity: $0) }
@@ -26,7 +26,7 @@ class RemoteDataSource: PlanetDataSourceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getOne(_ id: String) -> AnyPublisher<PlanetResponseModel, StarWarsError> {
+    func getOne(_ id: String) -> AnyPublisher<PlanetModel, StarWarsError> {
         return Fail(error: StarWarsError.Get).eraseToAnyPublisher()
     }
     

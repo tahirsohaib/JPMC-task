@@ -21,8 +21,6 @@
 		CB6ADD0129F1B00800BB0ACA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0029F1B00800BB0ACA /* APIError.swift */; };
 		CB6ADD0629F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0229F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift */; };
 		CB6ADD0729F1B16400BB0ACA /* PlanetRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0329F1B16400BB0ACA /* PlanetRemoteEntity.swift */; };
-		CB6ADD0829F1B16400BB0ACA /* ResidentRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0429F1B16400BB0ACA /* ResidentRemoteEntity.swift */; };
-		CB6ADD0929F1B16400BB0ACA /* FilmRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0529F1B16400BB0ACA /* FilmRemoteEntity.swift */; };
 		CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0A29F1B23F00BB0ACA /* RemoteDataSource.swift */; };
 		CB6ADD0D29F1B28100BB0ACA /* RemotePlanetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0C29F1B28100BB0ACA /* RemotePlanetsService.swift */; };
 		CB6ADD1029F1B64600BB0ACA /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0F29F1B64600BB0ACA /* CustomError.swift */; };
@@ -32,6 +30,8 @@
 		CB6ADD1C29F4A7EC00BB0ACA /* PlanetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1B29F4A7EC00BB0ACA /* PlanetListViewModel.swift */; };
 		CB6ADD1E29F4A7F400BB0ACA /* PlanetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1D29F4A7F400BB0ACA /* PlanetList.swift */; };
 		CB6ADD2029F575CD00BB0ACA /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1F29F575CD00BB0ACA /* LocalDataSource.swift */; };
+		CB6ADD2229F5D76900BB0ACA /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2129F5D76900BB0ACA /* CoreDataService.swift */; };
+		CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2329F5E18600BB0ACA /* Swapi.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +69,6 @@
 		CB6ADD0029F1B00800BB0ACA /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CB6ADD0229F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetsResponseRemoteEntity.swift; sourceTree = "<group>"; };
 		CB6ADD0329F1B16400BB0ACA /* PlanetRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetRemoteEntity.swift; sourceTree = "<group>"; };
-		CB6ADD0429F1B16400BB0ACA /* ResidentRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentRemoteEntity.swift; sourceTree = "<group>"; };
-		CB6ADD0529F1B16400BB0ACA /* FilmRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmRemoteEntity.swift; sourceTree = "<group>"; };
 		CB6ADD0A29F1B23F00BB0ACA /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
 		CB6ADD0C29F1B28100BB0ACA /* RemotePlanetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePlanetsService.swift; sourceTree = "<group>"; };
 		CB6ADD0F29F1B64600BB0ACA /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
@@ -80,6 +78,8 @@
 		CB6ADD1B29F4A7EC00BB0ACA /* PlanetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetListViewModel.swift; sourceTree = "<group>"; };
 		CB6ADD1D29F4A7F400BB0ACA /* PlanetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetList.swift; sourceTree = "<group>"; };
 		CB6ADD1F29F575CD00BB0ACA /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		CB6ADD2129F5D76900BB0ACA /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		CB6ADD2429F5E18600BB0ACA /* Swapi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swapi.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,8 +209,8 @@
 			children = (
 				CB6ADD0029F1B00800BB0ACA /* APIError.swift */,
 				CB6ADCFE29F1AFF700BB0ACA /* Endpoint.swift */,
-				CB6ADCF329F1A49400BB0ACA /* Service */,
 				CB6ADCF229F1A48D00BB0ACA /* Entities */,
+				CB6ADCF329F1A49400BB0ACA /* Service */,
 				CB6ADD0A29F1B23F00BB0ACA /* RemoteDataSource.swift */,
 			);
 			path = Remote;
@@ -219,8 +219,8 @@
 		CB6ADCEB29F1A3D300BB0ACA /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				CB6ADCF129F1A48100BB0ACA /* Service */,
 				CB6ADCF029F1A47B00BB0ACA /* Entities */,
+				CB6ADCF129F1A48100BB0ACA /* Service */,
 				CB6ADD1F29F575CD00BB0ACA /* LocalDataSource.swift */,
 			);
 			path = Local;
@@ -229,6 +229,7 @@
 		CB6ADCF029F1A47B00BB0ACA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				CB6ADD2329F5E18600BB0ACA /* Swapi.xcdatamodeld */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -236,6 +237,7 @@
 		CB6ADCF129F1A48100BB0ACA /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CB6ADD2129F5D76900BB0ACA /* CoreDataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -245,8 +247,6 @@
 			children = (
 				CB6ADD0229F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift */,
 				CB6ADD0329F1B16400BB0ACA /* PlanetRemoteEntity.swift */,
-				CB6ADD0529F1B16400BB0ACA /* FilmRemoteEntity.swift */,
-				CB6ADD0429F1B16400BB0ACA /* ResidentRemoteEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -434,10 +434,10 @@
 				CB6ADCFF29F1AFF700BB0ACA /* Endpoint.swift in Sources */,
 				CB6ADD1929F498D900BB0ACA /* GetAllPlanetsUC.swift in Sources */,
 				CB6ADD1E29F4A7F400BB0ACA /* PlanetList.swift in Sources */,
-				CB6ADD0929F1B16400BB0ACA /* FilmRemoteEntity.swift in Sources */,
 				CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */,
-				CB6ADD0829F1B16400BB0ACA /* ResidentRemoteEntity.swift in Sources */,
 				CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */,
+				CB6ADD2229F5D76900BB0ACA /* CoreDataService.swift in Sources */,
+				CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */,
 				CB6ADCBF29F1A1D400BB0ACA /* ContentView.swift in Sources */,
 				CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */,
 				CB6ADD1029F1B64600BB0ACA /* CustomError.swift in Sources */,
@@ -777,6 +777,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CB6ADD2329F5E18600BB0ACA /* Swapi.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CB6ADD2429F5E18600BB0ACA /* Swapi.xcdatamodel */,
+			);
+			currentVersion = CB6ADD2429F5E18600BB0ACA /* Swapi.xcdatamodel */;
+			path = Swapi.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CB6ADCB129F1A1D300BB0ACA /* Project object */;
 }

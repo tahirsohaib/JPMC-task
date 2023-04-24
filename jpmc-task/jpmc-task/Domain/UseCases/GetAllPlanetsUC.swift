@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol GetAllPlanetsUseCaseProtocol {
-    func execute() -> AnyPublisher<[PlanetResponseModel], Error>
+    func execute() -> AnyPublisher<[PlanetModel], Error>
 }
 
 
@@ -20,7 +20,7 @@ class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
         self.planetRepo = planetRepo
     }
          
-    func execute() -> AnyPublisher<[PlanetResponseModel], Error> {
+    func execute() -> AnyPublisher<[PlanetModel], Error> {
         return planetRepo.getAllPlanets()
             .eraseToAnyPublisher()
     }
