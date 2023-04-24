@@ -13,7 +13,7 @@ class PlanetListViewModel: ObservableObject {
 
     @Published var planets: [PlanetModel] = []
 
-    @Injected private var getAllPlanetsUseCase: GetAllPlanetsUC
+    @Injected private var getAllPlanetsUseCase: GetAllPlanetsUseCaseProtocol
     
     init() {
         fetchPlanets()
