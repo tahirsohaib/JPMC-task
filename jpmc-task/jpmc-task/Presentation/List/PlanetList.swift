@@ -9,13 +9,23 @@ import SwiftUI
 
 struct PlanetList: View {
     @StateObject var viewModel = PlanetListViewModel()
-
+    
     var body: some View {
-        List(viewModel.planets, id: \.self) { planet in
-            Text(planet.name)
-        }
-        .onAppear {
-            viewModel.syncRemoteAndLocal()
+        NavigationView {
+            List(viewModel.planets, id: \.self) { planet in
+                VStack(alignment: .leading) {
+                    Text(planet.name)
+                        .font(.headline)                    
+                    Text("Terrain: \(planet.terrain)")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+            }
+            .listStyle(.plain)
+            .onAppear {
+                viewModel.syncRemoteAndLocal()
+            }
+            .navigationTitle("Starwars Planets")
         }
     }
 }
