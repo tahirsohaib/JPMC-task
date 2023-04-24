@@ -8,7 +8,6 @@
 import Foundation
 
 struct PlanetModel: Equatable, Hashable {
-    
     var name: String
     var population: String
     var terrain: String

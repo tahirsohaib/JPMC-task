@@ -21,9 +21,9 @@ extension APIError: LocalizedError {
         switch self {
         case .decodingError:
             return "Failed to decode the object"
-        case .errorCode(let code):
+        case let .errorCode(code):
             return "\(code) - Something went wrong."
-        case .badURLResponse(url: let url):
+        case let .badURLResponse(url: url):
             return "Bad response from URL: \(url)"
         case let .badURLRequest(url: url):
             return "bad URL Request: \(url)"
@@ -34,4 +34,3 @@ extension APIError: LocalizedError {
         }
     }
 }
-

@@ -8,27 +8,26 @@
 import Foundation
 
 protocol Endpoint: Equatable {
-    var baseUrl:String { get }
-    var path:String { get }
+    var baseUrl: String { get }
+    var path: String { get }
 }
 
 enum PlanetsEndpoint: Endpoint {
     case allPlanets
-    case onePlanet(planetId: String)        
+    case onePlanet(planetId: String)
     var baseUrl: String {
         return Constants.BaseURL
     }
-    
+
     var path: String {
         switch self {
         case .allPlanets:
             return "/planets"
-        case .onePlanet(let planetId):
+        case let .onePlanet(planetId):
             return "/planets/\(planetId)"
-        }        
+        }
     }
 }
-
 
 enum Constants {
     static let BaseURL = "https://swapi.dev/api"
@@ -36,7 +35,6 @@ enum Constants {
 
 extension Endpoint {
     func makeURL() -> URL? {
-        return URL(string: "\(self.baseUrl)\(self.path)")
+        return URL(string: "\(baseUrl)\(path)")
     }
 }
-

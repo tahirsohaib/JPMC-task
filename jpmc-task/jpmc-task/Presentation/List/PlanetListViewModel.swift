@@ -5,20 +5,20 @@
 //  Created by Sohaib Tahir on 23/04/2023.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class PlanetListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let getAllPlanetsUseCase: GetAllPlanetsUC
-    
+
     @Published var planets: [PlanetModel] = []
-    
+
     init(getAllPlanetsUseCase: GetAllPlanetsUC) {
         self.getAllPlanetsUseCase = getAllPlanetsUseCase
         fetchPlanets()
     }
-    
+
     func fetchPlanets() {
         getAllPlanetsUseCase.execute()
             .receive(on: DispatchQueue.main)
@@ -31,8 +31,7 @@ class PlanetListViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
-        
-    
+
     func syncRemoteAndLocal() {
         getAllPlanetsUseCase.sync()
             .receive(on: DispatchQueue.main)
@@ -45,6 +44,4 @@ class PlanetListViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
-    
 }
-
