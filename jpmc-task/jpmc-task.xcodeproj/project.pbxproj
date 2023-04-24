@@ -282,10 +282,10 @@
 		CB6ADD2D29F7320500BB0ACA /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CB6ADD2829F7204200BB0ACA /* Composition */,
+				CB6ADCC229F1A1D800BB0ACA /* Preview Content */,
 				CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */,
 				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
-				CB6ADCC229F1A1D800BB0ACA /* Preview Content */,
-				CB6ADD2829F7204200BB0ACA /* Composition */,
 			);
 			path = App;
 			sourceTree = "<group>";
