@@ -33,7 +33,7 @@ class PlanetListViewModel: ObservableObject {
     }
 
     func syncRemoteAndLocal() {
-        getAllPlanetsUseCase.sync()
+        getAllPlanetsUseCase.syncLocalRepoWithRemoteRepo()
             .receive(on: DispatchQueue.main)
             .catch { error -> Empty<[PlanetModel], Never> in
                 print("Failed to synchronize planets: \(error.localizedDescription)")

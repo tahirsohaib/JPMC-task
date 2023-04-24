@@ -132,13 +132,10 @@
 		CB6ADCBB29F1A1D400BB0ACA /* jpmc-task */ = {
 			isa = PBXGroup;
 			children = (
+				CB6ADD2D29F7320500BB0ACA /* App */,
 				CB6ADCE629F1A20300BB0ACA /* Data */,
 				CB6ADCE729F1A20800BB0ACA /* Domain */,
 				CB6ADCE829F1A20D00BB0ACA /* Presentation */,
-				CB6ADD2829F7204200BB0ACA /* Composition */,
-				CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */,
-				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
-				CB6ADCC229F1A1D800BB0ACA /* Preview Content */,
 			);
 			path = "jpmc-task";
 			sourceTree = "<group>";
@@ -310,6 +307,17 @@
 				CB6ADD2A29F7204200BB0ACA /* Resolver.swift */,
 			);
 			path = Composition;
+			sourceTree = "<group>";
+		};
+		CB6ADD2D29F7320500BB0ACA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */,
+				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
+				CB6ADCC229F1A1D800BB0ACA /* Preview Content */,
+				CB6ADD2829F7204200BB0ACA /* Composition */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -622,7 +630,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"jpmc-task/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"jpmc-task/App/Preview Content\"";
 				DEVELOPMENT_TEAM = C23V4G5DX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -651,7 +659,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"jpmc-task/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"jpmc-task/App/Preview Content\"";
 				DEVELOPMENT_TEAM = C23V4G5DX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

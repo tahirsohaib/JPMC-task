@@ -10,7 +10,7 @@ import Foundation
 
 protocol GetAllPlanetsUseCaseProtocol {
     func execute() -> AnyPublisher<[PlanetModel], Error>
-    func sync() -> AnyPublisher<[PlanetModel], Error>
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error>
 }
 
 class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
@@ -21,7 +21,7 @@ class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
             .eraseToAnyPublisher()
     }
 
-    func sync() -> AnyPublisher<[PlanetModel], Error> {
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error> {
         return planetRepo.syncLocalRepoWithRemoteRepo()
             .eraseToAnyPublisher()
     }
