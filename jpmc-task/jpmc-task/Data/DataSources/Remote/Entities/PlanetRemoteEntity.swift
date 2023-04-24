@@ -6,7 +6,7 @@
 //
 
 import Foundation
-//typealias RemotePlanets = [PlanetRemoteEntity]
+
 struct PlanetRemoteEntity: Hashable, Codable {
     let name: String
     let terrain: String
