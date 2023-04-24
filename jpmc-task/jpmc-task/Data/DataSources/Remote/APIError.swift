@@ -13,6 +13,7 @@ enum APIError: Error {
     case badURLResponse(url: String)
     case badURLRequest(url: String)
     case unknown
+    case timeout
 }
 
 extension APIError: LocalizedError {
@@ -28,6 +29,8 @@ extension APIError: LocalizedError {
             return "bad URL Request: \(url)"
         case .unknown:
             return "Unknown error occured"
+        case .timeout:
+            return "Server not responding"
         }
     }
 }

@@ -23,30 +23,34 @@ class NetworkService: NetworkServiceProtocol {
     
     func get<T, S>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, Error> where T : Decodable, S : Endpoint {
 
-        guard let url = endpoint.makeURL() else {
-            return Fail(error: APIError.badURLRequest(url: "\(endpoint.baseUrl)\(endpoint.path)"))
-                .eraseToAnyPublisher()
-        }
+            guard let url = endpoint.makeURL() else {
+                return Fail(error: APIError.badURLRequest(url: "\(endpoint.baseUrl)\(endpoint.path)"))
+                    .eraseToAnyPublisher()
+            }
 
-        let request = URLRequest(url: url)
-        return load(request)
-            .decode(type: T.self, decoder: JSONDecoder())
-            .print()
-            .eraseToAnyPublisher()
-    }
-    
-    private func load(_ request: URLRequest) -> AnyPublisher<Data, Error> {
-        return urlSession.dataTaskPublisher(for: request)
-            .mapError { _ in APIError.unknown }
-            .tryMap({ data, response in
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200..<400).contains(httpResponse.statusCode) else {
-                          throw APIError.badURLResponse(url: request.url?.absoluteString ?? "")
-                      }
-                return data
-            })
-            .retry(3)
-            .eraseToAnyPublisher()
-    }
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 10
+            
+            return urlSession.dataTaskPublisher(for: request)
+                .mapError { error -> Error in
+                    switch error {
+                    case URLError.timedOut:
+                        return APIError.timeout
+                    default:
+                        return APIError.unknown
+                    }
+                }
+                .tryMap({ data, response in
+                    guard let httpResponse = response as? HTTPURLResponse,
+                          (200..<400).contains(httpResponse.statusCode) else {
+                              throw APIError.badURLResponse(url: request.url?.absoluteString ?? "")
+                          }
+                    return data
+                })
+                .decode(type: T.self, decoder: JSONDecoder())
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .retry(3)
+                .eraseToAnyPublisher()
+        }        
 }
 
