@@ -11,8 +11,6 @@
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
 		CB6ADCCE29F1A1D900BB0ACA /* jpmc_taskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */; };
-		CB6ADCD829F1A1D900BB0ACA /* jpmc_taskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCD729F1A1D900BB0ACA /* jpmc_taskUITests.swift */; };
-		CB6ADCDA29F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCD929F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift */; };
 		CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */; };
 		CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */; };
 		CB6ADCFD29F1AFDD00BB0ACA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */; };
@@ -43,13 +41,6 @@
 			remoteGlobalIDString = CB6ADCB829F1A1D400BB0ACA;
 			remoteInfo = "jpmc-task";
 		};
-		CB6ADCD429F1A1D900BB0ACA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB6ADCB129F1A1D300BB0ACA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CB6ADCB829F1A1D400BB0ACA;
-			remoteInfo = "jpmc-task";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -59,9 +50,6 @@
 		CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB6ADCC929F1A1D900BB0ACA /* jpmc-taskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jpmc-taskTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskTests.swift; sourceTree = "<group>"; };
-		CB6ADCD329F1A1D900BB0ACA /* jpmc-taskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jpmc-taskUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB6ADCD729F1A1D900BB0ACA /* jpmc_taskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskUITests.swift; sourceTree = "<group>"; };
-		CB6ADCD929F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProtocol.swift; sourceTree = "<group>"; };
 		CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsRepository.swift; sourceTree = "<group>"; };
 		CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -99,13 +87,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB6ADCD029F1A1D900BB0ACA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -114,7 +95,6 @@
 			children = (
 				CB6ADCBB29F1A1D400BB0ACA /* jpmc-task */,
 				CB6ADCCC29F1A1D900BB0ACA /* jpmc-taskTests */,
-				CB6ADCD629F1A1D900BB0ACA /* jpmc-taskUITests */,
 				CB6ADCBA29F1A1D400BB0ACA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,7 +104,6 @@
 			children = (
 				CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */,
 				CB6ADCC929F1A1D900BB0ACA /* jpmc-taskTests.xctest */,
-				CB6ADCD329F1A1D900BB0ACA /* jpmc-taskUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,15 +133,6 @@
 				CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */,
 			);
 			path = "jpmc-taskTests";
-			sourceTree = "<group>";
-		};
-		CB6ADCD629F1A1D900BB0ACA /* jpmc-taskUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CB6ADCD729F1A1D900BB0ACA /* jpmc_taskUITests.swift */,
-				CB6ADCD929F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift */,
-			);
-			path = "jpmc-taskUITests";
 			sourceTree = "<group>";
 		};
 		CB6ADCE629F1A20300BB0ACA /* Data */ = {
@@ -358,24 +328,6 @@
 			productReference = CB6ADCC929F1A1D900BB0ACA /* jpmc-taskTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CB6ADCD229F1A1D900BB0ACA /* jpmc-taskUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CB6ADCE329F1A1D900BB0ACA /* Build configuration list for PBXNativeTarget "jpmc-taskUITests" */;
-			buildPhases = (
-				CB6ADCCF29F1A1D900BB0ACA /* Sources */,
-				CB6ADCD029F1A1D900BB0ACA /* Frameworks */,
-				CB6ADCD129F1A1D900BB0ACA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CB6ADCD529F1A1D900BB0ACA /* PBXTargetDependency */,
-			);
-			name = "jpmc-taskUITests";
-			productName = "jpmc-taskUITests";
-			productReference = CB6ADCD329F1A1D900BB0ACA /* jpmc-taskUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -390,10 +342,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 					};
 					CB6ADCC829F1A1D900BB0ACA = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = CB6ADCB829F1A1D400BB0ACA;
-					};
-					CB6ADCD229F1A1D900BB0ACA = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = CB6ADCB829F1A1D400BB0ACA;
 					};
@@ -414,7 +362,6 @@
 			targets = (
 				CB6ADCB829F1A1D400BB0ACA /* jpmc-task */,
 				CB6ADCC829F1A1D900BB0ACA /* jpmc-taskTests */,
-				CB6ADCD229F1A1D900BB0ACA /* jpmc-taskUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -430,13 +377,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CB6ADCC729F1A1D900BB0ACA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CB6ADCD129F1A1D900BB0ACA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -482,15 +422,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB6ADCCF29F1A1D900BB0ACA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CB6ADCD829F1A1D900BB0ACA /* jpmc_taskUITests.swift in Sources */,
-				CB6ADCDA29F1A1D900BB0ACA /* jpmc_taskUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -498,11 +429,6 @@
 			isa = PBXTargetDependency;
 			target = CB6ADCB829F1A1D400BB0ACA /* jpmc-task */;
 			targetProxy = CB6ADCCA29F1A1D900BB0ACA /* PBXContainerItemProxy */;
-		};
-		CB6ADCD529F1A1D900BB0ACA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CB6ADCB829F1A1D400BB0ACA /* jpmc-task */;
-			targetProxy = CB6ADCD429F1A1D900BB0ACA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -721,42 +647,6 @@
 			};
 			name = Release;
 		};
-		CB6ADCE429F1A1D900BB0ACA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C23V4G5DX4;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.practice.coding.jpmc-taskUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "jpmc-task";
-			};
-			name = Debug;
-		};
-		CB6ADCE529F1A1D900BB0ACA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C23V4G5DX4;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.practice.coding.jpmc-taskUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "jpmc-task";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -783,15 +673,6 @@
 			buildConfigurations = (
 				CB6ADCE129F1A1D900BB0ACA /* Debug */,
 				CB6ADCE229F1A1D900BB0ACA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CB6ADCE329F1A1D900BB0ACA /* Build configuration list for PBXNativeTarget "jpmc-taskUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CB6ADCE429F1A1D900BB0ACA /* Debug */,
-				CB6ADCE529F1A1D900BB0ACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
