@@ -32,6 +32,8 @@
 		CB6ADD2029F575CD00BB0ACA /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1F29F575CD00BB0ACA /* LocalDataSource.swift */; };
 		CB6ADD2229F5D76900BB0ACA /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2129F5D76900BB0ACA /* CoreDataService.swift */; };
 		CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2329F5E18600BB0ACA /* Swapi.xcdatamodeld */; };
+		CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2929F7204200BB0ACA /* Injected.swift */; };
+		CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2A29F7204200BB0ACA /* Resolver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		CB6ADD1F29F575CD00BB0ACA /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		CB6ADD2129F5D76900BB0ACA /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		CB6ADD2429F5E18600BB0ACA /* Swapi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swapi.xcdatamodel; sourceTree = "<group>"; };
+		CB6ADD2929F7204200BB0ACA /* Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
+		CB6ADD2A29F7204200BB0ACA /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 				CB6ADCE629F1A20300BB0ACA /* Data */,
 				CB6ADCE729F1A20800BB0ACA /* Domain */,
 				CB6ADCE829F1A20D00BB0ACA /* Presentation */,
+				CB6ADD2829F7204200BB0ACA /* Composition */,
 				CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */,
 				CB6ADCBE29F1A1D400BB0ACA /* ContentView.swift */,
 				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
@@ -301,6 +306,15 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		CB6ADD2829F7204200BB0ACA /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				CB6ADD2929F7204200BB0ACA /* Injected.swift */,
+				CB6ADD2A29F7204200BB0ACA /* Resolver.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -433,6 +447,8 @@
 			files = (
 				CB6ADCFF29F1AFF700BB0ACA /* Endpoint.swift in Sources */,
 				CB6ADD1929F498D900BB0ACA /* GetAllPlanetsUC.swift in Sources */,
+				CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */,
+				CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */,
 				CB6ADD1E29F4A7F400BB0ACA /* PlanetList.swift in Sources */,
 				CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */,
 				CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */,

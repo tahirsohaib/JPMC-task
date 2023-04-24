@@ -10,12 +10,12 @@ import Foundation
 
 class PlanetListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    private let getAllPlanetsUseCase: GetAllPlanetsUC
 
     @Published var planets: [PlanetModel] = []
 
-    init(getAllPlanetsUseCase: GetAllPlanetsUC) {
-        self.getAllPlanetsUseCase = getAllPlanetsUseCase
+    @Injected private var getAllPlanetsUseCase: GetAllPlanetsUC
+    
+    init() {
         fetchPlanets()
     }
 

@@ -13,10 +13,7 @@ protocol RemotePlanetsServiceProtocol {
 }
 
 class RemotePlanetsService: RemotePlanetsServiceProtocol {
-    let networkService: NetworkServiceProtocol
-    init(networkService: NetworkServiceProtocol) {
-        self.networkService = networkService
-    }
+    @Injected private var networkService: NetworkServiceProtocol
 
     func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], Error> {
         networkService.get(PlanetsResponseRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)

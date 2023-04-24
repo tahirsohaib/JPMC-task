@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct PlanetList: View {
-    @StateObject var viewModel = PlanetListViewModel(getAllPlanetsUseCase: GetAllPlanetsUC(planetRepo: StawWarsRepository(
-        remoteDataSource: RemoteDataSource(remoteService: RemotePlanetsService(networkService: NetworkService())),
-        localDataSource: LocalDataSource(dbService: CoreDataService())
-    )))
+    @StateObject var viewModel = PlanetListViewModel()
 
     var body: some View {
         List(viewModel.planets, id: \.self) { planet in

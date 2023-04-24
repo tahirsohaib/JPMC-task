@@ -9,10 +9,7 @@ import Combine
 import Foundation
 
 class LocalDataSource: LocalDataSourceProtocol {
-    private var dbService: CoreDataServiceProtocol
-    init(dbService: CoreDataServiceProtocol) {
-        self.dbService = dbService
-    }
+    @Injected private var dbService: CoreDataServiceProtocol
 
     private func mapPlanetResponse(planetCDEntity: PlanetCDEntity) -> PlanetModel {
         guard let name = planetCDEntity.name,

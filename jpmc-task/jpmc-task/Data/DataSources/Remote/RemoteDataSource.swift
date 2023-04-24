@@ -9,10 +9,7 @@ import Combine
 import Foundation
 
 class RemoteDataSource: RemoteDataSourceProtocol {
-    private var remoteService: RemotePlanetsServiceProtocol
-    init(remoteService: RemotePlanetsServiceProtocol) {
-        self.remoteService = remoteService
-    }
+    @Injected private var remoteService: RemotePlanetsServiceProtocol
 
     private func mapPlanetRemoteToResponse(remoteEntity: PlanetRemoteEntity) -> PlanetModel {
         return PlanetModel(name: remoteEntity.name, population: remoteEntity.population, terrain: remoteEntity.terrain)

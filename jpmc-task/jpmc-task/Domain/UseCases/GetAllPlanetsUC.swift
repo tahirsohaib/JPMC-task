@@ -13,11 +13,7 @@ protocol GetAllPlanetsUseCaseProtocol {
 }
 
 class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
-    private var planetRepo: PlanetsRepositoryProtocol
-
-    init(planetRepo: PlanetsRepositoryProtocol) {
-        self.planetRepo = planetRepo
-    }
+    @Injected private var planetRepo: PlanetsRepositoryProtocol
 
     func execute() -> AnyPublisher<[PlanetModel], Error> {
         return planetRepo.getAllPlanets()
