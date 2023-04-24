@@ -30,7 +30,7 @@ class PlanetListViewModel: ObservableObject {
             }
             .sink(receiveValue: { planets in
                 self.planets = planets
-                self.isLoading = planets.count < 0
+                self.isLoading = self.planets.count < 1
             })
             .store(in: &cancellables)
     }
@@ -43,8 +43,8 @@ class PlanetListViewModel: ObservableObject {
                 return Empty<[PlanetModel], Never>()
             }
             .sink(receiveValue: { planets in
-                self.isLoading = false
                 self.planets = planets
+                self.isLoading = false
             })
             .store(in: &cancellables)
     }

@@ -66,6 +66,8 @@ class LocalDataSource: LocalDataSourceProtocol {
                 // Add updated planet to result
                 updatedPlanets.append(planet)
             }
+            
+            let sortedPlanets = updatedPlanets.sorted { $0.name < $1.name }
 
             // Delete all planets that were not updated
             let deletedPlanets = entityDict.values.filter { _ in !updatedPlanets.contains { $0.name == $0.name } }
@@ -75,7 +77,7 @@ class LocalDataSource: LocalDataSourceProtocol {
             self.dbService.saveContext()
 
             // Return updated planets
-            promise(.success(updatedPlanets))
+            promise(.success(sortedPlanets))
         }.eraseToAnyPublisher()
     }
 
@@ -85,7 +87,9 @@ class LocalDataSource: LocalDataSourceProtocol {
             mapPlanetResponse(planetCDEntity: planetCDEntity)
         }
 
-        return Just(newData)
+        let sortedPlanets = newData.sorted { $0.name < $1.name }
+        
+        return Just(sortedPlanets)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
