@@ -37,7 +37,7 @@ class CoreDataService: CoreDataServiceProtocol {
             do {
                 try container.viewContext.save()
             } catch let error {
-                print("Error saving to Core Data")
+                print("Error saving to Core Data: \(error)")
             }
         }
     }

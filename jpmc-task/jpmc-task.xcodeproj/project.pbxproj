@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
-		CB6ADCBF29F1A1D400BB0ACA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBE29F1A1D400BB0ACA /* ContentView.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
 		CB6ADCCE29F1A1D900BB0ACA /* jpmc_taskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */; };
@@ -56,7 +55,6 @@
 /* Begin PBXFileReference section */
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
-		CB6ADCBE29F1A1D400BB0ACA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB6ADCC929F1A1D900BB0ACA /* jpmc-taskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jpmc-taskTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +137,6 @@
 				CB6ADCE829F1A20D00BB0ACA /* Presentation */,
 				CB6ADD2829F7204200BB0ACA /* Composition */,
 				CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */,
-				CB6ADCBE29F1A1D400BB0ACA /* ContentView.swift */,
 				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
 				CB6ADCC229F1A1D800BB0ACA /* Preview Content */,
 			);
@@ -454,7 +451,6 @@
 				CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */,
 				CB6ADD2229F5D76900BB0ACA /* CoreDataService.swift in Sources */,
 				CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */,
-				CB6ADCBF29F1A1D400BB0ACA /* ContentView.swift in Sources */,
 				CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */,
 				CB6ADD1029F1B64600BB0ACA /* CustomError.swift in Sources */,
 				CB6ADD2029F575CD00BB0ACA /* LocalDataSource.swift in Sources */,
