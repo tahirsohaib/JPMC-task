@@ -17,7 +17,7 @@ struct PlanetList: View {
             Text(planet.name)
         }
         .onAppear {
-            viewModel.fetchPlanets()
+            viewModel.syncRemoteAndLocal()            
         }
     }
     

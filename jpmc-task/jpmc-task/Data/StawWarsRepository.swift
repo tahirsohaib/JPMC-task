@@ -20,28 +20,23 @@ class StawWarsRepository: PlanetsRepositoryProtocol {
     private func mapPlanetRemoteToRequest(remoteEntity: PlanetRemoteEntity) -> PlanetModel {
         return PlanetModel(name: remoteEntity.name, population: remoteEntity.population, terrain: remoteEntity.terrain)
     }
-        
+     
+    func createPlanet(_ planetRequestModel: PlanetModel) -> AnyPublisher<PlanetModel, Error>  {
+        localDataSource.create(planetRequestModel)
+            .eraseToAnyPublisher()
+    }
+    
     func getAllPlanets() -> AnyPublisher<[PlanetModel], Error> {
-        return remoteDataSource.getAll()
+        return localDataSource.getAll()
             .eraseToAnyPublisher()
     }
     
-//    func syncAllPlanets() -> AnyPublisher<[PlanetModel], Error> {
-        // fetch from remote
-//        remoteDataSource.getAll()
-//            .map { planetRemoteEntities in
-//                planetRemoteEntities.map { self.mapPlanetRemoteToRequest(remoteEntity: $0) }
-//            }
-//            .map { <#[PlanetResponseModel]#> in
-//                <#code#>
-//            }
-        // save to db
-        // return the updated values to refresh
-        
-//    }
-    
-    func createPlanet(_ planetRequestModel: PlanetModel) -> AnyPublisher<Bool, Error> {
-        return localDataSource.create(planetRequestModel)
+    func syncRemoteAndLocal() -> AnyPublisher<[PlanetModel], Error> {
+        remoteDataSource.getAll()
+            .flatMap { planetModels in
+                self.localDataSource.syncAllPlanets(planetModels)
+            }
             .eraseToAnyPublisher()
     }
+    
 }

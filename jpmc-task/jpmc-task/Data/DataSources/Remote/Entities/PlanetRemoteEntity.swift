@@ -11,14 +11,4 @@ struct PlanetRemoteEntity: Hashable, Codable {
     let name: String
     let terrain: String
     let population: String
-//    let films: [String]
-//    let residents: [String]
-
-//    enum CodingKeys: String, CodingKey {
-//        case name
-//        case terrain
-//        case population
-//        case filmURLs = "films"
-//        case residentURLs = "residents"
-//    }
 }

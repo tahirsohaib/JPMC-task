@@ -16,6 +16,7 @@ class PlanetListViewModel: ObservableObject {
     
     init(getAllPlanetsUseCase: GetAllPlanetsUC) {
         self.getAllPlanetsUseCase = getAllPlanetsUseCase
+        fetchPlanets()
     }
     
     func fetchPlanets() {
@@ -32,6 +33,23 @@ class PlanetListViewModel: ObservableObject {
                 self.planets = planets
             }
             .store(in: &cancellables)
-    }    
+    }
+    
+    func syncRemoteAndLocal() {
+        getAllPlanetsUseCase.sync()
+            .receive(on: DispatchQueue.main)
+            .sink{ res in
+                switch res {
+                case .finished:
+                    print("Success")
+                case .failure(let error):
+                    print("Failure: \(error.localizedDescription)")
+                }
+            } receiveValue: { planets in
+                self.planets = planets
+            }
+            .store(in: &cancellables)
+    }
+    
 }
 
