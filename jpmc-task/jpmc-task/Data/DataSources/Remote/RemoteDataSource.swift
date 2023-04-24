@@ -22,10 +22,4 @@ class RemoteDataSource: RemoteDataSourceProtocol {
             }
             .eraseToAnyPublisher()
     }
-
-    func getOne(_ id: String) -> AnyPublisher<PlanetModel, StarWarsError> {
-        return Fail(error: StarWarsError.Get).eraseToAnyPublisher()
-    }
-    
-
 }

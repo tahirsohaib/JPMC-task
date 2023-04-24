@@ -72,23 +72,11 @@ class LocalDataSource: LocalDataSourceProtocol {
             deletedPlanets.forEach { context.delete($0) }
 
             // Save changes to the context
-            self.dbService.save()
+            self.dbService.saveContext()
 
             // Return updated planets
             promise(.success(updatedPlanets))
         }.eraseToAnyPublisher()
-    }
-
-    func create(_ planetRequestModel: PlanetModel) -> AnyPublisher<PlanetModel, Error> {
-        let newPlanet = PlanetCDEntity(context: dbService.getContext())
-        newPlanet.name = planetRequestModel.name
-        newPlanet.terrain = planetRequestModel.terrain
-        newPlanet.population = planetRequestModel.population
-        dbService.saveEntity(entity: newPlanet)
-
-        return Just(mapPlanetResponse(planetCDEntity: newPlanet))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
     }
 
     func getAll() -> AnyPublisher<[PlanetModel], Error> {

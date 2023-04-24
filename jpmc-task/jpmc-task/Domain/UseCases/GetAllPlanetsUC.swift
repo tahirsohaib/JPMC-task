@@ -22,7 +22,7 @@ class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
     }
 
     func sync() -> AnyPublisher<[PlanetModel], Error> {
-        return planetRepo.syncRemoteAndLocal()
+        return planetRepo.syncRemoteAndLocalRepos()
             .eraseToAnyPublisher()
     }
 }

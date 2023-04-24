@@ -13,9 +13,8 @@ protocol CoreDataServiceProtocol {
     func getData(entityName: String) throws -> [NSManagedObject]
     func getData(entityName: String, predicate: NSPredicate) throws -> [NSManagedObject]
     func getData(entityName: String, predicate: NSPredicate, limit: Int) throws -> [NSManagedObject]
-    func saveEntity(entity: NSManagedObject)
     func deleteEntity(entity: NSManagedObject)
-    func save()
+    func saveContext()
 }
 
 class CoreDataService: CoreDataServiceProtocol {
@@ -32,7 +31,7 @@ class CoreDataService: CoreDataServiceProtocol {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 
-    func save() {
+    func saveContext() {
         if container.viewContext.hasChanges {
             do {
                 try container.viewContext.save()
@@ -67,12 +66,8 @@ class CoreDataService: CoreDataServiceProtocol {
         return entities
     }
 
-    func saveEntity(entity _: NSManagedObject) {
-        save()
-    }
-
     func deleteEntity(entity: NSManagedObject) {
         container.viewContext.delete(entity)
-        save()
+        saveContext()
     }
 }
