@@ -35,8 +35,8 @@ class LocalDataSource: LocalDataSourceProtocol {
         }
         return result[0]
     }
-
-    func syncAllPlanetsWithRemote(_ serverData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error> {
+    
+    func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error> {
         return Future { promise in
             let context = self.dbService.getContext()
             // Fetch all existing planets
@@ -48,7 +48,7 @@ class LocalDataSource: LocalDataSourceProtocol {
 
             // Update or insert new planets
             var updatedPlanets: [PlanetModel] = []
-            for planet in serverData {
+            for planet in remoteData {
                 if let existingEntity = entityDict[planet.name] {
                     // Update existing entity
                     existingEntity.terrain = planet.terrain

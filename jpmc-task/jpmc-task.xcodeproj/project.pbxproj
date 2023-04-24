@@ -20,7 +20,6 @@
 		CB6ADD0729F1B16400BB0ACA /* PlanetRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0329F1B16400BB0ACA /* PlanetRemoteEntity.swift */; };
 		CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0A29F1B23F00BB0ACA /* RemoteDataSource.swift */; };
 		CB6ADD0D29F1B28100BB0ACA /* RemotePlanetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0C29F1B28100BB0ACA /* RemotePlanetsService.swift */; };
-		CB6ADD1029F1B64600BB0ACA /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD0F29F1B64600BB0ACA /* CustomError.swift */; };
 		CB6ADD1329F1B68100BB0ACA /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1229F1B68100BB0ACA /* Planet.swift */; };
 		CB6ADD1729F4983A00BB0ACA /* PlanetsReposiroty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1629F4983A00BB0ACA /* PlanetsReposiroty.swift */; };
 		CB6ADD1929F498D900BB0ACA /* GetAllPlanetsUC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD1829F498D800BB0ACA /* GetAllPlanetsUC.swift */; };
@@ -59,7 +58,6 @@
 		CB6ADD0329F1B16400BB0ACA /* PlanetRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetRemoteEntity.swift; sourceTree = "<group>"; };
 		CB6ADD0A29F1B23F00BB0ACA /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
 		CB6ADD0C29F1B28100BB0ACA /* RemotePlanetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePlanetsService.swift; sourceTree = "<group>"; };
-		CB6ADD0F29F1B64600BB0ACA /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		CB6ADD1229F1B68100BB0ACA /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		CB6ADD1629F4983A00BB0ACA /* PlanetsReposiroty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsReposiroty.swift; sourceTree = "<group>"; };
 		CB6ADD1829F498D800BB0ACA /* GetAllPlanetsUC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllPlanetsUC.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				CB6ADD1129F1B66C00BB0ACA /* Model */,
 				CB6ADD1529F4981100BB0ACA /* UseCases */,
 				CB6ADD1429F4980700BB0ACA /* Repositories */,
-				CB6ADD0E29F1B63000BB0ACA /* Error */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -176,11 +173,11 @@
 		CB6ADCEA29F1A3CD00BB0ACA /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				CB6ADD0029F1B00800BB0ACA /* APIError.swift */,
-				CB6ADCFE29F1AFF700BB0ACA /* Endpoint.swift */,
 				CB6ADCF229F1A48D00BB0ACA /* Entities */,
 				CB6ADCF329F1A49400BB0ACA /* Service */,
 				CB6ADD0A29F1B23F00BB0ACA /* RemoteDataSource.swift */,
+				CB6ADCFE29F1AFF700BB0ACA /* Endpoint.swift */,
+				CB6ADD0029F1B00800BB0ACA /* APIError.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -227,14 +224,6 @@
 				CB6ADD0C29F1B28100BB0ACA /* RemotePlanetsService.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		CB6ADD0E29F1B63000BB0ACA /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				CB6ADD0F29F1B64600BB0ACA /* CustomError.swift */,
-			);
-			path = Error;
 			sourceTree = "<group>";
 		};
 		CB6ADD1129F1B66C00BB0ACA /* Model */ = {
@@ -400,7 +389,6 @@
 				CB6ADD2229F5D76900BB0ACA /* CoreDataService.swift in Sources */,
 				CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */,
 				CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */,
-				CB6ADD1029F1B64600BB0ACA /* CustomError.swift in Sources */,
 				CB6ADD2029F575CD00BB0ACA /* LocalDataSource.swift in Sources */,
 				CB6ADD0629F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift in Sources */,
 				CB6ADD1729F4983A00BB0ACA /* PlanetsReposiroty.swift in Sources */,

@@ -14,5 +14,5 @@ protocol RemoteDataSourceProtocol {
 
 protocol LocalDataSourceProtocol {
     func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error>
-    func syncAllPlanetsWithRemote(_ serverData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error>
+    func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error>
 }
