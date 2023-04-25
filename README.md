@@ -24,7 +24,7 @@ Even though this small app didn't require this architecture, I went with it to d
 
 There are many ways to manage locally stored data while also getting new data from the server, but I kept it simple.  As soon as the view is created, I display the data from the local database while simultaneously retrieving data from the server, saving it to the local database, and getting an update. I'd argue that we need to decide on a policy on how to handle this situation in live apps.
 
-
+There are a lot of improvements we can make for the architecture and the codebase, we need better error handling and more test coverage.
 
 
 # Task
