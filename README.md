@@ -22,7 +22,7 @@ I choose Clean Layered Architecture as an architectural pattern that promotes se
 
 Even though this small app didn't require this architecture, I went with it to demonstrate how we can create well-structured, maintainable, and scalable apps. 
 
-There are many ways to manage locally stored data while also getting new data from the server, but I kept it simple.  As soon as the view is created, I display the data from the local database while simultaneously retrieving data from the server, saving it to the local database, and getting an update. I'd argue that we need to decide on a policy on how to handle this situation in live apps.
+There are many ways to manage locally stored data while also getting new data from the server, but I kept it simple. When the root view appears I call syncRemoteAndLocal of the PlanetListViewModel whose instance is injected  into the PlanetList environment when the app first launches so that syncRemoteAndLocal is only called once. And as soon as the PlanetList view is created, I display the data from the local database. I'd argue that we need to decide on a policy on how to handle this situation in live apps.
 
 There are a lot of improvements we can make for the architecture and the codebase, we need better error handling and more test coverage.
 
