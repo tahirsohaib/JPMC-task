@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct jpmc_taskApp: App {
     
+    @StateObject private var viewModel = PlanetListViewModel()
+    
     init() {
         Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataService())
         Resolver.main.register(type: LocalDataSourceProtocol.self, service: LocalDataSource())
@@ -23,6 +25,10 @@ struct jpmc_taskApp: App {
     var body: some Scene {
         WindowGroup {
             PlanetList()
+                .environmentObject(viewModel)
+                .onAppear {
+                    viewModel.syncRemoteAndLocal()
+                }
         }
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlanetList: View {
-    @StateObject var viewModel = PlanetListViewModel()
+    @EnvironmentObject private var viewModel: PlanetListViewModel
     
     var body: some View {
         NavigationView {
@@ -27,10 +27,7 @@ struct PlanetList: View {
                         }
                         .listStyle(.plain)
                     }
-                }
-                .onAppear {
-                    viewModel.syncRemoteAndLocal()
-                }
+                }                
                 .navigationTitle("Star Wars Planets")
             }
     }
