@@ -17,34 +17,46 @@ class PlanetListViewModel: ObservableObject {
     @Injected private var getAllPlanetsUseCase: GetAllPlanetsUseCaseProtocol
     
     init() {
-        isLoading = true
         fetchPlanets()
     }
 
     func fetchPlanets() {
+        isLoading = true // Set loading state to true
         getAllPlanetsUseCase.execute()
             .receive(on: DispatchQueue.main)
-            .catch { error -> Empty<[PlanetModel], Never> in
-                print("Failed to fetch planets: \(error.localizedDescription)")
-                return Empty<[PlanetModel], Never>()
-            }
-            .sink(receiveValue: { planets in
-                self.planets = planets
-                self.isLoading = self.planets.count < 1
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading = false
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    // ideally show an alert to the user
+                    print("Failed to fetch planets: \(error.localizedDescription)")
+                    break
+                }
+            }, receiveValue: { [weak self] planets in
+                self?.planets = planets
             })
             .store(in: &cancellables)
     }
-
+    
     func syncRemoteAndLocal() {
+        isLoading = true // Set loading state to true
+
         getAllPlanetsUseCase.syncLocalRepoWithRemoteRepo()
             .receive(on: DispatchQueue.main)
-            .catch { error -> Empty<[PlanetModel], Never> in
-                print("Failed to synchronize planets: \(error.localizedDescription)")
-                return Empty<[PlanetModel], Never>()
-            }
-            .sink(receiveValue: { planets in
-                self.planets = planets
-                self.isLoading = false
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading = false
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    // ideally show an alert to the user
+                    print("Failed to fetch planets: \(error.localizedDescription)")
+                    break
+                }
+            }, receiveValue: { [weak self] planets in
+                self?.planets = planets
             })
             .store(in: &cancellables)
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB90F29F976F800603C2D /* PlanetListViewModelTests.swift */; };
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB3DB90F29F976F800603C2D /* PlanetListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetListViewModelTests.swift; sourceTree = "<group>"; };
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB3DB90E29F9762C00603C2D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CB3DB90F29F976F800603C2D /* PlanetListViewModelTests.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		CB6ADCB029F1A1D300BB0ACA = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 		CB6ADCCC29F1A1D900BB0ACA /* jpmc-taskTests */ = {
 			isa = PBXGroup;
 			children = (
+				CB3DB90E29F9762C00603C2D /* Presentation */,
 				CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */,
 			);
 			path = "jpmc-taskTests";
@@ -406,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */,
 				CB6ADCCE29F1A1D900BB0ACA /* jpmc_taskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
