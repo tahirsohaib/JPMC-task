@@ -11,131 +11,125 @@ import Combine
 
 class PlanetListViewModelTests: XCTestCase {
     var cancellables = Set<AnyCancellable>()
-//    var viewModel: PlanetListViewModel!
     var useCase: GetAllPlanetsUseCaseMock!
+    var viewModel: PlanetListViewModel!
     
     override func setUpWithError() throws {
         super.setUp()
         useCase = GetAllPlanetsUseCaseMock()
         Resolver.main.register(type: GetAllPlanetsUseCaseProtocol.self, service: useCase!)
-//        viewModel = PlanetListViewModel()
+        viewModel = PlanetListViewModel()
     }
     
     override func tearDownWithError() throws {
-//        viewModel = nil
-        useCase = nil
         cancellables.removeAll()
+        useCase = nil
+        viewModel = nil
         super.tearDown()
     }
     
-    func testFetchPlanetsSuccess() {
-        let viewModel = PlanetListViewModel()
+    func testFetchPlanetsUsingSuccess() {
         // Given
         let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"), PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        useCase.stubbedExecuteResult = Just(expectedPlanets)
+        useCase.stubbedResult = Just(expectedPlanets)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         
         // When
-        viewModel.fetchPlanets()
+        self.viewModel.fetchPlanets()
         
         // Then
-        XCTAssertTrue(viewModel.isLoading)
-        XCTAssertEqual(viewModel.planets, [])
+        XCTAssertTrue(self.viewModel.isLoading)
+        XCTAssertEqual(self.viewModel.planets, [])
         
         let expectation = self.expectation(description: "Fetched Planets")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertFalse(viewModel.isLoading)
-            XCTAssertEqual(viewModel.planets, expectedPlanets)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            XCTAssertFalse(self.viewModel.isLoading)
+            XCTAssertEqual(self.viewModel.planets, expectedPlanets)
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 0.4)
     }
     
     func testFetchPlanetsFailure() {
-        let viewModel = PlanetListViewModel()
         // Given
-        let expectedError = NSError(domain: "Test Error", code: 404, userInfo: nil)
-        useCase.stubbedExecuteResult = Fail(error: expectedError)
-               .eraseToAnyPublisher()
+        let expectedError = NSError(domain: "Fetch Failure", code: 404, userInfo: nil)
+        useCase.stubbedResult = Fail(error: expectedError)
+            .eraseToAnyPublisher()
         
         // When
-        viewModel.fetchPlanets()
+        self.viewModel.fetchPlanets()
         
         // Then
-        XCTAssertTrue(viewModel.isLoading)
-        XCTAssertEqual(viewModel.planets, [])
+        XCTAssertTrue(self.viewModel.isLoading)
+        XCTAssertEqual(self.viewModel.planets, [])
         
         let expectation = self.expectation(description: "Fetching Planets Failed")
-           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-               XCTAssertFalse(viewModel.isLoading)
-               XCTAssertEqual(viewModel.planets, [])
-               expectation.fulfill()
-           }
-           
-           wait(for: [expectation], timeout: 1)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            XCTAssertFalse(self.viewModel.isLoading)
+            XCTAssertEqual(self.viewModel.planets, [])
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.4)
     }
     
     func testSyncRemoteAndLocalSuccess() {
-        let viewModel = PlanetListViewModel()
         // Given
         let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"), PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        useCase.stubbedExecuteResult = Just(expectedPlanets)
+        useCase.stubbedResult = Just(expectedPlanets)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         
         // When
-        viewModel.syncRemoteAndLocal()
+        self.viewModel.syncRemoteAndLocal()
         
         // Then
-        XCTAssertTrue(viewModel.isLoading)
-        XCTAssertEqual(viewModel.planets, [])
+        XCTAssertTrue(self.viewModel.isLoading)
+        XCTAssertEqual(self.viewModel.planets, [])
         
         let expectation = self.expectation(description: "Planets synchronized")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertFalse(viewModel.isLoading)
-            XCTAssertEqual(viewModel.planets, expectedPlanets)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            XCTAssertFalse(self.viewModel.isLoading)
+            XCTAssertEqual(self.viewModel.planets, expectedPlanets)
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 0.4)
     }
     
     func testSyncRemoteAndLocalFailure() {
-        let viewModel = PlanetListViewModel()
         // Given
-        let expectedError = NSError(domain: "Test Error", code: 404, userInfo: nil)
-        useCase.stubbedExecuteResult = Fail(error: expectedError)
-               .eraseToAnyPublisher()
+        let expectedError = NSError(domain: "Sync Failure", code: 404, userInfo: nil)
+        useCase.stubbedResult = Fail(error: expectedError)
+            .eraseToAnyPublisher()
         
         // When
-        viewModel.syncRemoteAndLocal()
+        self.viewModel.syncRemoteAndLocal()
         
         // Then
-        XCTAssertTrue(viewModel.isLoading)
-        XCTAssertEqual(viewModel.planets, [])
+        XCTAssertTrue(self.viewModel.isLoading)
+        XCTAssertEqual(self.viewModel.planets, [])
         
         let expectation = self.expectation(description: "Syncing Planets Failed")
-           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-               XCTAssertFalse(viewModel.isLoading)
-               XCTAssertEqual(viewModel.planets, [])
-               expectation.fulfill()
-           }
-           
-           wait(for: [expectation], timeout: 1)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            XCTAssertFalse(self.viewModel.isLoading)
+            XCTAssertEqual(self.viewModel.planets, [])
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.4)
     }
-    
-
 }
 
 class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
-    var stubbedExecuteResult: AnyPublisher<[PlanetModel], Error>?
+    var stubbedResult: AnyPublisher<[PlanetModel], Error>?
     
     func execute() -> AnyPublisher<[PlanetModel], Error> {
-        if let stubbedResult = stubbedExecuteResult {
+        if let stubbedResult = stubbedResult {
             return stubbedResult
         }
         
@@ -144,7 +138,7 @@ class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
     }
     
     func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error> {
-        if let stubbedResult = stubbedExecuteResult {
+        if let stubbedResult = stubbedResult {
             return stubbedResult
         }
         
