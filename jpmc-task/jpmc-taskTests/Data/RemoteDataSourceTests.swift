@@ -33,7 +33,7 @@ class RemoteDataSourceTests: XCTestCase {
         let expectedPlanetModels = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "Dessert")]
         let planetRemoteEntities = [PlanetRemoteEntity(name: "Earth", terrain: "Dessert", population: "7.9 billion")]
         
-        remoteServiceMock.fetchPlanetsResult = .success(planetRemoteEntities)
+        remoteServiceMock.planetRemoteEntities = planetRemoteEntities
         
         let expectation = XCTestExpectation(description: "Get All planets succeeds")
         var receivedPlanets: [PlanetModel]?
@@ -58,6 +58,8 @@ class RemoteDataSourceTests: XCTestCase {
         // Given
         let expectedError = NSError(domain: "fetchPlanetsResult Error", code: 404, userInfo: nil)
         let expectation = XCTestExpectation(description: "Get All planets from remote fails")
+
+        remoteServiceMock.error = expectedError
         
         // When
         sut.getAllPlanetsRemote()
@@ -80,11 +82,16 @@ class RemoteDataSourceTests: XCTestCase {
 }
 
 class RemotePlanetsServiceMock: RemotePlanetsServiceProtocol {
-    
-    var fetchPlanetsResult: Result<[PlanetRemoteEntity], Error> = .failure(NSError(domain: "fetchPlanetsResult Error", code: 404, userInfo: nil))
-    
+    var planetRemoteEntities: [PlanetRemoteEntity]?
+    var error: Error?
+
     func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], Error> {
-        return Result.Publisher(fetchPlanetsResult)
-            .eraseToAnyPublisher()
+        if let error = error {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else if let planetRemoteEntities = planetRemoteEntities {
+            return Just(planetRemoteEntities).setFailureType(to: Error.self).eraseToAnyPublisher()
+        } else {
+            fatalError("You must set either planetRemoteEntities or error")
+        }
     }
 }
