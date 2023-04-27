@@ -12,6 +12,7 @@
 		CB3DB91529FA921C00603C2D /* PlanetModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91429FA921C00603C2D /* PlanetModelTest.swift */; };
 		CB3DB91829FABAF000603C2D /* StarWarsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91729FABAF000603C2D /* StarWarsRepositoryTests.swift */; };
 		CB3DB91A29FB23E600603C2D /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91929FB23E600603C2D /* EndpointTests.swift */; };
+		CB3DB91C29FB293C00603C2D /* RemoteDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */; };
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		CB3DB91429FA921C00603C2D /* PlanetModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModelTest.swift; sourceTree = "<group>"; };
 		CB3DB91729FABAF000603C2D /* StarWarsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsRepositoryTests.swift; sourceTree = "<group>"; };
 		CB3DB91929FB23E600603C2D /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
+		CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSourceTests.swift; sourceTree = "<group>"; };
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				CB3DB91729FABAF000603C2D /* StarWarsRepositoryTests.swift */,
 				CB3DB91929FB23E600603C2D /* EndpointTests.swift */,
+				CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3DB91C29FB293C00603C2D /* RemoteDataSourceTests.swift in Sources */,
 				CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */,
 				CB3DB91529FA921C00603C2D /* PlanetModelTest.swift in Sources */,
 				CB3DB91829FABAF000603C2D /* StarWarsRepositoryTests.swift in Sources */,
