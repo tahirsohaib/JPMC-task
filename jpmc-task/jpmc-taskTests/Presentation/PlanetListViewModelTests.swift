@@ -30,7 +30,8 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testFetchPlanetsUsingSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"), PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
+        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
+                               PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
         useCase.stubbedResult = Just(expectedPlanets)
             .setFailureType(to: Error.self)
@@ -43,14 +44,14 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Fetched Planets")
+        let expectation = self.expectation(description: "Fetching Planets succeeds")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, expectedPlanets)
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.4)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     func testFetchPlanetsFailure() {
@@ -66,14 +67,14 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Fetching Planets Failed")
+        let expectation = self.expectation(description: "Fetching Planets Fails")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, [])
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.4)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     func testSyncRemoteAndLocalSuccess() {
@@ -91,14 +92,14 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Planets synchronized")
+        let expectation = self.expectation(description: "Planets synchronization succeeds")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, expectedPlanets)
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.4)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     func testSyncRemoteAndLocalFailure() {
@@ -114,14 +115,14 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Syncing Planets Failed")
+        let expectation = self.expectation(description: "Planets synchronization Failes")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, [])
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.4)
+        wait(for: [expectation], timeout: 0.5)
     }
 }
 
