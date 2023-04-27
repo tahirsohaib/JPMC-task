@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB90F29F976F800603C2D /* PlanetListViewModelTests.swift */; };
 		CB3DB91329F9DAB800603C2D /* GetAllPlanetsUCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91229F9DAB800603C2D /* GetAllPlanetsUCTests.swift */; };
+		CB3DB91529FA921C00603C2D /* PlanetModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91429FA921C00603C2D /* PlanetModelTest.swift */; };
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
-		CB6ADCCE29F1A1D900BB0ACA /* jpmc_taskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */; };
 		CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */; };
 		CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */; };
 		CB6ADCFD29F1AFDD00BB0ACA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */; };
@@ -47,12 +47,12 @@
 /* Begin PBXFileReference section */
 		CB3DB90F29F976F800603C2D /* PlanetListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetListViewModelTests.swift; sourceTree = "<group>"; };
 		CB3DB91229F9DAB800603C2D /* GetAllPlanetsUCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllPlanetsUCTests.swift; sourceTree = "<group>"; };
+		CB3DB91429FA921C00603C2D /* PlanetModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModelTest.swift; sourceTree = "<group>"; };
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB6ADCC929F1A1D900BB0ACA /* jpmc-taskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jpmc-taskTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskTests.swift; sourceTree = "<group>"; };
 		CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceProtocol.swift; sourceTree = "<group>"; };
 		CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsRepository.swift; sourceTree = "<group>"; };
 		CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -104,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				CB3DB91229F9DAB800603C2D /* GetAllPlanetsUCTests.swift */,
+				CB3DB91429FA921C00603C2D /* PlanetModelTest.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -150,7 +151,6 @@
 			children = (
 				CB3DB91129F9DA9800603C2D /* Domain */,
 				CB3DB90E29F9762C00603C2D /* Presentation */,
-				CB6ADCCD29F1A1D900BB0ACA /* jpmc_taskTests.swift */,
 			);
 			path = "jpmc-taskTests";
 			sourceTree = "<group>";
@@ -429,8 +429,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */,
+				CB3DB91529FA921C00603C2D /* PlanetModelTest.swift in Sources */,
 				CB3DB91329F9DAB800603C2D /* GetAllPlanetsUCTests.swift in Sources */,
-				CB6ADCCE29F1A1D900BB0ACA /* jpmc_taskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
