@@ -13,7 +13,8 @@ struct jpmc_taskApp: App {
     @StateObject private var viewModel = PlanetListViewModel()
     
     init() {
-        Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataService())
+        Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataStorage(.persistent))
+        Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataStorage())
         Resolver.main.register(type: LocalDataSourceProtocol.self, service: LocalDataSource())
         Resolver.main.register(type: NetworkServiceProtocol.self, service: NetworkService())
         Resolver.main.register(type: RemotePlanetsServiceProtocol.self, service: RemotePlanetsService())
