@@ -29,15 +29,19 @@ class RemotePlanetsServiceTests: XCTestCase {
     }
 
     func testFetchPlanetsSuccess() {
+        // Given
         let expectedPlanets = [PlanetRemoteEntity(name: "Earth", terrain: "Dessert", population: "7.9 billion")]
         
-        let responseData = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: expectedPlanets))
+        let encodedResponse = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: expectedPlanets))
 
-        networkServiceMock.expectedResponse = .success(responseData)
+        networkServiceMock.encodedResponse = encodedResponse
         
         let expectation = self.expectation(description: "Wait for fetch planets to return")
         var planets: [PlanetRemoteEntity]?
+        
+        // When
         sut.fetchPlanets()
+        // Then
             .sink { completion in
                 if case .failure(let error) = completion {
                     XCTFail("Expected to fetch planets, but got error: \(error)")
@@ -53,12 +57,15 @@ class RemotePlanetsServiceTests: XCTestCase {
     }
     
     func testFetchPlanetsFailure() {
-        networkServiceMock.expectedResponse = .failure(NSError(domain: "fetchPlanets Error", code: 404, userInfo: nil))
-
+        // Given
         let expectation = self.expectation(description: "Wait for fetch planets to fail")
         let expectedError = NSError(domain: "fetchPlanets Error", code: 404, userInfo: nil)
         
+        networkServiceMock.error = expectedError
+
+        // When
         sut.fetchPlanets()
+        // Then
             .sink { completion in
                 switch completion {
                 case .failure(let error):
@@ -77,14 +84,18 @@ class RemotePlanetsServiceTests: XCTestCase {
 }
 
 class NetworkServiceMock: NetworkServiceProtocol {
-    var expectedResponse: Result<Data, Error> = .failure(NSError(domain: "fetchPlanets Error", code: 404, userInfo: nil))
-
+    var encodedResponse: Data?
+    var error: Error?
+    
     func get<T: Decodable, S: Endpoint>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, Error> {
-        let publisher = expectedResponse.publisher
-            .tryMap { data -> T in
-                try JSONDecoder().decode(T.self, from: data)
-            }
-            .eraseToAnyPublisher()
-        return publisher
+        if let error = error {
+            return Fail(error: error).eraseToAnyPublisher()
+        } else {
+            return encodedResponse.publisher
+                .tryMap { data -> T in
+                    try JSONDecoder().decode(T.self, from: data)
+                }
+                .eraseToAnyPublisher()
+        }
     }
 }
