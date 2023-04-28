@@ -22,7 +22,7 @@ class LocalDataSource: LocalDataSourceProtocol {
     }
 
     private func _getAll() -> [PlanetCDEntity] {
-        if let result = try? dbService.getData(entityName: "PlanetCDEntity") as? [PlanetCDEntity] {
+        if let result = try? dbService.getEntities(entityName: "PlanetCDEntity") as? [PlanetCDEntity] {
             return result
         } else {
             return []
@@ -30,7 +30,7 @@ class LocalDataSource: LocalDataSourceProtocol {
     }
 
     private func _getOne(name: String) throws -> PlanetCDEntity? {
-        guard let result = try dbService.getData(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", name)) as? [PlanetCDEntity], !result.isEmpty else {
+        guard let result = try dbService.getEntitiesWithPredicate(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", name)) as? [PlanetCDEntity], !result.isEmpty else {
             return nil
         }
         return result[0]
