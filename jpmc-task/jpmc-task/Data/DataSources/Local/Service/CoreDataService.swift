@@ -10,11 +10,9 @@ import Foundation
 
 protocol CoreDataServiceProtocol {
     func getContext() -> NSManagedObjectContext
-    func getEntities(entityName: String) throws -> [NSManagedObject] //FIXME: remove throws
-    func getEntitiesWithPredicate(entityName: String, predicate: NSPredicate) throws -> [NSManagedObject]
-    func getEntitiesWithPredicateAndLimit(entityName: String, predicate: NSPredicate, limit: Int) throws -> [NSManagedObject]
+    func getEntities(entityName: String, predicate: NSPredicate?, limit: Int?) throws -> [NSManagedObject]
     func deleteObject(entity: NSManagedObject)
-    func saveContext()    
+    func saveContext()
 }
 
 class CoreDataService: CoreDataServiceProtocol {
@@ -45,23 +43,10 @@ class CoreDataService: CoreDataServiceProtocol {
         return container.viewContext
     }
 
-    func getEntities(entityName: String) throws -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
-        let entities = try container.viewContext.fetch(fetchRequest)
-        return entities
-    }
-
-    func getEntitiesWithPredicate(entityName: String, predicate: NSPredicate) throws -> [NSManagedObject] {
+    func getEntities(entityName: String, predicate: NSPredicate? = nil, limit: Int? = nil) throws -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         fetchRequest.predicate = predicate
-        let entities = try container.viewContext.fetch(fetchRequest)
-        return entities
-    }
-
-    func getEntitiesWithPredicateAndLimit(entityName: String, predicate: NSPredicate, limit: Int) throws -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
-        fetchRequest.predicate = predicate
-        fetchRequest.fetchLimit = limit
+        fetchRequest.fetchLimit = limit ?? 0
         let entities = try container.viewContext.fetch(fetchRequest)
         return entities
     }

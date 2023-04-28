@@ -22,15 +22,14 @@ class LocalDataSource: LocalDataSourceProtocol {
     }
 
     private func _getAll() -> [PlanetCDEntity] {
-        if let result = try? dbService.getEntities(entityName: "PlanetCDEntity") as? [PlanetCDEntity] {
-            return result
-        } else {
+        guard let entities = try? dbService.getEntities(entityName: "PlanetCDEntity", predicate: nil, limit: 0) else {
             return []
         }
+        return entities.compactMap { $0 as? PlanetCDEntity }
     }
 
     private func _getOne(name: String) throws -> PlanetCDEntity? {
-        guard let result = try dbService.getEntitiesWithPredicate(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", name)) as? [PlanetCDEntity], !result.isEmpty else {
+        guard let result = try dbService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", name), limit: 0) as? [PlanetCDEntity], !result.isEmpty else {
             return nil
         }
         return result[0]
@@ -82,12 +81,12 @@ class LocalDataSource: LocalDataSourceProtocol {
     }
 
     func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error> {
-        let data = _getAll()
-        let newData = data.map { planetCDEntity in
+        let allEntities = _getAll()
+        let planets = allEntities.map { planetCDEntity in
             mapPlanetResponse(planetCDEntity: planetCDEntity)
         }
 
-        let sortedPlanets = newData.sorted { $0.name < $1.name }
+        let sortedPlanets = planets.sorted { $0.name < $1.name }
         
         return Just(sortedPlanets)
             .setFailureType(to: Error.self)
