@@ -40,6 +40,7 @@ class LocalDataSourceTests: XCTestCase {
         // When
         let expectation = self.expectation(description: "getAllPlanetsLocal")
         var planets: [PlanetModel]?
+        
         dataSource.getAllPlanetsLocal()
             .sink(receiveCompletion: { _ in },
                   receiveValue: { result in
