@@ -128,14 +128,8 @@
 		CB3DB91629FABADA00603C2D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CB8A92DA29FDD025006F7270 /* DataSources */,
 				CB3DB91729FABAF000603C2D /* StarWarsRepositoryTests.swift */,
-				CB3DB91929FB23E600603C2D /* EndpointTests.swift */,
-				CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */,
-				CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */,
-				CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */,
-				CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */,
-				CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */,
-				CB8A92D829FDC951006F7270 /* NetworkServiceTest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -331,6 +325,36 @@
 				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		CB8A92DA29FDD025006F7270 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				CB8A92DB29FDD03F006F7270 /* Local */,
+				CB8A92DC29FDD044006F7270 /* Remote */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		CB8A92DB29FDD03F006F7270 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */,
+				CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		CB8A92DC29FDD044006F7270 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				CB3DB91929FB23E600603C2D /* EndpointTests.swift */,
+				CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */,
+				CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */,
+				CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */,
+				CB8A92D829FDC951006F7270 /* NetworkServiceTest.swift */,
+			);
+			path = Remote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
