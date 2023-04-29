@@ -47,13 +47,12 @@ class CoreDataStorageTests: XCTestCase {
         planet.population = "200000"
         coreDataService.saveContext()
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlanetCDEntity")
-        fetchRequest.predicate = NSPredicate(format: "name = %@", "Tatooine")
-        let result = try! context.fetch(fetchRequest) as! [PlanetCDEntity]
+        let result = try! coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
         XCTAssert(result.count == 1)
         
         coreDataService.deleteObject(entity: result[0])
-        let newResult = try! context.fetch(fetchRequest) as! [PlanetCDEntity]
+        
+        let newResult = try! coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
         XCTAssert(newResult.count == 0)
     }
 }
