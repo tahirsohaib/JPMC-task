@@ -8,7 +8,7 @@
 import Foundation
 
 public final class Resolver {
-    
+    ///The Resolver is a simple implementation of a dependency injection container that is used to manage the dependencies in our application. It consists of two main methods: register and resolve. The register method is used to register a service with the container, and the resolve method is used to retrieve the service.
     public static var main: Resolver = Resolver()
     
     private var dependecies: [DependencyKey : Any] = [:]

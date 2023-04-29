@@ -11,7 +11,7 @@ import SwiftUI
 struct jpmc_taskApp: App {
     
     @StateObject private var viewModel = PlanetListViewModel()
-    
+    ///Here we register all the services that are required by our app using the register method of the Resolver. By registering these services with the Resolver, you are telling the container how to create and manage these dependencies.
     init() {
         Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataStorage(.persistent))
         Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataStorage())
