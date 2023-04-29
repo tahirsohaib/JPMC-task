@@ -37,6 +37,7 @@
 		CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2929F7204200BB0ACA /* Injected.swift */; };
 		CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2A29F7204200BB0ACA /* Resolver.swift */; };
 		CB8A92D329FC6481006F7270 /* CoreDataStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */; };
+		CB8A92D529FD5387006F7270 /* LocalDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		CB6ADD2929F7204200BB0ACA /* Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 		CB6ADD2A29F7204200BB0ACA /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorageTests.swift; sourceTree = "<group>"; };
+		CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */,
 				CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */,
 				CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */,
+				CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8A92D529FD5387006F7270 /* LocalDataSourceTests.swift in Sources */,
 				CB8A92D329FC6481006F7270 /* CoreDataStorageTests.swift in Sources */,
 				CB3DB91C29FB293C00603C2D /* RemoteDataSourceTests.swift in Sources */,
 				CB3DB91E29FB39E900603C2D /* RemotePlanetsServiceTests.swift in Sources */,
