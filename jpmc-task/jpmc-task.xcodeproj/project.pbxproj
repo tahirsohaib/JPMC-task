@@ -38,6 +38,7 @@
 		CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2A29F7204200BB0ACA /* Resolver.swift */; };
 		CB8A92D329FC6481006F7270 /* CoreDataStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */; };
 		CB8A92D529FD5387006F7270 /* LocalDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */; };
+		CB8A92D729FDBC03006F7270 /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		CB6ADD2A29F7204200BB0ACA /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorageTests.swift; sourceTree = "<group>"; };
 		CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceTests.swift; sourceTree = "<group>"; };
+		CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */,
 				CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */,
 				CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */,
+				CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				CB3DB91C29FB293C00603C2D /* RemoteDataSourceTests.swift in Sources */,
 				CB3DB91E29FB39E900603C2D /* RemotePlanetsServiceTests.swift in Sources */,
 				CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */,
+				CB8A92D729FDBC03006F7270 /* APIErrorTests.swift in Sources */,
 				CB3DB91529FA921C00603C2D /* PlanetModelTest.swift in Sources */,
 				CB3DB91829FABAF000603C2D /* StarWarsRepositoryTests.swift in Sources */,
 				CB3DB91A29FB23E600603C2D /* EndpointTests.swift in Sources */,
