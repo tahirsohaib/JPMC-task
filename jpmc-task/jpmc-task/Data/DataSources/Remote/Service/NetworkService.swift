@@ -15,10 +15,8 @@ protocol NetworkServiceProtocol {
 class NetworkService: NetworkServiceProtocol {
     private var urlSession: URLSession
     
-    init(urlSessionConfiguration: URLSessionConfiguration? = nil) {
-        let configuration = urlSessionConfiguration ?? URLSessionConfiguration.default
-        urlSession = URLSession(configuration: configuration)
-    }
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession    }
     
     func get<T, S>(_: T.Type, endpoint: S) -> AnyPublisher<T, Error> where T: Decodable, S: Endpoint {
         guard let url = endpoint.makeURL() else {
@@ -46,7 +44,7 @@ class NetworkService: NetworkServiceProtocol {
                 }
                 return data
             }
-
+        
             .flatMap { data -> AnyPublisher<T, Error> in
                 self.decodeResponse(data, ofType: T.self)
             }
@@ -55,7 +53,7 @@ class NetworkService: NetworkServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    internal func decodeResponse<T: Decodable>(_ data: Data, ofType type: T.Type) -> AnyPublisher<T, Error> {        
+    internal func decodeResponse<T: Decodable>(_ data: Data, ofType type: T.Type) -> AnyPublisher<T, Error> {
         do {
             let decoder = JSONDecoder()
             let object = try decoder.decode(type, from: data)
