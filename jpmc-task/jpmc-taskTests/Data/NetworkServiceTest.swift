@@ -27,7 +27,7 @@ class NetworkServiceTest: XCTestCase {
         super.tearDown()
     }
     
-    func testGet() {
+    func testGetSuccess() {
         let mockResponse = HTTPURLResponse(url: URL(string: "https://swapi.dev/planets")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
         
         let mockData = """
@@ -63,7 +63,35 @@ class NetworkServiceTest: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
     }
     
+    func testGetFailure() {
+        let mockResponse = HTTPURLResponse(url: URL(string: "https://swapi.dev/planets")!, statusCode: 400, httpVersion: "HTTP/1.1", headerFields: nil)!
         
+        MockURLProtocol.requestHandler = { request in
+            return (mockResponse, Data())
+        }
+        
+        let networkService = NetworkService(urlSession: mockSession)
+        let expectation = self.expectation(description: "get function fails")
+        let expectedError = APIError.badURLResponse(url: "https://swapi.dev/api/planets")
+        
+        networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    XCTFail("Publisher should have finished with an error")
+                case .failure(let error):
+                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+                    expectation.fulfill()
+                }
+            }, receiveValue: { receivedPlanet in
+                XCTFail("Publisher should have finished with an error")
+            })
+            .store(in: &cancellables)
+        
+        wait(for: [expectation], timeout: 0.2)
+    }
+    
+
     func testDecodeResponse() {
         let expectedEntity = PlanetRemoteEntity(name: "Tatooine", terrain: "desert", population: "200000")
         
