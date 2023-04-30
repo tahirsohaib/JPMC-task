@@ -92,7 +92,7 @@ class NetworkServiceTest: XCTestCase {
     }
     
 
-    func testDecodeResponse() {
+    func testDecodeResponseSuccess () {
         let expectedEntity = PlanetRemoteEntity(name: "Tatooine", terrain: "desert", population: "200000")
         
         let json = """
@@ -116,6 +116,37 @@ class NetworkServiceTest: XCTestCase {
                 }
             } receiveValue: { entity in
                 XCTAssertEqual(entity, expectedEntity)
+            }.store(in: &cancellables)
+        
+        wait(for: [expectation], timeout: 0.2)
+    }
+    
+    func testDecodeResponseFailure() {
+        // Given
+        let invalidJson = """
+            {
+                "name": "Tatooine",
+                "terrain": "desert",
+            }
+        """
+        let data = Data(invalidJson.utf8)
+        let expectedError = APIError.decodingError
+        
+        // When
+        let expectation = self.expectation(description: "Decoding fails")
+        
+        NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
+            .sink { completion in
+                // Then
+                switch completion {
+                case .finished:
+                    XCTFail("Publisher should have finished with an error")
+                case .failure(let error):
+                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+                    expectation.fulfill()
+                }
+            } receiveValue: { entity in
+                XCTFail("Publisher should have finished with an error")
             }.store(in: &cancellables)
         
         wait(for: [expectation], timeout: 0.2)
