@@ -32,8 +32,10 @@ struct PlanetList: View {
                 .navigationTitle("Star Wars Planets")
             }
         .onAppear {
-            if !self.firstAppear { return }
-            viewModel.syncRemoteAndLocal()
+            if self.firstAppear {
+                viewModel.syncRemoteAndLocal()
+                self.firstAppear = false
+            }
         }
     }
 }
