@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PlanetList: View {
-    @EnvironmentObject private var viewModel: PlanetListViewModel
+    @StateObject private var viewModel = PlanetListViewModel()
+    @State var firstAppear: Bool = true
     
     var body: some View {
         NavigationView {
@@ -30,6 +31,10 @@ struct PlanetList: View {
                 }                
                 .navigationTitle("Star Wars Planets")
             }
+        .onAppear {
+            if !self.firstAppear { return }
+            viewModel.syncRemoteAndLocal()
+        }
     }
 }
 

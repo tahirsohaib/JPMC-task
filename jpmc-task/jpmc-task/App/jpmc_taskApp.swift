@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct jpmc_taskApp: App {
     
-    @StateObject private var viewModel = PlanetListViewModel()
     ///Here we register all the services that are required by our app using the register method of the Resolver. By registering these services with the Resolver, you are telling the container how to create and manage these dependencies.
     init() {
         Resolver.main.register(type: CoreDataServiceProtocol.self, service: CoreDataStorage(.persistent))
@@ -21,15 +20,11 @@ struct jpmc_taskApp: App {
         Resolver.main.register(type: RemoteDataSourceProtocol.self, service: RemoteDataSource())
         Resolver.main.register(type: PlanetsRepositoryProtocol.self, service: StarWarsRepository())
         Resolver.main.register(type: GetAllPlanetsUseCaseProtocol.self, service: GetAllPlanetsUC())
-    }    
+    }
     
     var body: some Scene {
         WindowGroup {
             PlanetList()
-                .environmentObject(viewModel)
-                .onAppear {
-                    viewModel.syncRemoteAndLocal()
-                }
         }
     }
 }
