@@ -16,6 +16,7 @@ class RemoteDataSourceTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
+        Resolver.main.removeDependencies()
         remoteServiceMock = RemotePlanetsServiceMock()
         Resolver.main.register(type: RemotePlanetsServiceProtocol.self, service: remoteServiceMock!)
         sut = RemoteDataSource()

@@ -15,6 +15,7 @@ class NetworkServiceTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        Resolver.main.removeDependencies()
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         mockSession = URLSession(configuration: configuration)

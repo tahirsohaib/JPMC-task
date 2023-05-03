@@ -16,6 +16,7 @@ class PlanetListViewModelTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
+        Resolver.main.removeDependencies()
         useCase = GetAllPlanetsUseCaseMock()
         Resolver.main.register(type: GetAllPlanetsUseCaseProtocol.self, service: useCase!)
         viewModel = PlanetListViewModel()

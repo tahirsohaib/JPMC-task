@@ -17,6 +17,7 @@ class StarWarsRepositoryTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
+        Resolver.main.removeDependencies()
         remoteDataSourceMock = RemoteDataSourceMock()
         localDataSourceMock = LocalDataSourceMock()
         Resolver.main.register(type: LocalDataSourceProtocol.self, service: localDataSourceMock!)

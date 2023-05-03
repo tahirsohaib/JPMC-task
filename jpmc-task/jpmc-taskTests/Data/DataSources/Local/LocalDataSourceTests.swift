@@ -17,6 +17,7 @@ class LocalDataSourceTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
+        Resolver.main.removeDependencies()
         coreDataService = CoreDataStorage(.inMemory)
         Resolver.main.register(type: CoreDataServiceProtocol.self, service: coreDataService!)
         dataSource = LocalDataSource()

@@ -13,6 +13,10 @@ public final class Resolver {
     
     private var dependecies: [DependencyKey : Any] = [:]
     
+    public func removeDependencies() {
+        dependecies.removeAll()
+    }
+    
     // MARK: - Service Resolution
     
     public func register<Service>(type: Service.Type, name: String? = nil, service: Any) {

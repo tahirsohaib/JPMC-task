@@ -16,6 +16,7 @@ class RemotePlanetsServiceTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
+        Resolver.main.removeDependencies()
         networkServiceMock = NetworkServiceMock()
         Resolver.main.register(type: NetworkServiceProtocol.self, service: networkServiceMock!)
         sut = RemotePlanetsService()

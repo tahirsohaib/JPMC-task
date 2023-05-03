@@ -16,6 +16,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
+        Resolver.main.removeDependencies()
         cancellables = []
         mockRepository = MockRepository()
         Resolver.main.register(type: PlanetsRepositoryProtocol.self, service: mockRepository!)
