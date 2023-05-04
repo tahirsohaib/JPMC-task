@@ -59,26 +59,23 @@ class LocalDataSourceTests: XCTestCase {
     }
     
     func testSyncAllPlanetsWithRemote() {
-        // Given
-        let remoteData = [PlanetModel(name: "Mars", population: "1000000", terrain: "Rocky"),
-                          PlanetModel(name: "Jupiter", population: "5000000", terrain: "Gas Giant")]
         // When
         let expectation = XCTestExpectation(description: "Sync planets with remote data")
-        
-        dataSource.syncAllPlanetsWithRemote(remoteData)
+         
+        dataSource.syncAllPlanetsWithRemote(PlanetModel.mockPlanetModels)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { updatedPlanets in
-                XCTAssertEqual(updatedPlanets.count, remoteData.count)
+                XCTAssertEqual(updatedPlanets.count, PlanetModel.mockPlanetModels.count)
                 
                 let jupiter = updatedPlanets[0]
-                XCTAssertEqual(jupiter.name, "Jupiter")
-                XCTAssertEqual(jupiter.population, "5000000")
-                XCTAssertEqual(jupiter.terrain, "Gas Giant")
+                XCTAssertEqual(jupiter.name, "Earth")
+                XCTAssertEqual(jupiter.population, "7.9 billion")
+                XCTAssertEqual(jupiter.terrain, "desert")
                 
                 let mars = updatedPlanets[1]
                 XCTAssertEqual(mars.name, "Mars")
-                XCTAssertEqual(mars.population, "1000000")
-                XCTAssertEqual(mars.terrain, "Rocky")
+                XCTAssertEqual(mars.population, "Unknown")
+                XCTAssertEqual(mars.terrain, "mountains")
                 
                 expectation.fulfill()
             })

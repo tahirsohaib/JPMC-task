@@ -31,9 +31,8 @@ class RemotePlanetsServiceTests: XCTestCase {
 
     func testFetchPlanetsSuccess() {
         // Given
-        let expectedPlanets = [PlanetRemoteEntity(name: "Earth", terrain: "Dessert", population: "7.9 billion")]
         
-        let encodedResponse = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: expectedPlanets))
+        let encodedResponse = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: PlanetRemoteEntity.mockPlanetRemoteEntities))
 
         networkServiceMock.encodedResponse = encodedResponse
         
@@ -54,7 +53,7 @@ class RemotePlanetsServiceTests: XCTestCase {
             .store(in: &cancellables)
         
         waitForExpectations(timeout: 0.2, handler: nil)
-        XCTAssertEqual(planets, expectedPlanets)
+        XCTAssertEqual(planets, PlanetRemoteEntity.mockPlanetRemoteEntities)
     }
     
     func testFetchPlanetsFailure() {

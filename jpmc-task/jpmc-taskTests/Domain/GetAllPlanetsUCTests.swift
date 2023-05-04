@@ -31,10 +31,8 @@ class GetAllPlanetsUCTests: XCTestCase {
     }
     func testExecuteSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
-                               PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        mockRepository.getAllPlanetsResult = .success(expectedPlanets)
+        mockRepository.getAllPlanetsResult = .success(PlanetModel.mockPlanetModels)
 
         let expectation = XCTestExpectation(description: "Get All planets succeeds")
         var receivedPlanets: [PlanetModel]?
@@ -52,7 +50,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
         
         XCTAssertNotNil(receivedPlanets)
-        XCTAssertEqual(expectedPlanets, receivedPlanets)
+        XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
     }
     
     func testExecuteFailure() {
@@ -81,10 +79,8 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     func testSyncLocalWithRemoteSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
-                               PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        mockRepository.syncLocalRepoResult = .success(expectedPlanets)
+        mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
 
         let expectation = XCTestExpectation(description: "Sync Local With Remote succeeds")
         var receivedPlanets: [PlanetModel]?
@@ -102,7 +98,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
         
         XCTAssertNotNil(receivedPlanets)
-        XCTAssertEqual(expectedPlanets, receivedPlanets)
+        XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
     }
     
     func testSyncLocalWithRemoteFailure() {

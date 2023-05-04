@@ -31,10 +31,8 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testFetchPlanetsUsingSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
-                               PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        useCase.stubbedResult = Just(expectedPlanets)
+        useCase.stubbedResult = Just(PlanetModel.mockPlanetModels)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         
@@ -48,7 +46,7 @@ class PlanetListViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Fetching Planets succeeds")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
-            XCTAssertEqual(self.viewModel.planets, expectedPlanets)
+            XCTAssertEqual(self.viewModel.planets, PlanetModel.mockPlanetModels)
             expectation.fulfill()
         }
         
@@ -80,9 +78,8 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testSyncRemoteAndLocalSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"), PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        useCase.stubbedResult = Just(expectedPlanets)
+        useCase.stubbedResult = Just(PlanetModel.mockPlanetModels)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         
@@ -96,7 +93,7 @@ class PlanetListViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Planets synchronization succeeds")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
-            XCTAssertEqual(self.viewModel.planets, expectedPlanets)
+            XCTAssertEqual(self.viewModel.planets, PlanetModel.mockPlanetModels)
             expectation.fulfill()
         }
         

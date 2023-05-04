@@ -94,13 +94,12 @@ class NetworkServiceTest: XCTestCase {
     
 
     func testDecodeResponseSuccess () {
-        let expectedEntity = PlanetRemoteEntity(name: "Tatooine", terrain: "desert", population: "200000")
         
         let json = """
                 {
-                    "name": "Tatooine",
-                    "terrain": "desert",
-                    "population": "200000"
+                    "name": "Earth",
+                    "population": "7.9 billion",
+                    "terrain": "desert"
                 }
             """
         let data = Data(json.utf8)
@@ -116,8 +115,9 @@ class NetworkServiceTest: XCTestCase {
                     XCTFail("Unexpected error: \(error)")
                 }
             } receiveValue: { entity in
-                XCTAssertEqual(entity, expectedEntity)
-            }.store(in: &cancellables)
+                XCTAssertEqual(entity, PlanetRemoteEntity.mockPlanetRemoteEntity)
+            }
+            .store(in: &cancellables)
         
         wait(for: [expectation], timeout: 0.2)
     }

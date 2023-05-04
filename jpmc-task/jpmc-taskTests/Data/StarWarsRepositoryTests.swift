@@ -35,10 +35,8 @@ class StarWarsRepositoryTests: XCTestCase {
     
     func testGetAllPlanetsSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
-                               PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
-        
-        localDataSourceMock.getAllPlanetsLocalResult = .success(expectedPlanets)
+      
+        localDataSourceMock.getAllPlanetsLocalResult = .success(PlanetModel.mockPlanetModels)
         
         let expectation = XCTestExpectation(description: "Get All planets succeeds")
         var receivedPlanets: [PlanetModel]?
@@ -56,7 +54,7 @@ class StarWarsRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
         
         XCTAssertNotNil(receivedPlanets)
-        XCTAssertEqual(expectedPlanets, receivedPlanets)
+        XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
     }
     
     func testGetAllPlanetsFailure() {
@@ -85,11 +83,9 @@ class StarWarsRepositoryTests: XCTestCase {
     
     func testSyncLocalRepoWithRemoteRepoSuccess() {
         // Given
-        let expectedPlanets = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
-                               PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
         
-        localDataSourceMock.syncAllPlanetsWithRemoteResult = .success(expectedPlanets)
-        remoteDataSourceMock.getAllPlanetsRemoteResult = .success(expectedPlanets)
+        localDataSourceMock.syncAllPlanetsWithRemoteResult = .success(PlanetModel.mockPlanetModels)
+        remoteDataSourceMock.getAllPlanetsRemoteResult = .success(PlanetModel.mockPlanetModels)
         
         let expectation = XCTestExpectation(description: "Sync local with remote succeeds")
         var receivedPlanets: [PlanetModel]?
@@ -107,7 +103,7 @@ class StarWarsRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
         
         XCTAssertNotNil(receivedPlanets)
-        XCTAssertEqual(expectedPlanets, receivedPlanets)
+        XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
     }
     
     func testSyncLocalRepoWithRemoteRepoFailure() {

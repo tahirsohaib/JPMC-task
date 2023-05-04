@@ -31,10 +31,8 @@ class RemoteDataSourceTests: XCTestCase {
     
     func testGetAllPlanetsRemoteSuccess() throws {
         // Given
-        let expectedPlanetModels = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "Dessert")]
-        let planetRemoteEntities = [PlanetRemoteEntity(name: "Earth", terrain: "Dessert", population: "7.9 billion")]
         
-        remoteServiceMock.planetRemoteEntities = planetRemoteEntities
+        remoteServiceMock.planetRemoteEntities = PlanetRemoteEntity.mockPlanetRemoteEntities
         
         let expectation = XCTestExpectation(description: "Get All planets succeeds")
         var receivedPlanets: [PlanetModel]?
@@ -52,7 +50,7 @@ class RemoteDataSourceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
                 
         // Then
-        XCTAssertEqual(receivedPlanets, expectedPlanetModels)
+        XCTAssertEqual(receivedPlanets, PlanetModel.mockPlanetModels)
     }
     
     func testGetAllPlanetsRemoteFailure() throws {

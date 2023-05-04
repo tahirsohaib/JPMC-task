@@ -11,13 +11,9 @@ import XCTest
 class PlanetModelTest: XCTestCase {
     
     func testPlanetModelEquality() {
-        // Given
-        let planet1 = PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert")
-        let planet2 = PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert")
-        let planet3 = PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")
         
         // Then
-        XCTAssertEqual(planet1, planet2, "Planet models with the same properties should be equal")
-        XCTAssertNotEqual(planet1, planet3, "Planet models with different properties should not be equal")
+        XCTAssertEqual(PlanetModel.mockPlanetModel1, PlanetModel.mockPlanetModel1, "Planet models with the same properties should be equal")
+        XCTAssertNotEqual(PlanetModel.mockPlanetModel1, PlanetModel.mockPlanetModel2, "Planet models with different properties should not be equal")
     }
 }
