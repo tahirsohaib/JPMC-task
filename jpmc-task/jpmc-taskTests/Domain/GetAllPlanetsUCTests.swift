@@ -34,7 +34,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         
         mockRepository.getAllPlanetsResult = .success(PlanetModel.mockPlanetModels)
 
-        let expectation = XCTestExpectation(description: "Get All planets succeeds")
+        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
         
         // When
@@ -56,7 +56,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     func testExecuteFailure() {
         // Given
         let expectedError = NSError(domain: "getAllPlanetsResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: "Get All planets fails")
+        let expectation = XCTestExpectation(description: #function)
         
         // When
         sut.execute()
@@ -82,7 +82,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         
         mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
 
-        let expectation = XCTestExpectation(description: "Sync Local With Remote succeeds")
+        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
         
         // When
@@ -104,7 +104,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     func testSyncLocalWithRemoteFailure() {
         // Given
         let expectedError = NSError(domain: "syncLocalRepoResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: "Sync Local With Remote fails")
+        let expectation = XCTestExpectation(description: #function)
         
         // When
         sut.syncLocalRepoWithRemoteRepo()

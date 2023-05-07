@@ -22,7 +22,7 @@ class EndpointTests: XCTestCase {
         let endpoint2 = PlanetsEndpoint.allPlanets
         let endpoint3 = PlanetsEndpoint.onePlanet(planetId: "1")
         
-        XCTAssertTrue(endpoint1 == endpoint2)
-        XCTAssertFalse(endpoint1 == endpoint3)
+        XCTAssertEqual(endpoint1, endpoint2)
+        XCTAssertNotEqual(endpoint1, endpoint3)
     }
 }

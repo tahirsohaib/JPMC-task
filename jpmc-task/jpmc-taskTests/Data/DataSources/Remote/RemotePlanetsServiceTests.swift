@@ -33,10 +33,10 @@ class RemotePlanetsServiceTests: XCTestCase {
         // Given
         
         let encodedResponse = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: PlanetRemoteEntity.mockPlanetRemoteEntities))
-
+        
         networkServiceMock.encodedResponse = encodedResponse
         
-        let expectation = self.expectation(description: "Wait for fetch planets to return")
+        let expectation = XCTestExpectation(description: #function)
         var planets: [PlanetRemoteEntity]?
         
         // When
@@ -52,17 +52,17 @@ class RemotePlanetsServiceTests: XCTestCase {
             }
             .store(in: &cancellables)
         
-        waitForExpectations(timeout: 0.2, handler: nil)
+        wait(for: [expectation], timeout: 0.2)
         XCTAssertEqual(planets, PlanetRemoteEntity.mockPlanetRemoteEntities)
     }
     
     func testFetchPlanetsFailure() {
         // Given
-        let expectation = self.expectation(description: "Wait for fetch planets to fail")
+        let expectation = XCTestExpectation(description: #function)
         let expectedError = NSError(domain: "fetchPlanets Error", code: 404, userInfo: nil)
         
         networkServiceMock.error = expectedError
-
+        
         // When
         sut.fetchPlanets()
         // Then
@@ -78,8 +78,8 @@ class RemotePlanetsServiceTests: XCTestCase {
                 XCTFail("Publisher should have finished with an error")
             }
             .store(in: &cancellables)
-
-        waitForExpectations(timeout: 0.2, handler: nil)
+        
+        wait(for: [expectation], timeout: 0.2)
     }
 }
 

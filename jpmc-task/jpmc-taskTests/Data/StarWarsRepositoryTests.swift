@@ -38,7 +38,7 @@ class StarWarsRepositoryTests: XCTestCase {
       
         localDataSourceMock.getAllPlanetsLocalResult = .success(PlanetModel.mockPlanetModels)
         
-        let expectation = XCTestExpectation(description: "Get All planets succeeds")
+        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
                 
         // When
@@ -60,7 +60,7 @@ class StarWarsRepositoryTests: XCTestCase {
     func testGetAllPlanetsFailure() {
         // Given
         let expectedError = NSError(domain: "getAllPlanetsLocalResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: "Get All planets fails")
+        let expectation = XCTestExpectation(description: #function)
         
         // When
         repository.getAllPlanets()
@@ -87,7 +87,7 @@ class StarWarsRepositoryTests: XCTestCase {
         localDataSourceMock.syncAllPlanetsWithRemoteResult = .success(PlanetModel.mockPlanetModels)
         remoteDataSourceMock.getAllPlanetsRemoteResult = .success(PlanetModel.mockPlanetModels)
         
-        let expectation = XCTestExpectation(description: "Sync local with remote succeeds")
+        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
         
         // When
@@ -109,7 +109,7 @@ class StarWarsRepositoryTests: XCTestCase {
     func testSyncLocalRepoWithRemoteRepoFailure() {
         // Given
         let expectedError = NSError(domain: "getAllPlanetsRemoteResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: "Sync local with remote fails")
+        let expectation = XCTestExpectation(description: #function)
         
         // When
         repository.syncLocalRepoWithRemoteRepo()

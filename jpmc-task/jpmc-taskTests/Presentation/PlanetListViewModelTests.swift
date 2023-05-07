@@ -43,7 +43,7 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Fetching Planets succeeds")
+        let expectation = XCTestExpectation(description: #function)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, PlanetModel.mockPlanetModels)
@@ -66,7 +66,7 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Fetching Planets Fails")
+        let expectation = XCTestExpectation(description: #function)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, [])
@@ -113,7 +113,7 @@ class PlanetListViewModelTests: XCTestCase {
         XCTAssertTrue(self.viewModel.isLoading)
         XCTAssertEqual(self.viewModel.planets, [])
         
-        let expectation = self.expectation(description: "Planets synchronization Failes")
+        let expectation = XCTestExpectation(description: #function)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, [])

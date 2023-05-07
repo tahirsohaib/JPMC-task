@@ -39,7 +39,7 @@ class LocalDataSourceTests: XCTestCase {
         coreDataService.saveContext()
         
         // When
-        let expectation = self.expectation(description: "getAllPlanetsLocal")
+        let expectation = XCTestExpectation(description: #function)
         var planets: [PlanetModel]?
         
         dataSource.getAllPlanetsLocal()
@@ -49,7 +49,8 @@ class LocalDataSourceTests: XCTestCase {
                 expectation.fulfill()
             })
             .store(in: &cancellables)
-        waitForExpectations(timeout: 0.2, handler: nil)
+
+        wait(for: [expectation], timeout: 0.2)
         
         // Then
         XCTAssertEqual(planets?.count, 1)
@@ -60,7 +61,7 @@ class LocalDataSourceTests: XCTestCase {
     
     func testSyncAllPlanetsWithRemote() {
         // When
-        let expectation = XCTestExpectation(description: "Sync planets with remote data")
+        let expectation = XCTestExpectation(description: #function)
          
         dataSource.syncAllPlanetsWithRemote(PlanetModel.mockPlanetModels)
             .sink(receiveCompletion: { _ in },
@@ -79,8 +80,7 @@ class LocalDataSourceTests: XCTestCase {
                 
                 expectation.fulfill()
             })
-            .store(in: &cancellables)
-        
+            .store(in: &cancellables)        
         wait(for: [expectation], timeout: 0.2)
     }
     

@@ -34,7 +34,7 @@ class RemoteDataSourceTests: XCTestCase {
         
         remoteServiceMock.planetRemoteEntities = PlanetRemoteEntity.mockPlanetRemoteEntities
         
-        let expectation = XCTestExpectation(description: "Get All planets succeeds")
+        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
         
         // When
@@ -56,7 +56,7 @@ class RemoteDataSourceTests: XCTestCase {
     func testGetAllPlanetsRemoteFailure() throws {
         // Given
         let expectedError = NSError(domain: "fetchPlanetsResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: "Get All planets from remote fails")
+        let expectation = XCTestExpectation(description: #function)
 
         remoteServiceMock.error = expectedError
         

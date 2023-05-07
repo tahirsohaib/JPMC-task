@@ -44,7 +44,7 @@ class NetworkServiceTest: XCTestCase {
         }
         
         let networkService = NetworkService(urlSession: mockSession)
-        let expectation = self.expectation(description: "get function succeeds")
+        let expectation = XCTestExpectation(description: #function)
         
         networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
             .sink(receiveCompletion: { completion in
@@ -72,7 +72,7 @@ class NetworkServiceTest: XCTestCase {
         }
         
         let networkService = NetworkService(urlSession: mockSession)
-        let expectation = self.expectation(description: "get function fails")
+        let expectation = XCTestExpectation(description: #function)
         let expectedError = APIError.badURLResponse(url: "https://swapi.dev/api/planets")
         
         networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
@@ -105,7 +105,7 @@ class NetworkServiceTest: XCTestCase {
         let data = Data(json.utf8)
         
         // then
-        let expectation = self.expectation(description: "Decode response")
+        let expectation = XCTestExpectation(description: #function)
         NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
             .sink { completion in
                 switch completion {
@@ -134,7 +134,7 @@ class NetworkServiceTest: XCTestCase {
         let expectedError = APIError.decodingError
         
         // When
-        let expectation = self.expectation(description: "Decoding fails")
+        let expectation = XCTestExpectation(description: #function)
         
         NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
             .sink { completion in
