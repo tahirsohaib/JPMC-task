@@ -30,58 +30,50 @@ class LocalDataSourceTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGetAllPlanetsLocal() {
+    func testGetAllPlanetsLocal() throws {
         // Given
         let planet = PlanetCDEntity(context: coreDataService.getContext())
         planet.name = "Tatooine"
         planet.terrain = "Desert"
         planet.population = "200000"
         coreDataService.saveContext()
-        
+
         // When
         let expectation = XCTestExpectation(description: #function)
-        var planets: [PlanetModel]?
-        
-        dataSource.getAllPlanetsLocal()
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { result in
-                planets = result
-                expectation.fulfill()
-            })
-            .store(in: &cancellables)
+        let publisher = dataSource.getAllPlanetsLocal()
 
-        wait(for: [expectation], timeout: 0.2)
-        
         // Then
-        XCTAssertEqual(planets?.count, 1)
-        XCTAssertEqual(planets?[0].name, "Tatooine")
-        XCTAssertEqual(planets?[0].population, "200000")
-        XCTAssertEqual(planets?[0].terrain, "Desert")
+        let planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+
+        XCTAssertEqual(planets.count, 1)
+        XCTAssertEqual(planets[0].name, "Tatooine")
+        XCTAssertEqual(planets[0].population, "200000")
+        XCTAssertEqual(planets[0].terrain, "Desert")
     }
     
-    func testSyncAllPlanetsWithRemote() {
+    
+    func testSyncAllPlanetsWithRemote() throws {
         // When
         let expectation = XCTestExpectation(description: #function)
-         
-        dataSource.syncAllPlanetsWithRemote(PlanetModel.mockPlanetModels)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { updatedPlanets in
-                XCTAssertEqual(updatedPlanets.count, PlanetModel.mockPlanetModels.count)
-                
-                let jupiter = updatedPlanets[0]
-                XCTAssertEqual(jupiter.name, "Earth")
-                XCTAssertEqual(jupiter.population, "7.9 billion")
-                XCTAssertEqual(jupiter.terrain, "desert")
-                
-                let mars = updatedPlanets[1]
-                XCTAssertEqual(mars.name, "Mars")
-                XCTAssertEqual(mars.population, "Unknown")
-                XCTAssertEqual(mars.terrain, "mountains")
-                
-                expectation.fulfill()
-            })
-            .store(in: &cancellables)        
-        wait(for: [expectation], timeout: 0.2)
+        let publisher = dataSource.syncAllPlanetsWithRemote(PlanetModel.mockPlanetModels)
+
+        // Then
+        let result = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+
+        XCTAssertEqual(result.count, PlanetModel.mockPlanetModels.count)
+
+        let jupiter = result[0]
+        XCTAssertEqual(jupiter.name, "Earth")
+        XCTAssertEqual(jupiter.population, "7.9 billion")
+        XCTAssertEqual(jupiter.terrain, "desert")
+
+        let mars = result[1]
+        XCTAssertEqual(mars.name, "Mars")
+        XCTAssertEqual(mars.population, "Unknown")
+        XCTAssertEqual(mars.terrain, "mountains")
     }
+    
+
+    
     
 }

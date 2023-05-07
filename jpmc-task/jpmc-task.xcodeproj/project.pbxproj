@@ -36,6 +36,7 @@
 		CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2329F5E18600BB0ACA /* Swapi.xcdatamodeld */; };
 		CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2929F7204200BB0ACA /* Injected.swift */; };
 		CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2A29F7204200BB0ACA /* Resolver.swift */; };
+		CB7D4A892A08501E001F6FEA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D4A882A08501E001F6FEA /* TestHelpers.swift */; };
 		CB8A92D329FC6481006F7270 /* CoreDataStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */; };
 		CB8A92D529FD5387006F7270 /* LocalDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */; };
 		CB8A92D729FDBC03006F7270 /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */; };
@@ -84,6 +85,7 @@
 		CB6ADD2429F5E18600BB0ACA /* Swapi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swapi.xcdatamodel; sourceTree = "<group>"; };
 		CB6ADD2929F7204200BB0ACA /* Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 		CB6ADD2A29F7204200BB0ACA /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		CB7D4A882A08501E001F6FEA /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorageTests.swift; sourceTree = "<group>"; };
 		CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceTests.swift; sourceTree = "<group>"; };
 		CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				CB3DB91629FABADA00603C2D /* Data */,
 				CB3DB91129F9DA9800603C2D /* Domain */,
 				CB3DB90E29F9762C00603C2D /* Presentation */,
+				CB7D4A882A08501E001F6FEA /* TestHelpers.swift */,
 			);
 			path = "jpmc-taskTests";
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				CB3DB91829FABAF000603C2D /* StarWarsRepositoryTests.swift in Sources */,
 				CB3DB91A29FB23E600603C2D /* EndpointTests.swift in Sources */,
 				CB3DB91329F9DAB800603C2D /* GetAllPlanetsUCTests.swift in Sources */,
+				CB7D4A892A08501E001F6FEA /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
