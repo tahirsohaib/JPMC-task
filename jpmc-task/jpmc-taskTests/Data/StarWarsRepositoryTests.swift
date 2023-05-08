@@ -36,8 +36,6 @@ class StarWarsRepositoryTests: XCTestCase {
     func testGetAllPlanetsSuccess() {
         // Given
         localDataSourceMock.getAllPlanetsLocalResult = .success(PlanetModel.mockPlanetModels)
-        
-        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
                 
         // When
@@ -45,7 +43,7 @@ class StarWarsRepositoryTests: XCTestCase {
         
         // Then
         do {
-            receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
@@ -57,14 +55,13 @@ class StarWarsRepositoryTests: XCTestCase {
     func testGetAllPlanetsFailure() {
         // Given
         let expectedError = NSError(domain: "getAllPlanetsLocalResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = repository.getAllPlanets()
         
         // Then
         do {
-            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
             XCTFail("Publisher should have finished with an error")
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
@@ -76,7 +73,6 @@ class StarWarsRepositoryTests: XCTestCase {
         localDataSourceMock.syncAllPlanetsWithRemoteResult = .success(PlanetModel.mockPlanetModels)
         remoteDataSourceMock.getAllPlanetsRemoteResult = .success(PlanetModel.mockPlanetModels)
         
-        let expectation = XCTestExpectation(description: #function)
         var receivedPlanets: [PlanetModel]?
         
         // When
@@ -84,7 +80,7 @@ class StarWarsRepositoryTests: XCTestCase {
         
         // Then
         do {
-            receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
@@ -96,14 +92,13 @@ class StarWarsRepositoryTests: XCTestCase {
     func testSyncLocalRepoWithRemoteRepoFailure() {
         // Given
         let expectedError = NSError(domain: "getAllPlanetsRemoteResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = repository.syncLocalRepoWithRemoteRepo()
         
         // Then
         do {
-            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
             XCTFail("Publisher should have finished with an error")
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)

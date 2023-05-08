@@ -13,8 +13,9 @@ class TestHelpers {
     static func waitForPublisher<T>(
         _ publisher: AnyPublisher<T, Error>,
         timeout: TimeInterval = 0.2,
-        expectation: XCTestExpectation
+        expectation: String
     ) throws -> T {
+        let expectation = XCTestExpectation(description: expectation)
         var result: Result<T, Error>?
         let cancellable = publisher
             .sink { completion in

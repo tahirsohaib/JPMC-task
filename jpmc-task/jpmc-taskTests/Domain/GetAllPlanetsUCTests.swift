@@ -34,14 +34,12 @@ class GetAllPlanetsUCTests: XCTestCase {
         // Given
         mockRepository.getAllPlanetsResult = .success(PlanetModel.mockPlanetModels)
 
-        let expectation = XCTestExpectation(description: #function)
-        
         // When
         let publisher = sut.execute()
         var planets: [PlanetModel]?
         // Then
         do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            planets = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
@@ -53,14 +51,13 @@ class GetAllPlanetsUCTests: XCTestCase {
     func testExecuteFailure() {
         // Given
         let expectedError = NSError(domain: "getAllPlanetsResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = sut.execute()
         
         // Then
         do {
-            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            _ = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
             XCTFail("Publisher should have finished with an error")
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
@@ -71,15 +68,13 @@ class GetAllPlanetsUCTests: XCTestCase {
         // Given
         mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
 
-        let expectation = XCTestExpectation(description: #function)
-        
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
         var planets: [PlanetModel]?
         
         // Then
         do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            planets = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
@@ -91,13 +86,12 @@ class GetAllPlanetsUCTests: XCTestCase {
     func testSyncLocalWithRemoteFailure() {
         // Given
         let expectedError = NSError(domain: "syncLocalRepoResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
         // Then
         do {
-            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
             XCTFail("Publisher should have finished with an error")
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)

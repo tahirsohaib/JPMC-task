@@ -32,7 +32,6 @@ class RemoteDataSourceTests: XCTestCase {
     func testGetAllPlanetsRemoteSuccess() throws {
         // Given
         remoteServiceMock.planetRemoteEntities = PlanetRemoteEntity.mockPlanetRemoteEntities
-        let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = sut.getAllPlanetsRemote()
@@ -40,7 +39,7 @@ class RemoteDataSourceTests: XCTestCase {
         // Then
         var planets: [PlanetModel]?        
         do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
@@ -51,7 +50,6 @@ class RemoteDataSourceTests: XCTestCase {
     func testGetAllPlanetsRemoteFailure() throws {
         // Given
         let expectedError = NSError(domain: "fetchPlanetsResult Error", code: 404, userInfo: nil)
-        let expectation = XCTestExpectation(description: #function)
         
         remoteServiceMock.error = expectedError
         
@@ -60,7 +58,7 @@ class RemoteDataSourceTests: XCTestCase {
         
         // Then
         do {
-            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
             XCTFail("Publisher should have finished with an error")
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)

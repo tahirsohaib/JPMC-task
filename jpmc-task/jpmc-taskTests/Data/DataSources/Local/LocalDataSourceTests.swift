@@ -39,13 +39,12 @@ class LocalDataSourceTests: XCTestCase {
         coreDataService.saveContext()
 
         // When
-        let expectation = XCTestExpectation(description: #function)
         let publisher = dataSource.getAllPlanetsLocal()
 
         // Then
         var planets: [PlanetModel]?
         do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
@@ -59,13 +58,12 @@ class LocalDataSourceTests: XCTestCase {
     
     func testSyncAllPlanetsWithRemote() throws {
         // When
-        let expectation = XCTestExpectation(description: #function)
         let publisher = dataSource.syncAllPlanetsWithRemote(PlanetModel.mockPlanetModels)
 
         // Then
         var planets: [PlanetModel]?
         do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         } catch {
             XCTFail("Publisher should have finished successfully")
         }
