@@ -49,7 +49,7 @@ class StarWarsRepositoryTests: XCTestCase {
     
     func testGetAllPlanetsFailure() {
         // Given
-        let expectedError = NSError(domain: "getAllPlanetsLocalResult Error", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: "getAllPlanetsLocalResult Error")
         
         // When
         let publisher = repository.getAllPlanets()
@@ -80,7 +80,7 @@ class StarWarsRepositoryTests: XCTestCase {
     
     func testSyncLocalRepoWithRemoteRepoFailure() {
         // Given
-        let expectedError = NSError(domain: "getAllPlanetsRemoteResult Error", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: "getAllPlanetsRemoteResult Error")
         
         // When
         let publisher = repository.syncLocalRepoWithRemoteRepo()
@@ -97,7 +97,7 @@ class StarWarsRepositoryTests: XCTestCase {
 
 
 class RemoteDataSourceMock: RemoteDataSourceProtocol {
-    var getAllPlanetsRemoteResult: Result<[PlanetModel], Error> = .failure(NSError(domain: "getAllPlanetsRemoteResult Error", code: 404, userInfo: nil))
+    var getAllPlanetsRemoteResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "getAllPlanetsRemoteResult Error"))
 
     func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], Error> {
         return getAllPlanetsRemoteResult.publisher.eraseToAnyPublisher()
@@ -105,8 +105,8 @@ class RemoteDataSourceMock: RemoteDataSourceProtocol {
 }
 
 class LocalDataSourceMock: LocalDataSourceProtocol {
-    var getAllPlanetsLocalResult: Result<[PlanetModel], Error> = .failure(NSError(domain: "getAllPlanetsLocalResult Error", code: 404, userInfo: nil))
-    var syncAllPlanetsWithRemoteResult: Result<[PlanetModel], Error> = .failure(NSError(domain: "syncAllPlanetsWithRemoteResult Error", code: 404, userInfo: nil))
+    var getAllPlanetsLocalResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "getAllPlanetsLocalResult Error"))
+    var syncAllPlanetsWithRemoteResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "syncAllPlanetsWithRemoteResult Error"))
 
     func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error> {
         return getAllPlanetsLocalResult.publisher.eraseToAnyPublisher()

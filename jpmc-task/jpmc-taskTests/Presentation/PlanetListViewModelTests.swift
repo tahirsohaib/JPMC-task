@@ -54,7 +54,7 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testFetchPlanetsFailure() {
         // Given
-        let expectedError = NSError(domain: "Fetch Failure", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: "Fetch Failure")
         useCase.stubbedResult = Fail(error: expectedError)
             .eraseToAnyPublisher()
         
@@ -100,7 +100,7 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testSyncRemoteAndLocalFailure() {
         // Given
-        let expectedError = NSError(domain: "Sync Failure", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: "Sync Failure")
         useCase.stubbedResult = Fail(error: expectedError)
             .eraseToAnyPublisher()
         

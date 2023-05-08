@@ -46,7 +46,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     func testExecuteFailure() {
         // Given
-        let expectedError = NSError(domain: "getAllPlanetsResult Error", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: "getAllPlanetsResult Error")
         
         // When
         let publisher = sut.execute()
@@ -76,7 +76,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     func testSyncLocalWithRemoteFailure() {
         // Given
-        let expectedError = NSError(domain: "syncLocalRepoResult Error", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: "syncLocalRepoResult Error")
         
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
@@ -91,8 +91,8 @@ class GetAllPlanetsUCTests: XCTestCase {
 }
 
 class MockRepository: PlanetsRepositoryProtocol {
-    var getAllPlanetsResult: Result<[PlanetModel], Error> = .failure(NSError(domain: "getAllPlanetsResult Error", code: 404, userInfo: nil))
-    var syncLocalRepoResult: Result<[PlanetModel], Error> = .failure(NSError(domain: "syncLocalRepoResult Error", code: 404, userInfo: nil))
+    var getAllPlanetsResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "getAllPlanetsResult Error"))
+    var syncLocalRepoResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "syncLocalRepoResult Error"))
     
     func getAllPlanets() -> AnyPublisher<[PlanetModel], Error> {
         return Result.Publisher(getAllPlanetsResult)

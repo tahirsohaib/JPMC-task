@@ -37,6 +37,7 @@
 		CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2929F7204200BB0ACA /* Injected.swift */; };
 		CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADD2A29F7204200BB0ACA /* Resolver.swift */; };
 		CB7D4A892A08501E001F6FEA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D4A882A08501E001F6FEA /* TestHelpers.swift */; };
+		CB7D4A8C2A096B33001F6FEA /* SWAPIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D4A8B2A096B33001F6FEA /* SWAPIErrors.swift */; };
 		CB8A92D329FC6481006F7270 /* CoreDataStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */; };
 		CB8A92D529FD5387006F7270 /* LocalDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */; };
 		CB8A92D729FDBC03006F7270 /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */; };
@@ -86,6 +87,7 @@
 		CB6ADD2929F7204200BB0ACA /* Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 		CB6ADD2A29F7204200BB0ACA /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		CB7D4A882A08501E001F6FEA /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		CB7D4A8B2A096B33001F6FEA /* SWAPIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIErrors.swift; sourceTree = "<group>"; };
 		CB8A92D229FC6481006F7270 /* CoreDataStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorageTests.swift; sourceTree = "<group>"; };
 		CB8A92D429FD5387006F7270 /* LocalDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceTests.swift; sourceTree = "<group>"; };
 		CB8A92D629FDBC03006F7270 /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
@@ -179,7 +181,7 @@
 				CB3DB91629FABADA00603C2D /* Data */,
 				CB3DB91129F9DA9800603C2D /* Domain */,
 				CB3DB90E29F9762C00603C2D /* Presentation */,
-				CB7D4A882A08501E001F6FEA /* TestHelpers.swift */,
+				CB7D4A8A2A096B13001F6FEA /* Common */,
 			);
 			path = "jpmc-taskTests";
 			sourceTree = "<group>";
@@ -328,6 +330,15 @@
 				CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		CB7D4A8A2A096B13001F6FEA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CB7D4A882A08501E001F6FEA /* TestHelpers.swift */,
+				CB7D4A8B2A096B33001F6FEA /* SWAPIErrors.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		CB8A92DA29FDD025006F7270 /* DataSources */ = {
@@ -491,6 +502,7 @@
 				CB8A92D329FC6481006F7270 /* CoreDataStorageTests.swift in Sources */,
 				CB3DB91C29FB293C00603C2D /* RemoteDataSourceTests.swift in Sources */,
 				CB3DB91E29FB39E900603C2D /* RemotePlanetsServiceTests.swift in Sources */,
+				CB7D4A8C2A096B33001F6FEA /* SWAPIErrors.swift in Sources */,
 				CB3DB91029F976F800603C2D /* PlanetListViewModelTests.swift in Sources */,
 				CB8A92D929FDC951006F7270 /* NetworkServiceTest.swift in Sources */,
 				CB8A92D729FDBC03006F7270 /* APIErrorTests.swift in Sources */,

@@ -44,7 +44,7 @@ class RemoteDataSourceTests: XCTestCase {
     
     func testGetAllPlanetsRemoteFailure() throws {
         // Given
-        let expectedError = NSError(domain: "fetchPlanetsResult Error", code: 404, userInfo: nil)
+        let expectedError = SWAPIError.someError(description: #function)
         
         remoteServiceMock.error = expectedError
         
