@@ -49,6 +49,7 @@ class LocalDataSourceTests: XCTestCase {
         XCTAssertEqual(planets[0].name, "Tatooine")
         XCTAssertEqual(planets[0].population, "200000")
         XCTAssertEqual(planets[0].terrain, "Desert")
+        wait(for: [expectation], timeout: 0.2)
     }
     
     
@@ -71,6 +72,7 @@ class LocalDataSourceTests: XCTestCase {
         XCTAssertEqual(mars.name, "Mars")
         XCTAssertEqual(mars.population, "Unknown")
         XCTAssertEqual(mars.terrain, "mountains")
+        wait(for: [expectation], timeout: 0.2)
     }
     
 

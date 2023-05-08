@@ -31,53 +31,39 @@ class RemoteDataSourceTests: XCTestCase {
     
     func testGetAllPlanetsRemoteSuccess() throws {
         // Given
-        
         remoteServiceMock.planetRemoteEntities = PlanetRemoteEntity.mockPlanetRemoteEntities
-        
         let expectation = XCTestExpectation(description: #function)
-        var receivedPlanets: [PlanetModel]?
         
         // When
-        sut.getAllPlanetsRemote()
-        // Then
-            .sink(receiveCompletion: { _ in
-                expectation.fulfill()
-            }, receiveValue: { planets in
-                receivedPlanets = planets
-            })
-            .store(in: &cancellables)
+        let publisher = sut.getAllPlanetsRemote()
         
-        wait(for: [expectation], timeout: 0.2)
+        // Then
+        let planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
                 
         // Then
-        XCTAssertEqual(receivedPlanets, PlanetModel.mockPlanetModels)
+        XCTAssertEqual(planets, PlanetModel.mockPlanetModels)
+        wait(for: [expectation], timeout: 0.2)
     }
     
     func testGetAllPlanetsRemoteFailure() throws {
         // Given
         let expectedError = NSError(domain: "fetchPlanetsResult Error", code: 404, userInfo: nil)
         let expectation = XCTestExpectation(description: #function)
-
+        
         remoteServiceMock.error = expectedError
         
         // When
-        sut.getAllPlanetsRemote()
-        // Then
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
-                    expectation.fulfill()
-                case .finished:
-                    XCTFail("Publisher should have finished with an error")
-                }
-            } receiveValue: { _ in
-                XCTFail("Publisher should have finished with an error")
-            }
-            .store(in: &cancellables)
+        let publisher = sut.getAllPlanetsRemote()
         
+        // Then
+        do {
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            XCTFail("Publisher should have finished with an error")
+        } catch {
+            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+        }
         wait(for: [expectation], timeout: 0.2)
-    }
+    }    
 }
 
 class RemotePlanetsServiceMock: RemotePlanetsServiceProtocol {
