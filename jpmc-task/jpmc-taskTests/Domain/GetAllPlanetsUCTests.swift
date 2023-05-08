@@ -32,16 +32,19 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     func testExecuteSuccess() {
         // Given
-        
         mockRepository.getAllPlanetsResult = .success(PlanetModel.mockPlanetModels)
 
         let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = sut.execute()
-        
+        var planets: [PlanetModel]?
         // Then
-        let planets = try? TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        do {
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
         
         XCTAssertNotNil(planets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
@@ -62,21 +65,24 @@ class GetAllPlanetsUCTests: XCTestCase {
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
         }
-        
     }
     
     func testSyncLocalWithRemoteSuccess() {
         // Given
-        
         mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
 
         let expectation = XCTestExpectation(description: #function)
         
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
+        var planets: [PlanetModel]?
         
         // Then
-        let planets = try? TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        do {
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
         
         XCTAssertNotNil(planets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
@@ -96,7 +102,6 @@ class GetAllPlanetsUCTests: XCTestCase {
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
         }
-        
     }
 }
 

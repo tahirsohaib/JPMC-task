@@ -68,7 +68,6 @@ class RemotePlanetsServiceTests: XCTestCase {
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
         }
-        
     }
 }
 

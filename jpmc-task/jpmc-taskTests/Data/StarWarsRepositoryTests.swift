@@ -69,7 +69,6 @@ class StarWarsRepositoryTests: XCTestCase {
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
         }
-        
     }
     
     func testSyncLocalRepoWithRemoteRepoSuccess() {
@@ -109,7 +108,6 @@ class StarWarsRepositoryTests: XCTestCase {
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
         }
-        
     }
 }
 

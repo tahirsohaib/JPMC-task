@@ -64,6 +64,7 @@ class NetworkServiceTest: XCTestCase {
     }
     
     func testGetFailure() {
+        // Given
         let mockResponse = HTTPURLResponse(url: URL(string: "https://swapi.dev/planets")!, statusCode: 400, httpVersion: "HTTP/1.1", headerFields: nil)!
         
         MockURLProtocol.requestHandler = { request in
@@ -74,26 +75,20 @@ class NetworkServiceTest: XCTestCase {
         let expectation = XCTestExpectation(description: #function)
         let expectedError = APIError.badURLResponse(url: "https://swapi.dev/api/planets")
         
-        networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    XCTFail("Publisher should have finished with an error")
-                case .failure(let error):
-                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
-                    expectation.fulfill()
-                }
-            }, receiveValue: { receivedPlanet in
-                XCTFail("Publisher should have finished with an error")
-            })
-            .store(in: &cancellables)
+        // When
+        let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
         
-        wait(for: [expectation], timeout: 0.2)
+        // Then
+        do {
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            XCTFail("Publisher should have finished with an error")
+        } catch {
+            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+        }
     }
     
-
     func testDecodeResponseSuccess () {
-        
+        // Given
         let json = """
                 {
                     "name": "Earth",
@@ -102,23 +97,20 @@ class NetworkServiceTest: XCTestCase {
                 }
             """
         let data = Data(json.utf8)
+        var receivedPlanet: PlanetRemoteEntity?
+        let publisher = NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
         
-        // then
+        // When
         let expectation = XCTestExpectation(description: #function)
-        NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    expectation.fulfill()
-                case .failure(let error):
-                    XCTFail("Unexpected error: \(error)")
-                }
-            } receiveValue: { entity in
-                XCTAssertEqual(entity, PlanetRemoteEntity.mockPlanetRemoteEntity)
-            }
-            .store(in: &cancellables)
         
-        wait(for: [expectation], timeout: 0.2)
+        // Then
+        do {
+            receivedPlanet = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
+        
+        XCTAssertEqual(receivedPlanet, PlanetRemoteEntity.mockPlanetRemoteEntity)
     }
     
     func testDecodeResponseFailure() {
@@ -135,21 +127,14 @@ class NetworkServiceTest: XCTestCase {
         // When
         let expectation = XCTestExpectation(description: #function)
         
-        NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
-            .sink { completion in
-                // Then
-                switch completion {
-                case .finished:
-                    XCTFail("Publisher should have finished with an error")
-                case .failure(let error):
-                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
-                    expectation.fulfill()
-                }
-            } receiveValue: { entity in
-                XCTFail("Publisher should have finished with an error")
-            }.store(in: &cancellables)
-        
-        wait(for: [expectation], timeout: 0.2)
+        let publisher = NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
+        // Then
+        do {
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            XCTFail("Publisher should have finished with an error")
+        } catch {
+            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+        }
     }
 }
 

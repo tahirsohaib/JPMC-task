@@ -31,7 +31,6 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testFetchPlanetsUsingSuccess() {
         // Given
-        
         useCase.stubbedResult = Just(PlanetModel.mockPlanetModels)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -78,7 +77,6 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testSyncRemoteAndLocalSuccess() {
         // Given
-        
         useCase.stubbedResult = Just(PlanetModel.mockPlanetModels)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

@@ -38,9 +38,7 @@ class RemoteDataSourceTests: XCTestCase {
         let publisher = sut.getAllPlanetsRemote()
         
         // Then
-        var planets: [PlanetModel]?
-        
-        // Then
+        var planets: [PlanetModel]?        
         do {
             planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
         } catch {
