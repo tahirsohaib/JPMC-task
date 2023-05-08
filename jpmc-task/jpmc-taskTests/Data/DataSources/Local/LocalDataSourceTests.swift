@@ -43,13 +43,17 @@ class LocalDataSourceTests: XCTestCase {
         let publisher = dataSource.getAllPlanetsLocal()
 
         // Then
-        let planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        var planets: [PlanetModel]?
+        do {
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
 
-        XCTAssertEqual(planets.count, 1)
-        XCTAssertEqual(planets[0].name, "Tatooine")
-        XCTAssertEqual(planets[0].population, "200000")
-        XCTAssertEqual(planets[0].terrain, "Desert")
-        wait(for: [expectation], timeout: 0.2)
+        XCTAssertEqual(planets?.count, 1)
+        XCTAssertEqual(planets?[0].name, "Tatooine")
+        XCTAssertEqual(planets?[0].population, "200000")
+        XCTAssertEqual(planets?[0].terrain, "Desert")
     }
     
     
@@ -59,23 +63,23 @@ class LocalDataSourceTests: XCTestCase {
         let publisher = dataSource.syncAllPlanetsWithRemote(PlanetModel.mockPlanetModels)
 
         // Then
-        let result = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        var planets: [PlanetModel]?
+        do {
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
 
-        XCTAssertEqual(result.count, PlanetModel.mockPlanetModels.count)
+        XCTAssertEqual(planets?.count, PlanetModel.mockPlanetModels.count)
 
-        let jupiter = result[0]
-        XCTAssertEqual(jupiter.name, "Earth")
-        XCTAssertEqual(jupiter.population, "7.9 billion")
-        XCTAssertEqual(jupiter.terrain, "desert")
+        let jupiter = planets?[0]
+        XCTAssertEqual(jupiter?.name, "Earth")
+        XCTAssertEqual(jupiter?.population, "7.9 billion")
+        XCTAssertEqual(jupiter?.terrain, "desert")
 
-        let mars = result[1]
-        XCTAssertEqual(mars.name, "Mars")
-        XCTAssertEqual(mars.population, "Unknown")
-        XCTAssertEqual(mars.terrain, "mountains")
-        wait(for: [expectation], timeout: 0.2)
-    }
-    
-
-    
-    
+        let mars = planets?[1]
+        XCTAssertEqual(mars?.name, "Mars")
+        XCTAssertEqual(mars?.population, "Unknown")
+        XCTAssertEqual(mars?.terrain, "mountains")
+    }    
 }

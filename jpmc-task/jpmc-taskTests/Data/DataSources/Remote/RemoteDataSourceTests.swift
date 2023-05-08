@@ -38,11 +38,16 @@ class RemoteDataSourceTests: XCTestCase {
         let publisher = sut.getAllPlanetsRemote()
         
         // Then
-        let planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
-                
+        var planets: [PlanetModel]?
+        
         // Then
+        do {
+            planets = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
+                
         XCTAssertEqual(planets, PlanetModel.mockPlanetModels)
-        wait(for: [expectation], timeout: 0.2)
     }
     
     func testGetAllPlanetsRemoteFailure() throws {
@@ -62,7 +67,6 @@ class RemoteDataSourceTests: XCTestCase {
         } catch {
             XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
         }
-        wait(for: [expectation], timeout: 0.2)
     }    
 }
 

@@ -29,28 +29,22 @@ class GetAllPlanetsUCTests: XCTestCase {
         sut = nil
         super.tearDown()
     }
+    
     func testExecuteSuccess() {
         // Given
         
         mockRepository.getAllPlanetsResult = .success(PlanetModel.mockPlanetModels)
 
         let expectation = XCTestExpectation(description: #function)
-        var receivedPlanets: [PlanetModel]?
         
         // When
-        sut.execute()
+        let publisher = sut.execute()
+        
         // Then
-           .sink(receiveCompletion: { _ in
-               expectation.fulfill()
-           }, receiveValue: { planets in
-               receivedPlanets = planets
-           })
-           .store(in: &cancellables)
+        let planets = try? TestHelpers.waitForPublisher(publisher, expectation: expectation)
         
-        wait(for: [expectation], timeout: 0.2)
-        
-        XCTAssertNotNil(receivedPlanets)
-        XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
+        XCTAssertNotNil(planets)
+        XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
     }
     
     func testExecuteFailure() {
@@ -59,22 +53,16 @@ class GetAllPlanetsUCTests: XCTestCase {
         let expectation = XCTestExpectation(description: #function)
         
         // When
-        sut.execute()
-        // Then
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
-                    expectation.fulfill()
-                case .finished:
-                    XCTFail("Publisher should have finished with an error")
-                }
-            } receiveValue: { _ in
-                XCTFail("Publisher should have finished with an error")
-            }
-            .store(in: &cancellables)
+        let publisher = sut.execute()
         
-        wait(for: [expectation], timeout: 0.2)
+        // Then
+        do {
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            XCTFail("Publisher should have finished with an error")
+        } catch {
+            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+        }
+        
     }
     
     func testSyncLocalWithRemoteSuccess() {
@@ -83,22 +71,15 @@ class GetAllPlanetsUCTests: XCTestCase {
         mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
 
         let expectation = XCTestExpectation(description: #function)
-        var receivedPlanets: [PlanetModel]?
         
         // When
-        sut.syncLocalRepoWithRemoteRepo()
+        let publisher = sut.syncLocalRepoWithRemoteRepo()
+        
         // Then
-           .sink(receiveCompletion: { _ in
-               expectation.fulfill()
-           }, receiveValue: { planets in
-               receivedPlanets = planets
-           })
-           .store(in: &cancellables)
+        let planets = try? TestHelpers.waitForPublisher(publisher, expectation: expectation)
         
-        wait(for: [expectation], timeout: 0.2)
-        
-        XCTAssertNotNil(receivedPlanets)
-        XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
+        XCTAssertNotNil(planets)
+        XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
     }
     
     func testSyncLocalWithRemoteFailure() {
@@ -107,22 +88,15 @@ class GetAllPlanetsUCTests: XCTestCase {
         let expectation = XCTestExpectation(description: #function)
         
         // When
-        sut.syncLocalRepoWithRemoteRepo()
+        let publisher = sut.syncLocalRepoWithRemoteRepo()
         // Then
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
-                    expectation.fulfill()
-                case .finished:
-                    XCTFail("Publisher should have finished with an error")
-                }
-            } receiveValue: { _ in
-                XCTFail("Publisher should have finished with an error")
-            }
-            .store(in: &cancellables)
+        do {
+            _ = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+            XCTFail("Publisher should have finished with an error")
+        } catch {
+            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+        }
         
-        wait(for: [expectation], timeout: 0.2)
     }
 }
 

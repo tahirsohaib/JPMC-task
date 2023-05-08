@@ -29,6 +29,7 @@ class NetworkServiceTest: XCTestCase {
     }
     
     func testGetSuccess() {
+        // Given
         let mockResponse = HTTPURLResponse(url: URL(string: "https://swapi.dev/planets")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
         
         let mockData = """
@@ -45,23 +46,21 @@ class NetworkServiceTest: XCTestCase {
         
         let networkService = NetworkService(urlSession: mockSession)
         let expectation = XCTestExpectation(description: #function)
+        var receivedPlanet: PlanetRemoteEntity?
         
-        networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    expectation.fulfill()
-                case .failure(let error):
-                    XCTFail("Error: \(error)")
-                }
-            }, receiveValue: { receivedPlanet in
-                XCTAssertEqual(receivedPlanet.name, "Tatooine")
-                XCTAssertEqual(receivedPlanet.terrain, "desert")
-                XCTAssertEqual(receivedPlanet.population, "200000")
-            })
-            .store(in: &cancellables)
+        // When
+        let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
         
-        wait(for: [expectation], timeout: 0.2)
+        // Then
+        do {
+            receivedPlanet = try TestHelpers.waitForPublisher(publisher, expectation: expectation)
+        } catch {
+            XCTFail("Publisher should have finished successfully")
+        }
+        
+        XCTAssertEqual(receivedPlanet?.name, "Tatooine")
+        XCTAssertEqual(receivedPlanet?.terrain, "desert")
+        XCTAssertEqual(receivedPlanet?.population, "200000")
     }
     
     func testGetFailure() {

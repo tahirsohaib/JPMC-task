@@ -30,6 +30,8 @@ class TestHelpers {
             }
         defer { cancellable.cancel() }
         
+        XCTWaiter().wait(for: [expectation], timeout: timeout)
+        
         let unwrappedResult = try XCTUnwrap(
             result,
             "Awaited publisher did not produce any output"
