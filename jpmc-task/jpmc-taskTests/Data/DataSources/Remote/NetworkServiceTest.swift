@@ -45,17 +45,12 @@ class NetworkServiceTest: XCTestCase {
         }
         
         let networkService = NetworkService(urlSession: mockSession)
-        var receivedPlanet: PlanetRemoteEntity?
         
         // When
         let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
         
         // Then
-        do {
-            receivedPlanet = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-        } catch {
-            XCTFail("Publisher should have finished successfully")
-        }
+        let receivedPlanet = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertEqual(receivedPlanet?.name, "Tatooine")
         XCTAssertEqual(receivedPlanet?.terrain, "desert")
@@ -95,15 +90,10 @@ class NetworkServiceTest: XCTestCase {
                 }
             """
         let data = Data(json.utf8)
-        var receivedPlanet: PlanetRemoteEntity?
         let publisher = NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
         
         // Then
-        do {
-            receivedPlanet = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-        } catch {
-            XCTFail("Publisher should have finished successfully")
-        }
+        let receivedPlanet = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertEqual(receivedPlanet, PlanetRemoteEntity.mockPlanetRemoteEntity)
     }

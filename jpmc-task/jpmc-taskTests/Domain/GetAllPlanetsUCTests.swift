@@ -33,16 +33,12 @@ class GetAllPlanetsUCTests: XCTestCase {
     func testExecuteSuccess() {
         // Given
         mockRepository.getAllPlanetsResult = .success(PlanetModel.mockPlanetModels)
-
+        
         // When
         let publisher = sut.execute()
-        var planets: [PlanetModel]?
+        
         // Then
-        do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
-        } catch {
-            XCTFail("Publisher should have finished successfully")
-        }
+        let planets = try? TestHelpers.waitForPublisher(publisher, expectation:  #function)
         
         XCTAssertNotNil(planets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
@@ -67,17 +63,12 @@ class GetAllPlanetsUCTests: XCTestCase {
     func testSyncLocalWithRemoteSuccess() {
         // Given
         mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
-
+        
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
-        var planets: [PlanetModel]?
         
         // Then
-        do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
-        } catch {
-            XCTFail("Publisher should have finished successfully")
-        }
+        let planets = try? TestHelpers.waitForPublisher(publisher, expectation:  #function)
         
         XCTAssertNotNil(planets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, planets)

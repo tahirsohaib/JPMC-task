@@ -37,13 +37,8 @@ class RemoteDataSourceTests: XCTestCase {
         let publisher = sut.getAllPlanetsRemote()
         
         // Then
-        var planets: [PlanetModel]?        
-        do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-        } catch {
-            XCTFail("Publisher should have finished successfully")
-        }
-                
+        let planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
+        
         XCTAssertEqual(planets, PlanetModel.mockPlanetModels)
     }
     

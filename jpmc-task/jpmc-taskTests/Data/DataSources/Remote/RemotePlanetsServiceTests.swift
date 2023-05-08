@@ -30,7 +30,7 @@ class RemotePlanetsServiceTests: XCTestCase {
     }
 
     func testFetchPlanetsSuccess() {
-        // Given        
+        // Given
         let encodedResponse = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: PlanetRemoteEntity.mockPlanetRemoteEntities))
         
         networkServiceMock.encodedResponse = encodedResponse
@@ -39,12 +39,7 @@ class RemotePlanetsServiceTests: XCTestCase {
         let publisher = sut.fetchPlanets()
         
         // Then
-        var planets: [PlanetRemoteEntity]?
-        do {
-            planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-        } catch {
-            XCTFail("Publisher should have finished successfully")
-        }
+        let planets = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertEqual(planets, PlanetRemoteEntity.mockPlanetRemoteEntities)
     }
