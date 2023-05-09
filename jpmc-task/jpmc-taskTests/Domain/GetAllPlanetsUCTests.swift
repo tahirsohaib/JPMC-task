@@ -50,14 +50,15 @@ class GetAllPlanetsUCTests: XCTestCase {
         
         // When
         let publisher = sut.execute()
+        var receivedError: Error?
         
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
     }
     
     func testSyncLocalWithRemoteSuccess() {
@@ -80,13 +81,15 @@ class GetAllPlanetsUCTests: XCTestCase {
         
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
+        var receivedError: Error?
+        
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
     }
 }
 

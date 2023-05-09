@@ -70,14 +70,15 @@ class NetworkServiceTest: XCTestCase {
         
         // When
         let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
+        var receivedError: Error?
         
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)        
     }
     
     func testDecodeResponseSuccess () {
@@ -111,14 +112,15 @@ class NetworkServiceTest: XCTestCase {
         
         // When
         let publisher = NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
+        var receivedError: Error?
         
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)
     }
 }
 

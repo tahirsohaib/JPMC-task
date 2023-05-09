@@ -53,14 +53,15 @@ class StarWarsRepositoryTests: XCTestCase {
         
         // When
         let publisher = repository.getAllPlanets()
+        var receivedError: Error?
         
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)
     }
     
     func testSyncLocalRepoWithRemoteRepoSuccess() {
@@ -84,14 +85,15 @@ class StarWarsRepositoryTests: XCTestCase {
         
         // When
         let publisher = repository.syncLocalRepoWithRemoteRepo()
+        var receivedError: Error?
         
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
     }
 }
 

@@ -52,14 +52,15 @@ class RemotePlanetsServiceTests: XCTestCase {
         
         // When
         let publisher = sut.fetchPlanets()
+        var receivedError: Error?
         
         // Then
         do {
             _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
-            XCTFail("Publisher should have finished with an error")
         } catch {
-            XCTAssertEqual(error.localizedDescription, expectedError.localizedDescription)
+            receivedError = error
         }
+        XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
     }
 }
 
