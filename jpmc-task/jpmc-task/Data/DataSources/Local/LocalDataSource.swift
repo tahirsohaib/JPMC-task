@@ -8,26 +8,32 @@
 import Combine
 import Foundation
 
+enum CoreDataError: Error {
+    case invalidPlanetEntity
+    case fetchError
+    case saveError
+}
+
 class LocalDataSource: LocalDataSourceProtocol {
     @Injected private var dbService: CoreDataServiceProtocol
-
-    private func mapPlanetResponse(planetCDEntity: PlanetCDEntity) -> PlanetModel {
+    
+    private func mapPlanetResponse(planetCDEntity: PlanetCDEntity) throws -> PlanetModel {
         guard let name = planetCDEntity.name,
               let population = planetCDEntity.population,
               let terrain = planetCDEntity.terrain
         else {
-            fatalError("Invalid planet entity")
+            throw CoreDataError.invalidPlanetEntity
         }
         return PlanetModel(name: name, population: population, terrain: terrain)
     }
-
-    private func _getAll() -> [PlanetCDEntity] {
+    
+    private func _getAll() throws -> [PlanetCDEntity] {
         guard let entities = try? dbService.getEntities(entityName: "PlanetCDEntity", predicate: nil, limit: 0) else {
-            return []
+            throw CoreDataError.fetchError
         }
         return entities.compactMap { $0 as? PlanetCDEntity }
     }
-
+    
     private func _getOne(name: String) throws -> PlanetCDEntity? {
         guard let result = try dbService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", name), limit: 0) as? [PlanetCDEntity], !result.isEmpty else {
             return nil
@@ -36,15 +42,15 @@ class LocalDataSource: LocalDataSourceProtocol {
     }
     
     func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error> {
-        return Future { promise in
-            let context = self.dbService.getContext()
-            // Fetch all existing planets
-            let allEntities = self._getAll()
-
+        let context = self.dbService.getContext()
+        // Fetch all existing planets
+        do {
+            let allEntities = try self._getAll()
+            
             // Create a dictionary to map planet names to their corresponding entities
             var entityDict: [String: PlanetCDEntity] = [:]
             allEntities.forEach { entityDict[$0.name!] = $0 }
-
+            
             // Update or insert new planets
             var updatedPlanets: [PlanetModel] = []
             for planet in remoteData {
@@ -61,35 +67,46 @@ class LocalDataSource: LocalDataSourceProtocol {
                     newPlanet.population = planet.population
                     entityDict[planet.name] = newPlanet
                 }
-
+                
                 // Add updated planet to result
                 updatedPlanets.append(planet)
             }
             
             let sortedPlanets = updatedPlanets.sorted { $0.name < $1.name }
-
+            
             // Delete all planets that were not updated
             let deletedPlanets = entityDict.values.filter { _ in !updatedPlanets.contains { $0.name == $0.name } }
             deletedPlanets.forEach { context.delete($0) }
-
+            
             // Save changes to the context
             self.dbService.saveContext()
-
+            
             // Return updated planets
-            promise(.success(sortedPlanets))
-        }.eraseToAnyPublisher()
-    }
-
-    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error> {
-        let allEntities = _getAll()
-        let planets = allEntities.map { planetCDEntity in
-            mapPlanetResponse(planetCDEntity: planetCDEntity)
+            return Just(sortedPlanets)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+            
+        } catch {
+            return Fail(error: error)
+                .eraseToAnyPublisher()
         }
-
-        let sortedPlanets = planets.sorted { $0.name < $1.name }
-        
-        return Just(sortedPlanets)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    }
+    
+    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error> {
+        do {
+            let allEntities = try _getAll()
+            let planets = try allEntities.map { planetCDEntity in
+                try mapPlanetResponse(planetCDEntity: planetCDEntity)
+            }
+            
+            let sortedPlanets = planets.sorted { $0.name < $1.name }
+            
+            return Just(sortedPlanets)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } catch {
+            return Fail(error: error)
+                .eraseToAnyPublisher()
+        }
     }
 }

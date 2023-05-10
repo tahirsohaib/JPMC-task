@@ -9,7 +9,7 @@ import CoreData
 import Foundation
 
 enum StorageType {
-  case persistent, inMemory
+    case persistent, inMemory
 }
 
 protocol CoreDataServiceProtocol {
@@ -26,20 +26,20 @@ class CoreDataStorage: CoreDataServiceProtocol {
         self.persistentContainer = NSPersistentContainer(name: "Swapi")
         
         if storageType == .inMemory {
-          let description = NSPersistentStoreDescription()
-          description.url = URL(fileURLWithPath: "/dev/null")
-          self.persistentContainer.persistentStoreDescriptions = [description]
+            let description = NSPersistentStoreDescription()
+            description.url = URL(fileURLWithPath: "/dev/null")
+            self.persistentContainer.persistentStoreDescriptions = [description]
         }
-
+        
         self.persistentContainer.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
-              fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
         
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
-
+    
     func saveContext() {
         guard persistentContainer.viewContext.hasChanges else { return }
         
@@ -49,11 +49,11 @@ class CoreDataStorage: CoreDataServiceProtocol {
             print("Error saving to Core Data: \(error)")
         }
     }
-
+    
     func getContext() -> NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-
+    
     func getEntities(entityName: String, predicate: NSPredicate? = nil, limit: Int? = nil) throws -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         fetchRequest.predicate = predicate
@@ -61,7 +61,7 @@ class CoreDataStorage: CoreDataServiceProtocol {
         let entities = try persistentContainer.viewContext.fetch(fetchRequest)
         return entities
     }
-
+    
     func deleteObject(entity: NSManagedObject) {
         persistentContainer.viewContext.delete(entity)
         saveContext()
