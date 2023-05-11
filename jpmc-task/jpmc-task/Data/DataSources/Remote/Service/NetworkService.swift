@@ -30,7 +30,6 @@ class NetworkService: NetworkServiceProtocol {
         
         return urlSession.dataTaskPublisher(for: request)
             .tryMap { data, response -> Data in
-                //                throw DataSourceError.remoteBadURLResponse(url: request.url?.absoluteString ?? "")
                 guard let httpResponse = response as? HTTPURLResponse,
                       (200 ..< 400).contains(httpResponse.statusCode)
                 else {
@@ -38,30 +37,22 @@ class NetworkService: NetworkServiceProtocol {
                 }
                 return data
             }
-            .decode(type: T.self, decoder: JSONDecoder())
-//            .map { data -> AnyPublisher<T, DataSourceError> in
-//                self.decodeResponse(data, ofType: T.self)
-//            }
+            .tryMap { try self.decodeResponse(data: $0, ofType: T.self) }
             .mapError { error -> DataSourceError in
                 if let dataSourceError = error as? DataSourceError {
                     return dataSourceError
                 } else {
-                    return DataSourceError.remoteDecodingError
+                    return DataSourceError.remoteUnknown
                 }
             }
             .eraseToAnyPublisher()
     }
     
-    internal func decodeResponse<T: Decodable>(_ data: Data, ofType type: T.Type) -> AnyPublisher<T, DataSourceError> {
+    private func decodeResponse<T: Decodable>(data: Data, ofType type: T.Type) throws -> T {
         do {
-            let decoder = JSONDecoder()
-            let object = try decoder.decode(type, from: data)
-            return Just(object)
-                .setFailureType(to: DataSourceError.self)
-                .eraseToAnyPublisher()
+            return try JSONDecoder().decode(type, from: data)
         } catch {
-            return Fail(error: DataSourceError.remoteDecodingError)
-                .eraseToAnyPublisher()
+            throw DataSourceError.remoteDecodingError
         }
     }
 }
