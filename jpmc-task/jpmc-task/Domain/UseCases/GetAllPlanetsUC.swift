@@ -44,7 +44,6 @@ class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
     }
 }
 
-
 //case localInvalidPlanetEntity
 //case localFetchError
 //case localSaveError

@@ -29,15 +29,8 @@ class NetworkService: NetworkServiceProtocol {
         request.timeoutInterval = 10
         
         return urlSession.dataTaskPublisher(for: request)
-//            .mapError { error -> DataSourceError in
-//                switch error {
-//                case URLError.timedOut:
-//                    return DataSourceError.remoteTimeout
-//                default:
-//                    return DataSourceError.remoteUnknown
-//                }
-//            }
             .tryMap { data, response -> Data in
+                //                throw DataSourceError.remoteBadURLResponse(url: request.url?.absoluteString ?? "")
                 guard let httpResponse = response as? HTTPURLResponse,
                       (200 ..< 400).contains(httpResponse.statusCode)
                 else {
@@ -46,7 +39,7 @@ class NetworkService: NetworkServiceProtocol {
                 return data
             }
             .decode(type: T.self, decoder: JSONDecoder())
-//            .flatMap { data -> AnyPublisher<T, DataSourceError> in
+//            .map { data -> AnyPublisher<T, DataSourceError> in
 //                self.decodeResponse(data, ofType: T.self)
 //            }
             .mapError { error -> DataSourceError in

@@ -13,28 +13,37 @@ struct PlanetList: View {
     
     var body: some View {
         NavigationView {
-                Group {
-                    if viewModel.isLoading {
-                        ProgressView()
-                    } else {
-                        List(viewModel.planets, id: \.self) { planet in
-                            VStack(alignment: .leading) {
-                                Text(planet.name)
-                                    .font(.headline)
-                                Text("Terrain: \(planet.terrain)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
+            Group {
+                if viewModel.isLoading {
+                    ProgressView()
+                } else {
+                    List(viewModel.planets, id: \.self) { planet in
+                        VStack(alignment: .leading) {
+                            Text(planet.name)
+                                .font(.headline)
+                            Text("Terrain: \(planet.terrain)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
-                        .listStyle(.plain)
                     }
-                }                
-                .navigationTitle("Star Wars Planets")
+                    .listStyle(.plain)
+                }
             }
+            .navigationTitle("Star Wars Planets")
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.errorMessage),
+                    dismissButton: .default(Text("OK"), action: {
+                        viewModel.dismissAlert()
+                    })
+                )
+            }
+        }
         .onAppear {
-            if self.firstAppear {
+            if firstAppear {
                 viewModel.syncRemoteAndLocal()
-                self.firstAppear = false
+                firstAppear = false
             }
         }
     }
