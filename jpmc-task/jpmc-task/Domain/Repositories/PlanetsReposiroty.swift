@@ -9,6 +9,6 @@ import Combine
 import Foundation
 
 protocol PlanetsRepositoryProtocol {
-    func getAllPlanets() -> AnyPublisher<[PlanetModel], Error>
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error>
+    func getAllPlanets() -> AnyPublisher<[PlanetModel], DataSourceError>
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], DataSourceError>
 }

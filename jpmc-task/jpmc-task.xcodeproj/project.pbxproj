@@ -14,6 +14,8 @@
 		CB3DB91A29FB23E600603C2D /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91929FB23E600603C2D /* EndpointTests.swift */; };
 		CB3DB91C29FB293C00603C2D /* RemoteDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */; };
 		CB3DB91E29FB39E900603C2D /* RemotePlanetsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */; };
+		CB57E25A2A0C54AF0052A881 /* DataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2592A0C54AF0052A881 /* DataErrors.swift */; };
+		CB57E25C2A0CF7410052A881 /* DomainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E25B2A0CF7410052A881 /* DomainErrors.swift */; };
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
@@ -62,6 +64,8 @@
 		CB3DB91929FB23E600603C2D /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		CB3DB91B29FB293C00603C2D /* RemoteDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSourceTests.swift; sourceTree = "<group>"; };
 		CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePlanetsServiceTests.swift; sourceTree = "<group>"; };
+		CB57E2592A0C54AF0052A881 /* DataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataErrors.swift; sourceTree = "<group>"; };
+		CB57E25B2A0CF7410052A881 /* DomainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainErrors.swift; sourceTree = "<group>"; };
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,6 +142,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		CB57E2562A0C548B0052A881 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CB57E2592A0C54AF0052A881 /* DataErrors.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		CB6ADCB029F1A1D300BB0ACA = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +201,7 @@
 		CB6ADCE629F1A20300BB0ACA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CB57E2562A0C548B0052A881 /* Common */,
 				CB6ADCE929F1A22F00BB0ACA /* DataSources */,
 				CB6ADCEC29F1A45600BB0ACA /* DataSourceProtocol.swift */,
 				CB6ADCF429F1A4D300BB0ACA /* StarWarsRepository.swift */,
@@ -202,6 +215,7 @@
 				CB6ADD1129F1B66C00BB0ACA /* Model */,
 				CB6ADD1529F4981100BB0ACA /* UseCases */,
 				CB6ADD1429F4980700BB0ACA /* Repositories */,
+				CB57E25B2A0CF7410052A881 /* DomainErrors.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -477,6 +491,7 @@
 				CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */,
 				CB6ADD1E29F4A7F400BB0ACA /* PlanetList.swift in Sources */,
 				CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */,
+				CB57E25C2A0CF7410052A881 /* DomainErrors.swift in Sources */,
 				CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */,
 				CB6ADD2229F5D76900BB0ACA /* CoreDataStorage.swift in Sources */,
 				CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */,
@@ -488,6 +503,7 @@
 				CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */,
 				CB6ADD0129F1B00800BB0ACA /* APIError.swift in Sources */,
 				CB6ADCFD29F1AFDD00BB0ACA /* NetworkService.swift in Sources */,
+				CB57E25A2A0C54AF0052A881 /* DataErrors.swift in Sources */,
 				CB6ADD0729F1B16400BB0ACA /* PlanetRemoteEntity.swift in Sources */,
 				CB6ADD1C29F4A7EC00BB0ACA /* PlanetListViewModel.swift in Sources */,
 				CB6ADD0D29F1B28100BB0ACA /* RemotePlanetsService.swift in Sources */,

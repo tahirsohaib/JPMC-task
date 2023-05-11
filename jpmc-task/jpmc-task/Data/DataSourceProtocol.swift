@@ -9,10 +9,10 @@ import Combine
 import Foundation
 
 protocol RemoteDataSourceProtocol {
-    func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], Error>
+    func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], DataSourceError>
 }
 
 protocol LocalDataSourceProtocol {
-    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error>
-    func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error>
+    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], DataSourceError>
+    func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], DataSourceError>
 }

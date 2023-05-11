@@ -8,11 +8,8 @@
 import Combine
 import Foundation
 
-enum CoreDataError: Error {
-    case invalidPlanetEntity
-    case fetchError
-    case saveError
-}
+
+
 
 class LocalDataSource: LocalDataSourceProtocol {
     @Injected private var dbService: CoreDataServiceProtocol
@@ -22,14 +19,14 @@ class LocalDataSource: LocalDataSourceProtocol {
               let population = planetCDEntity.population,
               let terrain = planetCDEntity.terrain
         else {
-            throw CoreDataError.invalidPlanetEntity
+            throw DataSourceError.localInvalidPlanetEntity
         }
         return PlanetModel(name: name, population: population, terrain: terrain)
     }
     
     private func _getAll() throws -> [PlanetCDEntity] {
         guard let entities = try? dbService.getEntities(entityName: "PlanetCDEntity", predicate: nil, limit: 0) else {
-            throw CoreDataError.fetchError
+            throw DataSourceError.localFetchError
         }
         return entities.compactMap { $0 as? PlanetCDEntity }
     }
@@ -41,7 +38,7 @@ class LocalDataSource: LocalDataSourceProtocol {
         return result[0]
     }
     
-    func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], Error> {
+    func syncAllPlanetsWithRemote(_ remoteData: [PlanetModel]) -> AnyPublisher<[PlanetModel], DataSourceError> {
         let context = self.dbService.getContext()
         // Fetch all existing planets
         do {
@@ -83,16 +80,16 @@ class LocalDataSource: LocalDataSourceProtocol {
             
             // Return updated planets
             return Just(sortedPlanets)
-                .setFailureType(to: Error.self)
+                .setFailureType(to: DataSourceError.self)
                 .eraseToAnyPublisher()
             
         } catch {
-            return Fail(error: error)
+            return Fail(error: DataSourceError.localSyncError)
                 .eraseToAnyPublisher()
         }
     }
     
-    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], Error> {
+    func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], DataSourceError> {
         do {
             let allEntities = try _getAll()
             let planets = try allEntities.map { planetCDEntity in
@@ -102,10 +99,10 @@ class LocalDataSource: LocalDataSourceProtocol {
             let sortedPlanets = planets.sorted { $0.name < $1.name }
             
             return Just(sortedPlanets)
-                .setFailureType(to: Error.self)
+                .setFailureType(to: DataSourceError.self)
                 .eraseToAnyPublisher()
         } catch {
-            return Fail(error: error)
+            return Fail(error: DataSourceError.localFetchError)
                 .eraseToAnyPublisher()
         }
     }
