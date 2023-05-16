@@ -48,7 +48,7 @@ class NetworkService: NetworkServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    private func decodeResponse<T: Decodable>(data: Data, ofType type: T.Type) throws -> T {
+    func decodeResponse<T: Decodable>(data: Data, ofType type: T.Type) throws -> T {
         do {
             return try JSONDecoder().decode(type, from: data)
         } catch {

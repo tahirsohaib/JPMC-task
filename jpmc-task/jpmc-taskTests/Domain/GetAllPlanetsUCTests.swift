@@ -46,7 +46,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     func testExecuteFailure() {
         // Given
-        let expectedError = SWAPIError.someError(description: "getAllPlanetsResult Error")
+        let expectedError =  UseCaseError.fetchError
         
         // When
         let publisher = sut.execute()
@@ -77,7 +77,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     
     func testSyncLocalWithRemoteFailure() {
         // Given
-        let expectedError = SWAPIError.someError(description: "syncLocalRepoResult Error")
+        let expectedError = UseCaseError.unknownError
         
         // When
         let publisher = sut.syncLocalRepoWithRemoteRepo()
@@ -94,15 +94,15 @@ class GetAllPlanetsUCTests: XCTestCase {
 }
 
 class MockRepository: PlanetsRepositoryProtocol {
-    var getAllPlanetsResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "getAllPlanetsResult Error"))
-    var syncLocalRepoResult: Result<[PlanetModel], Error> = .failure(SWAPIError.someError(description: "syncLocalRepoResult Error"))
+    var getAllPlanetsResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.localFetchError)
+    var syncLocalRepoResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteDecodingError)
     
-    func getAllPlanets() -> AnyPublisher<[PlanetModel], Error> {
+    func getAllPlanets() -> AnyPublisher<[PlanetModel], DataSourceError> {
         return Result.Publisher(getAllPlanetsResult)
             .eraseToAnyPublisher()
     }
     
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error> {
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], DataSourceError> {
         return Result.Publisher(syncLocalRepoResult)
             .eraseToAnyPublisher()
     }

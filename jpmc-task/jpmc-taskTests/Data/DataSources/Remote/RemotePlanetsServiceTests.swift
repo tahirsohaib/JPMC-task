@@ -46,7 +46,7 @@ class RemotePlanetsServiceTests: XCTestCase {
     
     func testFetchPlanetsFailure() {
         // Given
-        let expectedError = SWAPIError.someError(description: #function)
+        let expectedError = DataSourceError.remoteUnknown
         
         networkServiceMock.error = expectedError
         
@@ -66,9 +66,9 @@ class RemotePlanetsServiceTests: XCTestCase {
 
 class NetworkServiceMock: NetworkServiceProtocol {
     var encodedResponse: Data?
-    var error: Error?
+    var error: DataSourceError?
     
-    func get<T: Decodable, S: Endpoint>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, Error> {
+    func get<T, S>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, DataSourceError> where T : Decodable, S : Endpoint {
         if let error = error {
             return Fail(error: error).eraseToAnyPublisher()
         } else {
@@ -76,7 +76,14 @@ class NetworkServiceMock: NetworkServiceProtocol {
                 .tryMap { data -> T in
                     try JSONDecoder().decode(T.self, from: data)
                 }
+                .mapError { error -> DataSourceError in
+                    if let dataSourceError = error as? DataSourceError {
+                        return dataSourceError
+                    } else {
+                        return DataSourceError.remoteDecodingError
+                    }
+                }
                 .eraseToAnyPublisher()
         }
-    }
+    }            
 }

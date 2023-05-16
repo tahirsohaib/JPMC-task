@@ -44,7 +44,7 @@ class RemoteDataSourceTests: XCTestCase {
     
     func testGetAllPlanetsRemoteFailure() throws {
         // Given
-        let expectedError = SWAPIError.someError(description: #function)
+        let expectedError = DataSourceError.remoteUnknown
         
         remoteServiceMock.error = expectedError
         
@@ -63,14 +63,17 @@ class RemoteDataSourceTests: XCTestCase {
 }
 
 class RemotePlanetsServiceMock: RemotePlanetsServiceProtocol {
+    
     var planetRemoteEntities: [PlanetRemoteEntity]?
-    var error: Error?
+    var error: DataSourceError?
 
-    func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], Error> {
+    func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], DataSourceError> {
         if let error = error {
             return Fail(error: error).eraseToAnyPublisher()
         } else if let planetRemoteEntities = planetRemoteEntities {
-            return Just(planetRemoteEntities).setFailureType(to: Error.self).eraseToAnyPublisher()
+            return Just(planetRemoteEntities)
+                .setFailureType(to: DataSourceError.self)
+                .eraseToAnyPublisher()
         } else {
             fatalError("You must set either planetRemoteEntities or error")
         }

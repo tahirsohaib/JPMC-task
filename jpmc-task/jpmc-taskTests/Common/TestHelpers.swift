@@ -10,13 +10,13 @@ import Combine
 
 class TestHelpers {
     
-    static func waitForPublisher<T>(
-        _ publisher: AnyPublisher<T, Error>,
+    static func waitForPublisher<T, E: Error>(
+        _ publisher: AnyPublisher<T, E>,
         timeout: TimeInterval = 0.2,
         expectation: String
     ) throws -> T {
         let expectation = XCTestExpectation(description: expectation)
-        var result: Result<T, Error>?
+        var result: Result<T, E>?
         let cancellable = publisher
             .sink { completion in
                 switch completion {

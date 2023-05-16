@@ -32,7 +32,7 @@ class PlanetListViewModelTests: XCTestCase {
     func testFetchPlanetsUsingSuccess() {
         // Given
         useCase.stubbedResult = Just(PlanetModel.mockPlanetModels)
-            .setFailureType(to: Error.self)
+            .setFailureType(to: UseCaseError.self)
             .eraseToAnyPublisher()
         
         // When
@@ -54,7 +54,7 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testFetchPlanetsFailure() {
         // Given
-        let expectedError = SWAPIError.someError(description: "Fetch Failure")
+        let expectedError = UseCaseError.fetchError
         useCase.stubbedResult = Fail(error: expectedError)
             .eraseToAnyPublisher()
         
@@ -78,7 +78,7 @@ class PlanetListViewModelTests: XCTestCase {
     func testSyncRemoteAndLocalSuccess() {
         // Given
         useCase.stubbedResult = Just(PlanetModel.mockPlanetModels)
-            .setFailureType(to: Error.self)
+            .setFailureType(to: UseCaseError.self)
             .eraseToAnyPublisher()
         
         // When
@@ -100,7 +100,7 @@ class PlanetListViewModelTests: XCTestCase {
     
     func testSyncRemoteAndLocalFailure() {
         // Given
-        let expectedError = SWAPIError.someError(description: "Sync Failure")
+        let expectedError = UseCaseError.fetchError
         useCase.stubbedResult = Fail(error: expectedError)
             .eraseToAnyPublisher()
         
@@ -123,9 +123,9 @@ class PlanetListViewModelTests: XCTestCase {
 }
 
 class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
-    var stubbedResult: AnyPublisher<[PlanetModel], Error>?
+    var stubbedResult: AnyPublisher<[PlanetModel], UseCaseError>?
     
-    func execute() -> AnyPublisher<[PlanetModel], Error> {
+    func execute() -> AnyPublisher<[PlanetModel], UseCaseError> {
         if let stubbedResult = stubbedResult {
             return stubbedResult
         }
@@ -134,7 +134,7 @@ class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
         return Empty().eraseToAnyPublisher()
     }
     
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], Error> {
+    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError> {
         if let stubbedResult = stubbedResult {
             return stubbedResult
         }

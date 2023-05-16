@@ -66,7 +66,7 @@ class NetworkServiceTest: XCTestCase {
         }
         
         let networkService = NetworkService(urlSession: mockSession)
-        let expectedError = APIError.badURLResponse(url: "https://swapi.dev/api/planets")
+        let expectedError = DataSourceError.remoteBadURLResponse(url: "https://swapi.dev/planets")
         
         // When
         let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
@@ -81,7 +81,7 @@ class NetworkServiceTest: XCTestCase {
         XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)        
     }
     
-    func testDecodeResponseSuccess () {
+    func testDecodeResponseSuccess () throws {
         // Given
         let json = """
                 {
@@ -91,15 +91,13 @@ class NetworkServiceTest: XCTestCase {
                 }
             """
         let data = Data(json.utf8)
-        let publisher = NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
+        let receivedPlanet = try NetworkService().decodeResponse(data: data, ofType: PlanetRemoteEntity.self)
         
         // Then
-        let receivedPlanet = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
-        
         XCTAssertEqual(receivedPlanet, PlanetRemoteEntity.mockPlanetRemoteEntity)
     }
     
-    func testDecodeResponseFailure() {
+    func testDecodeResponseFailure() throws {
         // Given
         let invalidJson = """
             {
@@ -108,15 +106,15 @@ class NetworkServiceTest: XCTestCase {
             }
         """
         let data = Data(invalidJson.utf8)
-        let expectedError = APIError.decodingError
+        let expectedError = DataSourceError.remoteDecodingError
         
         // When
-        let publisher = NetworkService().decodeResponse(data, ofType: PlanetRemoteEntity.self)
+//        let publisher = try NetworkService().decodeResponse(data: data, ofType: PlanetRemoteEntity.self)
         var receivedError: Error?
         
         // Then
         do {
-            _ = try TestHelpers.waitForPublisher(publisher, expectation: #function)
+            _ = try NetworkService().decodeResponse(data: data, ofType: PlanetRemoteEntity.self)
         } catch {
             receivedError = error
         }
