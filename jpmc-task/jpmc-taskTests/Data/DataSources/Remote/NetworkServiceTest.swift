@@ -28,7 +28,7 @@ class NetworkServiceTest: XCTestCase {
         super.tearDown()
     }
     
-    func testGetSuccess() {
+    func testGetSuccess() throws {
         // Given
         let mockResponse = HTTPURLResponse(url: URL(string: "https://swapi.dev/planets")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
         
@@ -50,14 +50,14 @@ class NetworkServiceTest: XCTestCase {
         let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
         
         // Then
-        let receivedPlanet = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
+        let receivedPlanet = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         
-        XCTAssertEqual(receivedPlanet?.name, "Tatooine")
-        XCTAssertEqual(receivedPlanet?.terrain, "desert")
-        XCTAssertEqual(receivedPlanet?.population, "200000")
+        XCTAssertEqual(receivedPlanet.name, "Tatooine")
+        XCTAssertEqual(receivedPlanet.terrain, "desert")
+        XCTAssertEqual(receivedPlanet.population, "200000")
     }
     
-    func testGetFailure() {
+    func testGetFailure() throws {
         // Given
         let mockResponse = HTTPURLResponse(url: URL(string: "https://swapi.dev/planets")!, statusCode: 400, httpVersion: "HTTP/1.1", headerFields: nil)!
         
@@ -109,15 +109,15 @@ class NetworkServiceTest: XCTestCase {
         let expectedError = DataSourceError.remoteDecodingError
         
         // When
-//        let publisher = try NetworkService().decodeResponse(data: data, ofType: PlanetRemoteEntity.self)
         var receivedError: Error?
         
-        // Then
         do {
             _ = try NetworkService().decodeResponse(data: data, ofType: PlanetRemoteEntity.self)
         } catch {
             receivedError = error
         }
+        
+        // Then
         XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)
     }
 }

@@ -25,14 +25,14 @@ class CoreDataStorageTests: XCTestCase {
         super.tearDown()
     }
     
-    func testInsertPlanet() {
+    func testInsertPlanet() throws {
         let planet = PlanetCDEntity(context: context)
         planet.name = "Tatooine"
         planet.terrain = "Desert"
         planet.population = "200000"
         coreDataService.saveContext()
         
-        let result = try! coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
+        let result = try coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
         
         XCTAssertEqual(result.count, 1)
         XCTAssertEqual(result[0].name, "Tatooine")
@@ -40,19 +40,19 @@ class CoreDataStorageTests: XCTestCase {
         XCTAssertEqual(result[0].population, "200000")
     }
         
-    func testDeletePlanet() {
+    func testDeletePlanet() throws {
         let planet = PlanetCDEntity(context: context)
         planet.name = "Tatooine"
         planet.terrain = "Desert"
         planet.population = "200000"
         coreDataService.saveContext()
         
-        let result = try! coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
+        let result = try coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
         XCTAssertEqual(result.count, 1)
         
         coreDataService.deleteObject(entity: result[0])
         
-        let newResult = try! coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
+        let newResult = try coreDataService.getEntities(entityName: "PlanetCDEntity", predicate: NSPredicate(format: "name = %@", "Tatooine"), limit: 0) as! [PlanetCDEntity]
         XCTAssertEqual(newResult.count, 0)
     }
 }

@@ -29,9 +29,9 @@ class RemotePlanetsServiceTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFetchPlanetsSuccess() {
+    func testFetchPlanetsSuccess() throws {
         // Given
-        let encodedResponse = try! JSONEncoder().encode(PlanetsResponseRemoteEntity(results: PlanetRemoteEntity.mockPlanetRemoteEntities))
+        let encodedResponse = try JSONEncoder().encode(PlanetsResponseRemoteEntity(results: PlanetRemoteEntity.mockPlanetRemoteEntities))
         
         networkServiceMock.encodedResponse = encodedResponse
         
@@ -39,12 +39,12 @@ class RemotePlanetsServiceTests: XCTestCase {
         let publisher = sut.fetchPlanets()
         
         // Then
-        let planets = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
+        let planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertEqual(planets, PlanetRemoteEntity.mockPlanetRemoteEntities)
     }
     
-    func testFetchPlanetsFailure() {
+    func testFetchPlanetsFailure() throws {
         // Given
         let expectedError = DataSourceError.remoteUnknown
         

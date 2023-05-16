@@ -33,7 +33,7 @@ class StarWarsRepositoryTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGetAllPlanetsSuccess() {
+    func testGetAllPlanetsSuccess() throws {
         // Given
         localDataSourceMock.getAllPlanetsLocalResult = .success(PlanetModel.mockPlanetModels)
         
@@ -41,7 +41,7 @@ class StarWarsRepositoryTests: XCTestCase {
         let publisher = repository.getAllPlanets()
         
         // Then
-        let receivedPlanets = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
+        let receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertNotNil(receivedPlanets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
@@ -64,7 +64,7 @@ class StarWarsRepositoryTests: XCTestCase {
         XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)
     }
     
-    func testSyncLocalRepoWithRemoteRepoSuccess() {
+    func testSyncLocalRepoWithRemoteRepoSuccess() throws {
         // Given
         localDataSourceMock.syncAllPlanetsWithRemoteResult = .success(PlanetModel.mockPlanetModels)
         remoteDataSourceMock.getAllPlanetsRemoteResult = .success(PlanetModel.mockPlanetModels)
@@ -73,13 +73,13 @@ class StarWarsRepositoryTests: XCTestCase {
         let publisher = repository.syncLocalRepoWithRemoteRepo()
         
         // Then
-        let receivedPlanets = try? TestHelpers.waitForPublisher(publisher, expectation: #function)
+        let receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertNotNil(receivedPlanets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
     }
     
-    func testSyncLocalRepoWithRemoteRepoFailure() {
+    func testSyncLocalRepoWithRemoteRepoFailure() throws {
         // Given
         let expectedError = DataSourceError.remoteUnknown
         
