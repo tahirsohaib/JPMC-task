@@ -42,6 +42,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         
         XCTAssertNotNil(planets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
+        XCTAssertTrue(mockRepository.getAllPlanetsCalled)
     }
     
     func testExecuteFailure() throws {
@@ -59,6 +60,7 @@ class GetAllPlanetsUCTests: XCTestCase {
             receivedError = error
         }
         XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
+        XCTAssertTrue(mockRepository.getAllPlanetsCalled)
     }
     
     func testSyncLocalWithRemoteSuccess() throws {
@@ -73,6 +75,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         
         XCTAssertNotNil(planets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, planets)
+        XCTAssertTrue(mockRepository.syncLocalRepoWithRemoteRepoCalled)
     }
     
     func testSyncLocalWithRemoteFailure() throws {
@@ -90,19 +93,24 @@ class GetAllPlanetsUCTests: XCTestCase {
             receivedError = error
         }
         XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
+        XCTAssertTrue(mockRepository.syncLocalRepoWithRemoteRepoCalled)
     }
 }
 
 class MockRepository: PlanetsRepositoryProtocol {
     var getAllPlanetsResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.localFetchError)
     var syncLocalRepoResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteDecodingError)
+    var getAllPlanetsCalled = false
+    var syncLocalRepoWithRemoteRepoCalled = false
     
     func getAllPlanets() -> AnyPublisher<[PlanetModel], DataSourceError> {
+        getAllPlanetsCalled = true
         return Result.Publisher(getAllPlanetsResult)
             .eraseToAnyPublisher()
     }
     
     func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], DataSourceError> {
+        syncLocalRepoWithRemoteRepoCalled = true
         return Result.Publisher(syncLocalRepoResult)
             .eraseToAnyPublisher()
     }

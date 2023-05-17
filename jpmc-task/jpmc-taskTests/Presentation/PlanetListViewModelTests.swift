@@ -46,6 +46,7 @@ class PlanetListViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, PlanetModel.mockPlanetModels)
+            XCTAssertTrue(self.useCase.executeCalled)
             expectation.fulfill()
         }
         
@@ -69,6 +70,7 @@ class PlanetListViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, [])
+            XCTAssertTrue(self.useCase.executeCalled)
             expectation.fulfill()
         }
         
@@ -92,6 +94,7 @@ class PlanetListViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, PlanetModel.mockPlanetModels)
+            XCTAssertTrue(self.useCase.syncLocalRepoWithRemoteRepoCalled)
             expectation.fulfill()
         }
         
@@ -115,6 +118,7 @@ class PlanetListViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             XCTAssertFalse(self.viewModel.isLoading)
             XCTAssertEqual(self.viewModel.planets, [])
+            XCTAssertTrue(self.useCase.syncLocalRepoWithRemoteRepoCalled)
             expectation.fulfill()
         }
         
@@ -124,8 +128,12 @@ class PlanetListViewModelTests: XCTestCase {
 
 class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
     var stubbedResult: AnyPublisher<[PlanetModel], UseCaseError>?
+    var executeCalled = false
+    var syncLocalRepoWithRemoteRepoCalled = false
     
     func execute() -> AnyPublisher<[PlanetModel], UseCaseError> {
+        executeCalled = true
+        
         if let stubbedResult = stubbedResult {
             return stubbedResult
         }
@@ -135,6 +143,8 @@ class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
     }
     
     func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError> {
+        syncLocalRepoWithRemoteRepoCalled = true
+        
         if let stubbedResult = stubbedResult {
             return stubbedResult
         }

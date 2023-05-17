@@ -40,6 +40,7 @@ class RemoteDataSourceTests: XCTestCase {
         let planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertEqual(planets, PlanetModel.mockPlanetModels)
+        XCTAssertTrue(remoteServiceMock.fetchPlanetsCalled)
     }
     
     func testGetAllPlanetsRemoteFailure() throws {
@@ -59,6 +60,7 @@ class RemoteDataSourceTests: XCTestCase {
             receivedError = error
         }
         XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
+        XCTAssertTrue(remoteServiceMock.fetchPlanetsCalled)
     }    
 }
 
@@ -66,8 +68,10 @@ class RemotePlanetsServiceMock: RemotePlanetsServiceProtocol {
     
     var planetRemoteEntities: [PlanetRemoteEntity]?
     var error: DataSourceError?
+    var fetchPlanetsCalled = false
 
     func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], DataSourceError> {
+        fetchPlanetsCalled = true
         if let error = error {
             return Fail(error: error).eraseToAnyPublisher()
         } else if let planetRemoteEntities = planetRemoteEntities {

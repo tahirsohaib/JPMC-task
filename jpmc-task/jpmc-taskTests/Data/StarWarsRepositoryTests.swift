@@ -45,6 +45,7 @@ class StarWarsRepositoryTests: XCTestCase {
         
         XCTAssertNotNil(receivedPlanets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
+        XCTAssertTrue(localDataSourceMock.getAllPlanetsLocalCalled)
     }
     
     func testGetAllPlanetsFailure() {
@@ -62,6 +63,7 @@ class StarWarsRepositoryTests: XCTestCase {
             receivedError = error
         }
         XCTAssertEqual(receivedError!.localizedDescription, expectedError.localizedDescription)
+        XCTAssertTrue(localDataSourceMock.getAllPlanetsLocalCalled)
     }
     
     func testSyncLocalRepoWithRemoteRepoSuccess() throws {
@@ -77,6 +79,8 @@ class StarWarsRepositoryTests: XCTestCase {
         
         XCTAssertNotNil(receivedPlanets)
         XCTAssertEqual(PlanetModel.mockPlanetModels, receivedPlanets)
+        XCTAssertTrue(localDataSourceMock.syncAllPlanetsWithRemoteCalled)
+        XCTAssertTrue(remoteDataSourceMock.getAllPlanetsRemoteCalled)
     }
     
     func testSyncLocalRepoWithRemoteRepoFailure() throws {
@@ -94,14 +98,17 @@ class StarWarsRepositoryTests: XCTestCase {
             receivedError = error
         }
         XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
+        XCTAssertTrue(remoteDataSourceMock.getAllPlanetsRemoteCalled)
     }
 }
 
 
 class RemoteDataSourceMock: RemoteDataSourceProtocol {
     var getAllPlanetsRemoteResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteUnknown)
-
+    var getAllPlanetsRemoteCalled = false
+    
     func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], DataSourceError> {
+        getAllPlanetsRemoteCalled = true
         return getAllPlanetsRemoteResult.publisher.eraseToAnyPublisher()
     }
 }
@@ -110,11 +117,16 @@ class LocalDataSourceMock: LocalDataSourceProtocol {
     var getAllPlanetsLocalResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.localFetchError)
     var syncAllPlanetsWithRemoteResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.localFetchError)
 
+    var getAllPlanetsLocalCalled = false
+    var syncAllPlanetsWithRemoteCalled = false
+    
     func getAllPlanetsLocal() -> AnyPublisher<[PlanetModel], DataSourceError> {
+        getAllPlanetsLocalCalled = true
         return getAllPlanetsLocalResult.publisher.eraseToAnyPublisher()
     }
 
     func syncAllPlanetsWithRemote(_ planets: [PlanetModel]) -> AnyPublisher<[PlanetModel], DataSourceError> {
+        syncAllPlanetsWithRemoteCalled = true
         return syncAllPlanetsWithRemoteResult.publisher.eraseToAnyPublisher()
     }
 }

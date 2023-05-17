@@ -42,6 +42,7 @@ class RemotePlanetsServiceTests: XCTestCase {
         let planets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
         
         XCTAssertEqual(planets, PlanetRemoteEntity.mockPlanetRemoteEntities)
+        XCTAssertTrue(networkServiceMock.getCalled)
     }
     
     func testFetchPlanetsFailure() throws {
@@ -61,14 +62,17 @@ class RemotePlanetsServiceTests: XCTestCase {
             receivedError = error
         }
         XCTAssertEqual(receivedError?.localizedDescription, expectedError.localizedDescription)
+        XCTAssertTrue(networkServiceMock.getCalled)
     }
 }
 
 class NetworkServiceMock: NetworkServiceProtocol {
     var encodedResponse: Data?
     var error: DataSourceError?
+    var getCalled = false
     
     func get<T, S>(_ t: T.Type, endpoint: S) -> AnyPublisher<T, DataSourceError> where T : Decodable, S : Endpoint {
+        getCalled = true
         if let error = error {
             return Fail(error: error).eraseToAnyPublisher()
         } else {
