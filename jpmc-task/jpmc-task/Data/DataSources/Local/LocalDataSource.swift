@@ -21,7 +21,7 @@ class LocalDataSource: LocalDataSourceProtocol {
         else {
             throw DataSourceError.localInvalidPlanetEntity
         }
-        return PlanetModel(name: name, population: population, terrain: terrain)
+        return PlanetModel(name: name, population: population, terrain: terrain, filmIDs: [], residentIDs: [], films: nil, residents: nil)
     }
     
     private func _getAll() throws -> [PlanetCDEntity] {

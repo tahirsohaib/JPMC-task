@@ -18,6 +18,14 @@
 		CB57E25C2A0CF7410052A881 /* DomainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E25B2A0CF7410052A881 /* DomainErrors.swift */; };
 		CB57E25F2A15066D0052A881 /* PlanetDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E25E2A15066D0052A881 /* PlanetDetailsViewModel.swift */; };
 		CB57E2612A1506770052A881 /* PlanetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2602A1506770052A881 /* PlanetDetailsView.swift */; };
+		CB57E2642A1518790052A881 /* ResidentRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2622A1518790052A881 /* ResidentRemoteEntity.swift */; };
+		CB57E2652A1518790052A881 /* FilmRemoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2632A1518790052A881 /* FilmRemoteEntity.swift */; };
+		CB57E2672A151E280052A881 /* RemoteFilmsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2662A151E280052A881 /* RemoteFilmsService.swift */; };
+		CB57E2692A151E370052A881 /* RemoteResidentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2682A151E370052A881 /* RemoteResidentsService.swift */; };
+		CB57E26B2A157D020052A881 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E26A2A157D020052A881 /* Film.swift */; };
+		CB57E26D2A157D0D0052A881 /* Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E26C2A157D0D0052A881 /* Resident.swift */; };
+		CB57E26F2A1580310052A881 /* GetFilmUC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E26E2A1580310052A881 /* GetFilmUC.swift */; };
+		CB57E2712A1582FB0052A881 /* GetResidentUC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2702A1582FB0052A881 /* GetResidentUC.swift */; };
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
@@ -67,6 +75,14 @@
 		CB57E25B2A0CF7410052A881 /* DomainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainErrors.swift; sourceTree = "<group>"; };
 		CB57E25E2A15066D0052A881 /* PlanetDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsViewModel.swift; sourceTree = "<group>"; };
 		CB57E2602A1506770052A881 /* PlanetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsView.swift; sourceTree = "<group>"; };
+		CB57E2622A1518790052A881 /* ResidentRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentRemoteEntity.swift; sourceTree = "<group>"; };
+		CB57E2632A1518790052A881 /* FilmRemoteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmRemoteEntity.swift; sourceTree = "<group>"; };
+		CB57E2662A151E280052A881 /* RemoteFilmsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFilmsService.swift; sourceTree = "<group>"; };
+		CB57E2682A151E370052A881 /* RemoteResidentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResidentsService.swift; sourceTree = "<group>"; };
+		CB57E26A2A157D020052A881 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		CB57E26C2A157D0D0052A881 /* Resident.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resident.swift; sourceTree = "<group>"; };
+		CB57E26E2A1580310052A881 /* GetFilmUC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFilmUC.swift; sourceTree = "<group>"; };
+		CB57E2702A1582FB0052A881 /* GetResidentUC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetResidentUC.swift; sourceTree = "<group>"; };
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -287,6 +303,8 @@
 			children = (
 				CB6ADD0229F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift */,
 				CB6ADD0329F1B16400BB0ACA /* PlanetRemoteEntity.swift */,
+				CB57E2632A1518790052A881 /* FilmRemoteEntity.swift */,
+				CB57E2622A1518790052A881 /* ResidentRemoteEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -296,6 +314,8 @@
 			children = (
 				CB6ADCFC29F1AFDD00BB0ACA /* NetworkService.swift */,
 				CB6ADD0C29F1B28100BB0ACA /* RemotePlanetsService.swift */,
+				CB57E2662A151E280052A881 /* RemoteFilmsService.swift */,
+				CB57E2682A151E370052A881 /* RemoteResidentsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -304,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				CB6ADD1229F1B68100BB0ACA /* Planet.swift */,
+				CB57E26A2A157D020052A881 /* Film.swift */,
+				CB57E26C2A157D0D0052A881 /* Resident.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				CB6ADD1829F498D800BB0ACA /* GetAllPlanetsUC.swift */,
+				CB57E26E2A1580310052A881 /* GetFilmUC.swift */,
+				CB57E2702A1582FB0052A881 /* GetResidentUC.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -490,16 +514,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB57E2652A1518790052A881 /* FilmRemoteEntity.swift in Sources */,
 				CB6ADCFF29F1AFF700BB0ACA /* Endpoint.swift in Sources */,
 				CB6ADD1929F498D900BB0ACA /* GetAllPlanetsUC.swift in Sources */,
 				CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */,
 				CB57E2612A1506770052A881 /* PlanetDetailsView.swift in Sources */,
 				CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */,
 				CB6ADD1E29F4A7F400BB0ACA /* PlanetList.swift in Sources */,
+				CB57E26D2A157D0D0052A881 /* Resident.swift in Sources */,
+				CB57E2672A151E280052A881 /* RemoteFilmsService.swift in Sources */,
+				CB57E2712A1582FB0052A881 /* GetResidentUC.swift in Sources */,
 				CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */,
 				CB57E25C2A0CF7410052A881 /* DomainErrors.swift in Sources */,
 				CB6ADD0B29F1B23F00BB0ACA /* RemoteDataSource.swift in Sources */,
 				CB6ADD2229F5D76900BB0ACA /* CoreDataStorage.swift in Sources */,
+				CB57E2692A151E370052A881 /* RemoteResidentsService.swift in Sources */,
+				CB57E26B2A157D020052A881 /* Film.swift in Sources */,
 				CB6ADD2529F5E18600BB0ACA /* Swapi.xcdatamodeld in Sources */,
 				CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */,
 				CB6ADD2029F575CD00BB0ACA /* LocalDataSource.swift in Sources */,
@@ -507,12 +537,14 @@
 				CB57E25F2A15066D0052A881 /* PlanetDetailsViewModel.swift in Sources */,
 				CB6ADD1729F4983A00BB0ACA /* PlanetsReposiroty.swift in Sources */,
 				CB6ADD1329F1B68100BB0ACA /* Planet.swift in Sources */,
+				CB57E26F2A1580310052A881 /* GetFilmUC.swift in Sources */,
 				CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */,
 				CB6ADCFD29F1AFDD00BB0ACA /* NetworkService.swift in Sources */,
 				CB57E25A2A0C54AF0052A881 /* DataErrors.swift in Sources */,
 				CB6ADD0729F1B16400BB0ACA /* PlanetRemoteEntity.swift in Sources */,
 				CB6ADD1C29F4A7EC00BB0ACA /* PlanetListViewModel.swift in Sources */,
 				CB6ADD0D29F1B28100BB0ACA /* RemotePlanetsService.swift in Sources */,
+				CB57E2642A1518790052A881 /* ResidentRemoteEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

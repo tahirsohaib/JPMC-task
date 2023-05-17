@@ -8,7 +8,10 @@
 import Combine
 import Foundation
 
-protocol PlanetsRepositoryProtocol {
+protocol StarWarsRepositoryProtocol {
     func getAllPlanets() -> AnyPublisher<[PlanetModel], DataSourceError>
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], DataSourceError>
+    func syncLocalPlanetsRepoWithRemote() -> AnyPublisher<[PlanetModel], DataSourceError>
+    
+    func getFilm(filmID: String) -> AnyPublisher<FilmModel, DataSourceError>
+    func getResident(residentID: String) -> AnyPublisher<ResidentModel, DataSourceError>
 }

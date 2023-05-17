@@ -19,7 +19,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         Resolver.main.removeDependencies()
         cancellables = []
         mockRepository = MockRepository()
-        Resolver.main.register(type: PlanetsRepositoryProtocol.self, service: mockRepository!)
+        Resolver.main.register(type: StarWarsRepositoryProtocol.self, service: mockRepository!)
         sut = GetAllPlanetsUC()
     }
     
@@ -68,7 +68,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         mockRepository.syncLocalRepoResult = .success(PlanetModel.mockPlanetModels)
         
         // When
-        let publisher = sut.syncLocalRepoWithRemoteRepo()
+        let publisher = sut.syncLocalPlanetsRepoWithRemoteRepo()
         
         // Then
         let planets = try TestHelpers.waitForPublisher(publisher, expectation:  #function)
@@ -83,7 +83,7 @@ class GetAllPlanetsUCTests: XCTestCase {
         let expectedError = UseCaseError.unknownError
         
         // When
-        let publisher = sut.syncLocalRepoWithRemoteRepo()
+        let publisher = sut.syncLocalPlanetsRepoWithRemoteRepo()
         var receivedError: Error?
         
         // Then
@@ -97,7 +97,7 @@ class GetAllPlanetsUCTests: XCTestCase {
     }
 }
 
-class MockRepository: PlanetsRepositoryProtocol {
+class MockRepository: StarWarsRepositoryProtocol {
     var getAllPlanetsResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.localFetchError)
     var syncLocalRepoResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteDecodingError)
     var getAllPlanetsCalled = false
@@ -109,7 +109,7 @@ class MockRepository: PlanetsRepositoryProtocol {
             .eraseToAnyPublisher()
     }
     
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], DataSourceError> {
+    func syncLocalPlanetsRepoWithRemote() -> AnyPublisher<[PlanetModel], DataSourceError> {
         syncLocalRepoWithRemoteRepoCalled = true
         return Result.Publisher(syncLocalRepoResult)
             .eraseToAnyPublisher()

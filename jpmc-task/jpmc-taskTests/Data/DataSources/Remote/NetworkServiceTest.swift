@@ -36,7 +36,9 @@ class NetworkServiceTest: XCTestCase {
                 {
                     "name": "Tatooine",
                     "terrain": "desert",
-                    "population": "200000"
+                    "population": "200000",
+                    "residents": ["https://swapi.dev/api/people/2/"],
+                    "films": ["https://swapi.dev/api/films/2/"]
                 }
                 """.data(using: .utf8)!
         
@@ -47,7 +49,7 @@ class NetworkServiceTest: XCTestCase {
         let networkService = NetworkService(urlSession: mockSession)
         
         // When
-        let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
+        let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: StarWarsEndpoint.allPlanets)
         
         // Then
         let receivedPlanet = try TestHelpers.waitForPublisher(publisher, expectation: #function)
@@ -69,7 +71,7 @@ class NetworkServiceTest: XCTestCase {
         let expectedError = DataSourceError.remoteBadURLResponse(url: "https://swapi.dev/planets")
         
         // When
-        let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
+        let publisher = networkService.get(PlanetRemoteEntity.self, endpoint: StarWarsEndpoint.allPlanets)
         var receivedError: Error?
         
         // Then
@@ -87,7 +89,9 @@ class NetworkServiceTest: XCTestCase {
                 {
                     "name": "Earth",
                     "population": "7.9 billion",
-                    "terrain": "desert"
+                    "terrain": "desert",
+                    "residents": ["https://swapi.dev/api/people/1/"],
+                    "films": ["https://swapi.dev/api/films/1/"]
                 }
             """
         let data = Data(json.utf8)

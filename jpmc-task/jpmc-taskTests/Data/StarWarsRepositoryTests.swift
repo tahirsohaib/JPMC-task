@@ -72,7 +72,7 @@ class StarWarsRepositoryTests: XCTestCase {
         remoteDataSourceMock.getAllPlanetsRemoteResult = .success(PlanetModel.mockPlanetModels)
         
         // When
-        let publisher = repository.syncLocalRepoWithRemoteRepo()
+        let publisher = repository.syncLocalPlanetsRepoWithRemote()
         
         // Then
         let receivedPlanets = try TestHelpers.waitForPublisher(publisher, expectation: #function)
@@ -88,7 +88,7 @@ class StarWarsRepositoryTests: XCTestCase {
         let expectedError = DataSourceError.remoteUnknown
         
         // When
-        let publisher = repository.syncLocalRepoWithRemoteRepo()
+        let publisher = repository.syncLocalPlanetsRepoWithRemote()
         var receivedError: Error?
         
         // Then
@@ -104,6 +104,14 @@ class StarWarsRepositoryTests: XCTestCase {
 
 
 class RemoteDataSourceMock: RemoteDataSourceProtocol {
+    func getFilmRemote(filmID: String) -> AnyPublisher<FilmRemoteEntity, DataSourceError> {
+        return Fail(error: DataSourceError.remoteUnknown).eraseToAnyPublisher()
+    }
+    
+    func getResidentRemote(residentID: String) -> AnyPublisher<ResidentRemoteEntity, DataSourceError> {
+        return Fail(error: DataSourceError.remoteUnknown).eraseToAnyPublisher()
+    }
+    
     var getAllPlanetsRemoteResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteUnknown)
     var getAllPlanetsRemoteCalled = false
     

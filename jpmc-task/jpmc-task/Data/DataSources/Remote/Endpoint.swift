@@ -11,9 +11,11 @@ protocol Endpoint: Equatable {
     var path: String { get }
 }
 
-enum PlanetsEndpoint: Endpoint {
+enum StarWarsEndpoint: Endpoint {
     case allPlanets
     case onePlanet(planetId: String)
+    case film(filmId: String)
+    case resident(residentId: String)
     var baseUrl: String {
         return Constants.BaseURL
     }
@@ -24,6 +26,10 @@ enum PlanetsEndpoint: Endpoint {
             return "/planets"
         case let .onePlanet(planetId):
             return "/planets/\(planetId)"
+        case .film(filmId: let filmId):
+            return "/films/\(filmId)"
+        case .resident(residentId: let residentId):
+            return "/people/\(residentId)"
         }
     }
 }

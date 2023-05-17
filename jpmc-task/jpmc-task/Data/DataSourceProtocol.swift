@@ -10,6 +10,8 @@ import Foundation
 
 protocol RemoteDataSourceProtocol {
     func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], DataSourceError>
+    func getFilmRemote(filmID: String) -> AnyPublisher<FilmModel, DataSourceError>
+    func getResidentRemote(residentID: String) -> AnyPublisher<ResidentModel, DataSourceError>
 }
 
 protocol LocalDataSourceProtocol {

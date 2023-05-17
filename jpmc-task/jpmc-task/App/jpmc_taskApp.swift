@@ -17,9 +17,13 @@ struct jpmc_taskApp: App {
         Resolver.main.register(type: LocalDataSourceProtocol.self, service: LocalDataSource())
         Resolver.main.register(type: NetworkServiceProtocol.self, service: NetworkService())
         Resolver.main.register(type: RemotePlanetsServiceProtocol.self, service: RemotePlanetsService())
+        Resolver.main.register(type: RemoteFilmsServiceProtocol.self, service: RemoteFilmsService())
+        Resolver.main.register(type: RemoteResidentsServiceProtocol.self, service: RemoteResidentsService())
         Resolver.main.register(type: RemoteDataSourceProtocol.self, service: RemoteDataSource())
-        Resolver.main.register(type: PlanetsRepositoryProtocol.self, service: StarWarsRepository())
+        Resolver.main.register(type: StarWarsRepositoryProtocol.self, service: StarWarsRepository())
         Resolver.main.register(type: GetAllPlanetsUseCaseProtocol.self, service: GetAllPlanetsUC())
+        Resolver.main.register(type: GetFilmUseCaseProtocol.self, service: GetFilmUC())
+        Resolver.main.register(type: GetResidentUseCaseProtocol.self, service: GetResidentUC())
     }
     
     var body: some Scene {

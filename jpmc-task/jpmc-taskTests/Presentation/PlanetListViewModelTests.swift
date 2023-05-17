@@ -142,7 +142,7 @@ class GetAllPlanetsUseCaseMock: GetAllPlanetsUseCaseProtocol {
         return Empty().eraseToAnyPublisher()
     }
     
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError> {
+    func syncLocalPlanetsRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError> {
         syncLocalRepoWithRemoteRepoCalled = true
         
         if let stubbedResult = stubbedResult {

@@ -9,9 +9,14 @@ import SwiftUI
 
 struct PlanetDetailsView: View {
     @Binding var planet: PlanetModel?
+    @StateObject private var viewModel = PlanetDetailsViewModel()
     
     var body: some View {
         Text(planet?.name ?? "")
+            .onAppear {
+                viewModel.getFilms(planet: planet!)
+                viewModel.getResidents(planet: planet!)
+            }
     }
 }
 

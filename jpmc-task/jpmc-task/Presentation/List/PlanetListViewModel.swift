@@ -43,7 +43,7 @@ class PlanetListViewModel: ObservableObject {
     func syncRemoteAndLocal() {
         isLoading = true // Set loading state to true
         
-        getAllPlanetsUseCase.syncLocalRepoWithRemoteRepo()
+        getAllPlanetsUseCase.syncLocalPlanetsRepoWithRemoteRepo()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 self?.isLoading = false

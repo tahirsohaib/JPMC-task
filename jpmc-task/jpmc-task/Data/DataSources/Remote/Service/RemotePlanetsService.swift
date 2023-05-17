@@ -16,7 +16,7 @@ class RemotePlanetsService: RemotePlanetsServiceProtocol {
     @Injected private var networkService: NetworkServiceProtocol
 
     func fetchPlanets() -> AnyPublisher<[PlanetRemoteEntity], DataSourceError> {
-        networkService.get(PlanetsResponseRemoteEntity.self, endpoint: PlanetsEndpoint.allPlanets)
+        networkService.get(PlanetsResponseRemoteEntity.self, endpoint: StarWarsEndpoint.allPlanets)
             .map { $0.results }
             .eraseToAnyPublisher()
     }

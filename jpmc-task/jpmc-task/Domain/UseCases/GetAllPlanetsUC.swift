@@ -10,11 +10,11 @@ import Foundation
 
 protocol GetAllPlanetsUseCaseProtocol {
     func execute() -> AnyPublisher<[PlanetModel], UseCaseError>
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError>
+    func syncLocalPlanetsRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError>
 }
 
 class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
-    @Injected private var planetRepo: PlanetsRepositoryProtocol
+    @Injected private var planetRepo: StarWarsRepositoryProtocol
     
     func execute() -> AnyPublisher<[PlanetModel], UseCaseError> {
         return planetRepo.getAllPlanets()
@@ -24,15 +24,15 @@ class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
             .eraseToAnyPublisher()
     }
     
-    func syncLocalRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError> {
-        return planetRepo.syncLocalRepoWithRemoteRepo()
+    func syncLocalPlanetsRepoWithRemoteRepo() -> AnyPublisher<[PlanetModel], UseCaseError> {
+        return planetRepo.syncLocalPlanetsRepoWithRemote()
             .mapError { error -> UseCaseError in
                 self.mapDataSourceErrorToUseCaseError(error)
             }
             .eraseToAnyPublisher()
     }
     
-    private func mapDataSourceErrorToUseCaseError(_ error: DataSourceError) -> UseCaseError {
+    func mapDataSourceErrorToUseCaseError(_ error: DataSourceError) -> UseCaseError {
         switch error {
         case .localFetchError, .remoteTimeout:
             return .fetchError
@@ -43,15 +43,3 @@ class GetAllPlanetsUC: GetAllPlanetsUseCaseProtocol {
         }
     }
 }
-
-//case localInvalidPlanetEntity
-//case localFetchError
-//case localSaveError
-//case localSyncError
-//
-//case remoteDecodingError
-//case remoteErrorCode(Int)
-//case remoteBadURLResponse(url: String)
-//case remoteBadURLRequest(url: String)
-//case remoteUnknown
-//case remoteTimeout
