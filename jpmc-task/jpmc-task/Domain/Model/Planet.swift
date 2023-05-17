@@ -17,6 +17,7 @@ extension PlanetModel {
     
     static let mockPlanetModel1: [PlanetModel] = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert")]
     static let mockPlanetModel2: [PlanetModel] = [PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]
+    static let mockPlanetModel3: [PlanetModel] = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert")]
     
     static let mockPlanetModels: [PlanetModel] = [PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert"),
                                                   PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains")]    
