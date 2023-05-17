@@ -10,6 +10,8 @@ import SwiftUI
 struct PlanetList: View {
     @StateObject private var viewModel = PlanetListViewModel()
     @State var firstAppear: Bool = true
+    @State private var showDetailView: Bool = false
+    @State private var selectedPlanet: PlanetModel? = nil
     
     var body: some View {
         NavigationView {
@@ -17,16 +19,7 @@ struct PlanetList: View {
                 if viewModel.isLoading {
                     ProgressView()
                 } else {
-                    List(viewModel.planets, id: \.self) { planet in
-                        VStack(alignment: .leading) {
-                            Text(planet.name)
-                                .font(.headline)
-                            Text("Terrain: \(planet.terrain)")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    .listStyle(.plain)
+                    listView
                 }
             }
             .navigationTitle("Star Wars Planets")
@@ -48,6 +41,38 @@ struct PlanetList: View {
         }
     }
 }
+
+extension PlanetList {
+    private func navigateToDetail(planet: PlanetModel) {
+        selectedPlanet = planet
+        showDetailView.toggle()
+    }
+    
+    private var listView: some View {
+        List(viewModel.planets, id: \.self) { planet in
+            VStack(alignment: .leading) {
+                Text(planet.name)
+                    .font(.headline)
+                Text("Terrain: \(planet.terrain)")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+            .onTapGesture {
+                navigateToDetail(planet: planet)
+            }
+        }
+        .listStyle(.plain)
+        .background(
+            NavigationLink(
+                "",
+                isActive: $showDetailView,
+                destination: {
+                    PlanetDetailsView(planet: $selectedPlanet)
+                })
+        )
+    }
+}
+
 
 struct PlanetList_Previews: PreviewProvider {
     static var previews: some View {

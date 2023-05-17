@@ -16,6 +16,8 @@
 		CB3DB91E29FB39E900603C2D /* RemotePlanetsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */; };
 		CB57E25A2A0C54AF0052A881 /* DataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2592A0C54AF0052A881 /* DataErrors.swift */; };
 		CB57E25C2A0CF7410052A881 /* DomainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E25B2A0CF7410052A881 /* DomainErrors.swift */; };
+		CB57E25F2A15066D0052A881 /* PlanetDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E25E2A15066D0052A881 /* PlanetDetailsViewModel.swift */; };
+		CB57E2612A1506770052A881 /* PlanetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57E2602A1506770052A881 /* PlanetDetailsView.swift */; };
 		CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */; };
 		CB6ADCC129F1A1D800BB0ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */; };
 		CB6ADCC429F1A1D800BB0ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6ADCC329F1A1D800BB0ACA /* Preview Assets.xcassets */; };
@@ -63,6 +65,8 @@
 		CB3DB91D29FB39E900603C2D /* RemotePlanetsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePlanetsServiceTests.swift; sourceTree = "<group>"; };
 		CB57E2592A0C54AF0052A881 /* DataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataErrors.swift; sourceTree = "<group>"; };
 		CB57E25B2A0CF7410052A881 /* DomainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainErrors.swift; sourceTree = "<group>"; };
+		CB57E25E2A15066D0052A881 /* PlanetDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsViewModel.swift; sourceTree = "<group>"; };
+		CB57E2602A1506770052A881 /* PlanetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsView.swift; sourceTree = "<group>"; };
 		CB6ADCB929F1A1D400BB0ACA /* jpmc-task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jpmc-task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6ADCBC29F1A1D400BB0ACA /* jpmc_taskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jpmc_taskApp.swift; sourceTree = "<group>"; };
 		CB6ADCC029F1A1D800BB0ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -144,6 +148,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		CB57E25D2A1506570052A881 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				CB57E25E2A15066D0052A881 /* PlanetDetailsViewModel.swift */,
+				CB57E2602A1506770052A881 /* PlanetDetailsView.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		CB6ADCB029F1A1D300BB0ACA = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				CB6ADD1A29F4A7D900BB0ACA /* List */,
+				CB57E25D2A1506570052A881 /* Details */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -479,6 +493,7 @@
 				CB6ADCFF29F1AFF700BB0ACA /* Endpoint.swift in Sources */,
 				CB6ADD1929F498D900BB0ACA /* GetAllPlanetsUC.swift in Sources */,
 				CB6ADD2B29F7204300BB0ACA /* Injected.swift in Sources */,
+				CB57E2612A1506770052A881 /* PlanetDetailsView.swift in Sources */,
 				CB6ADD2C29F7204300BB0ACA /* Resolver.swift in Sources */,
 				CB6ADD1E29F4A7F400BB0ACA /* PlanetList.swift in Sources */,
 				CB6ADCED29F1A45600BB0ACA /* DataSourceProtocol.swift in Sources */,
@@ -489,6 +504,7 @@
 				CB6ADCBD29F1A1D400BB0ACA /* jpmc_taskApp.swift in Sources */,
 				CB6ADD2029F575CD00BB0ACA /* LocalDataSource.swift in Sources */,
 				CB6ADD0629F1B16400BB0ACA /* PlanetsResponseRemoteEntity.swift in Sources */,
+				CB57E25F2A15066D0052A881 /* PlanetDetailsViewModel.swift in Sources */,
 				CB6ADD1729F4983A00BB0ACA /* PlanetsReposiroty.swift in Sources */,
 				CB6ADD1329F1B68100BB0ACA /* Planet.swift in Sources */,
 				CB6ADCF529F1A4D300BB0ACA /* StarWarsRepository.swift in Sources */,
