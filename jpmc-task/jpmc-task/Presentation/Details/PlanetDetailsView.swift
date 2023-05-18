@@ -12,11 +12,32 @@ struct PlanetDetailsView: View {
     @StateObject private var viewModel = PlanetDetailsViewModel()
     
     var body: some View {
-        Text(planet?.name ?? "")
-            .onAppear {
-                viewModel.getFilms(planet: planet!)
-                viewModel.getResidents(planet: planet!)
+        List {
+            Section(header: Text("Planet")) {
+                Text(planet!.name)
             }
+            
+            if !viewModel.films.isEmpty {
+                Section(header: Text("Films")) {
+                    ForEach(viewModel.films, id: \.self) { film in
+                        Text(film.title)
+                    }
+                }
+            }
+            
+            if !viewModel.residents.isEmpty {
+                Section(header: Text("Residents")) {
+                    ForEach(viewModel.residents, id: \.self) { resident in
+                        Text(resident.name)
+                    }
+                }
+            }
+        }
+        .navigationBarTitle("Planet Details",displayMode: .inline)
+        .onAppear {
+            viewModel.getFilms(planet: planet!)
+            viewModel.getResidents(planet: planet!)
+        }
     }
 }
 

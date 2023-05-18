@@ -61,7 +61,6 @@ extension PlanetList {
                 navigateToDetail(planet: planet)
             }
         }
-        .listStyle(.plain)
         .background(
             NavigationLink(
                 "",
