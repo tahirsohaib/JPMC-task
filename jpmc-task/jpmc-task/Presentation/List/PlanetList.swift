@@ -49,27 +49,29 @@ extension PlanetList {
     }
     
     private var listView: some View {
-        List(viewModel.planets, id: \.self) { planet in
-            VStack(alignment: .leading) {
-                Text(planet.name)
-                    .font(.headline)
-                Text("Terrain: \(planet.terrain)")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+            List(viewModel.planets, id: \.self) { planet in
+                Button(action: {
+                    navigateToDetail(planet: planet)
+                }) {
+                    VStack(alignment: .leading) {
+                        Text(planet.name)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        Text("Terrain: \(planet.terrain)")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                }
             }
-            .onTapGesture {
-                navigateToDetail(planet: planet)
-            }
+            .background(
+                NavigationLink(
+                    "",
+                    isActive: $showDetailView,
+                    destination: {
+                        PlanetDetailsView(planet: $selectedPlanet)
+                    })
+            )
         }
-        .background(
-            NavigationLink(
-                "",
-                isActive: $showDetailView,
-                destination: {
-                    PlanetDetailsView(planet: $selectedPlanet)
-                })
-        )
-    }
 }
 
 
