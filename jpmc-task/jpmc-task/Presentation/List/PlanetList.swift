@@ -53,14 +53,7 @@ extension PlanetList {
                 Button(action: {
                     navigateToDetail(planet: planet)
                 }) {
-                    VStack(alignment: .leading) {
-                        Text(planet.name)
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        Text("Terrain: \(planet.terrain)")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
+                    PlanetRow(planet: planet)
                 }
             }
             .background(
@@ -74,6 +67,20 @@ extension PlanetList {
         }
 }
 
+struct PlanetRow: View {
+    let planet: PlanetModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(planet.name)
+                .font(.headline)
+                .foregroundColor(.black)
+            Text("Terrain: \(planet.terrain)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+    }
+}
 
 struct PlanetList_Previews: PreviewProvider {
     static var previews: some View {
