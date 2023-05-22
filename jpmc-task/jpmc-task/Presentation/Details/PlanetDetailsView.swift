@@ -13,12 +13,12 @@ struct PlanetDetailsView: View {
     
     var body: some View {
         List {
-            Section(header: Text("Planet")) {
+            Section(header: Text("planet")) {
                 Text(planet!.name)
             }
             
             if !viewModel.films.isEmpty {
-                Section(header: Text("Films")) {
+                Section(header: Text("films")) {
                     ForEach(viewModel.films, id: \.self) { film in
                         Text(film.title)
                     }
@@ -26,14 +26,14 @@ struct PlanetDetailsView: View {
             }
             
             if !viewModel.residents.isEmpty {
-                Section(header: Text("Residents")) {
+                Section(header: Text("residents")) {
                     ForEach(viewModel.residents, id: \.self) { resident in
                         Text(resident.name)
                     }
                 }
             }
         }
-        .navigationBarTitle("Planet Details",displayMode: .inline)
+        .navigationBarTitle("planet details",displayMode: .inline)
         .onAppear {
             viewModel.getFilms(planet: planet!)
             viewModel.getResidents(planet: planet!)

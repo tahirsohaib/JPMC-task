@@ -22,10 +22,10 @@ struct PlanetList: View {
                     listView
                 }
             }
-            .navigationTitle("Star Wars Planets")
+            .navigationTitle("star wars planets")
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(
-                    title: Text("Error"),
+                    title: Text("error"),
                     message: Text(viewModel.errorMessage),
                     dismissButton: .default(Text("OK"), action: {
                         viewModel.dismissAlert()
@@ -75,7 +75,13 @@ struct PlanetRow: View {
             Text(planet.name)
                 .font(.headline)
                 .foregroundColor(.black)
-            Text("Terrain: \(planet.terrain)")
+            
+            Text(
+                String(
+                    localized: "terrain \(planet.terrain)",
+                    comment: "Terrains"
+                )
+            )
                 .font(.subheadline)
                 .foregroundColor(.gray)
         }

@@ -72,11 +72,11 @@ class PlanetListViewModel: ObservableObject {
     private func mapErrorToString(_ error: UseCaseError) -> String {
         switch error {
         case .fetchError:
-            return "Failed to fetch planets."
+            return "failed to fetch planets."
         case .saveError:
-            return "Failed to save planets."
+            return "failed to save planets."
         case .unknownError:
-            return "Unknown error occurred."
+            return "unknown error occurred."
         }
     }
 }

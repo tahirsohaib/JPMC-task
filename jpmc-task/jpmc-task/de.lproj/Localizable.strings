@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  jpmc-task
+
+  Created by Sohaib Tahir on 22/05/2023.
+  
+*/
+"star wars planets" = "Star Wars-Planeten";
+"planet details" = "Planetendetails";
+"planet" = "Planet";
+"films" = "Filme";
+"residents" = "Bewohner";
+
+"error" = "Fehler";
+"failed to fetch planets." = "Planeten konnten nicht abgerufen werden.";
+"failed to save planets." = "Planeten konnten nicht gerettet werden.";
+"unknown error occurred." = "Unbekannter Fehler aufgetreten.";
+"terrain %@" = "Terrain: %@";
