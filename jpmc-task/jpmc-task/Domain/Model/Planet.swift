@@ -19,14 +19,14 @@ struct PlanetModel: Equatable, Hashable {
 
 extension PlanetModel {
     
-    static let mockPlanetModel1: PlanetModel = PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert", filmIDs: ["https://swapi.dev/api/films/1/"], residentIDs: ["https://swapi.dev/api/people/1/"], films: nil, residents: nil)
+    static let mockPlanetModel1: PlanetModel = PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert", filmIDs: ["1"], residentIDs: ["1"], films: nil, residents: nil)
     
-    static let mockPlanetModel2: PlanetModel = PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains", filmIDs: ["https://swapi.dev/api/films/2/"], residentIDs: ["https://swapi.dev/api/people/2/"], films: nil, residents: nil)
+    static let mockPlanetModel2: PlanetModel = PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains", filmIDs: ["2"], residentIDs: ["2"], films: nil, residents: nil)
     
-    static let mockPlanetModel3: PlanetModel = PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert", filmIDs: ["https://swapi.dev/api/films/1/"], residentIDs: ["https://swapi.dev/api/people/1/"], films: nil, residents: nil)
+    static let mockPlanetModel3: PlanetModel = PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert", filmIDs: ["1"], residentIDs: ["1"], films: nil, residents: nil)
     
     static let mockPlanetModels: [PlanetModel] = [
-        PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert", filmIDs: ["https://swapi.dev/api/films/1/"], residentIDs: ["https://swapi.dev/api/people/1/"], films: nil, residents: nil),
-        PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains", filmIDs: ["https://swapi.dev/api/films/2/"], residentIDs: ["https://swapi.dev/api/people/2/"], films: nil, residents: nil)
+        PlanetModel(name: "Earth", population: "7.9 billion", terrain: "desert", filmIDs: ["1"], residentIDs: ["1"], films: nil, residents: nil),
+        PlanetModel(name: "Mars", population: "Unknown", terrain: "mountains", filmIDs: ["2"], residentIDs: ["2"], films: nil, residents: nil)
     ]
 }

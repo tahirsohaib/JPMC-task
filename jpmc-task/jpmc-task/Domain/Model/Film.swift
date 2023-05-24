@@ -10,3 +10,7 @@ import Foundation
 struct FilmModel: Hashable, Equatable {
     var title: String
 }
+
+extension FilmModel {
+    static let mockFilmModel: FilmModel = FilmModel(title: "A New Hope")
+}

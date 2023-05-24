@@ -103,14 +103,7 @@ class StarWarsRepositoryTests: XCTestCase {
 }
 
 
-class RemoteDataSourceMock: RemoteDataSourceProtocol {
-    func getFilmRemote(filmID: String) -> AnyPublisher<FilmRemoteEntity, DataSourceError> {
-        return Fail(error: DataSourceError.remoteUnknown).eraseToAnyPublisher()
-    }
-    
-    func getResidentRemote(residentID: String) -> AnyPublisher<ResidentRemoteEntity, DataSourceError> {
-        return Fail(error: DataSourceError.remoteUnknown).eraseToAnyPublisher()
-    }
+class RemoteDataSourceMock: RemoteDataSourceProtocol {    
     
     var getAllPlanetsRemoteResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteUnknown)
     var getAllPlanetsRemoteCalled = false
@@ -118,6 +111,14 @@ class RemoteDataSourceMock: RemoteDataSourceProtocol {
     func getAllPlanetsRemote() -> AnyPublisher<[PlanetModel], DataSourceError> {
         getAllPlanetsRemoteCalled = true
         return getAllPlanetsRemoteResult.publisher.eraseToAnyPublisher()
+    }
+    
+    func getFilmRemote(filmID: String) -> AnyPublisher<FilmModel, DataSourceError> {
+        return Fail(error: DataSourceError.remoteUnknown).eraseToAnyPublisher()
+    }
+    
+    func getResidentRemote(residentID: String) -> AnyPublisher<ResidentModel, DataSourceError> {
+        return Fail(error: DataSourceError.remoteUnknown).eraseToAnyPublisher()
     }
 }
 
