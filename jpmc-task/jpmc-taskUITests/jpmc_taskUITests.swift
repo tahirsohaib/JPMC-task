@@ -15,27 +15,31 @@ class PlanetListUITests: XCTestCase {
         app = XCUIApplication()
         app.launch()
     }
-
+    
     override func tearDownWithError() throws {
         app = nil
         try super.tearDownWithError()
     }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testPlanetListNavigation() throws {
+        // Wait for the planet list to load
+        let planetList = app.navigationBars["Star Wars Planets"]
+        XCTAssertTrue(planetList.waitForExistence(timeout: 5))
+        
+        // Tap on the first planet in the list
+        let firstPlanet = app.tables.cells.firstMatch
+        XCTAssertTrue(firstPlanet.waitForExistence(timeout: 5))
+        firstPlanet.tap()
+        
+        // Verify that the planet details view is displayed
+        let planetDetails = app.navigationBars["Planet Details"]
+        XCTAssertTrue(planetDetails.waitForExistence(timeout: 5))
+        
+        // Go back to the planet list
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        
+        // Verify that we are back on the planet list
+        XCTAssertTrue(planetList.waitForExistence(timeout: 5))
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
 }
