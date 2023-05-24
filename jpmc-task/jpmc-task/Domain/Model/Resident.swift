@@ -10,3 +10,7 @@ import Foundation
 struct ResidentModel: Hashable, Equatable {
     var name: String
 }
+
+extension ResidentModel {
+    static let mockResidentModel: ResidentModel = ResidentModel(name: "Lobot")
+}

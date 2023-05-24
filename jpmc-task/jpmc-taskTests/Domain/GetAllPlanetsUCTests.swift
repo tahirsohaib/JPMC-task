@@ -98,10 +98,16 @@ class GetAllPlanetsUCTests: XCTestCase {
 }
 
 class MockRepository: StarWarsRepositoryProtocol {
+    
     var getAllPlanetsResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.localFetchError)
     var syncLocalRepoResult: Result<[PlanetModel], DataSourceError> = .failure(DataSourceError.remoteDecodingError)
+    var getFilmResult: Result<FilmModel, DataSourceError> = .failure(DataSourceError.localFetchError)
+    var getResidentResult: Result<ResidentModel, DataSourceError> = .failure(DataSourceError.localFetchError)
+    
     var getAllPlanetsCalled = false
     var syncLocalRepoWithRemoteRepoCalled = false
+    var getFilmCalled = false
+    var getResidentCalled = false
     
     func getAllPlanets() -> AnyPublisher<[PlanetModel], DataSourceError> {
         getAllPlanetsCalled = true
@@ -112,6 +118,18 @@ class MockRepository: StarWarsRepositoryProtocol {
     func syncLocalPlanetsRepoWithRemote() -> AnyPublisher<[PlanetModel], DataSourceError> {
         syncLocalRepoWithRemoteRepoCalled = true
         return Result.Publisher(syncLocalRepoResult)
+            .eraseToAnyPublisher()
+    }
+    
+    func getFilm(filmID: String) -> AnyPublisher<FilmModel, DataSourceError> {
+        getFilmCalled = true
+        return Result.Publisher(getFilmResult)
+            .eraseToAnyPublisher()
+    }
+    
+    func getResident(residentID: String) -> AnyPublisher<ResidentModel, DataSourceError> {
+        getResidentCalled = true
+        return Result.Publisher(getResidentResult)
             .eraseToAnyPublisher()
     }
 }
