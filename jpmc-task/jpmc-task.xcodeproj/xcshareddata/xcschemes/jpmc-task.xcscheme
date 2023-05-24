@@ -39,6 +39,16 @@
                ReferencedContainer = "container:jpmc-task.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CB67C59E2A1EB2F900CE6303"
+               BuildableName = "jpmc-taskUITests.xctest"
+               BlueprintName = "jpmc-taskUITests"
+               ReferencedContainer = "container:jpmc-task.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
