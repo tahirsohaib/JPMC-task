@@ -73,8 +73,8 @@ struct PlanetRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(planet.name)
-                .font(.headline)
-                .foregroundColor(.black)
+                .font(.title3)
+                .foregroundColor(Color("TitleColor"))
             
             Text(
                 String(
